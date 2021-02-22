@@ -7,16 +7,15 @@
                   <div class="row clearfix">
                       <div class="col-lg-6 col-md-6 col-sm-12 video-column">
                           <div id="video_block_1" class="video-inner">
-                                  <!-- <button type="button" class="btn video-btn" data-toggle="modal" data-src="https://www.youtube.com/embed/Jfrjeg26Cwk" data-target="#myModal">
-        <img src="/images/about-us.jpg" alt="" style="height:300px">
-    </button> -->
+                              <!-- <button type="button" class="btn video-btn" data-toggle="modal" data-src="https://www.youtube.com/embed/Jfrjeg26Cwk" data-target="#myModal">
+                                  <img src="/images/about-us.jpg" alt="" style="height:300px">
+                              </button> -->
                               <div class="video-inner" style="background-image: url(images/about-us.jpg);">
                                   <a id="vdo-btn" href="https://www.youtube.com/embed/Jfrjeg26Cwk" data-toggle="modal" data-target="#myModal" class="lightbox-image video-btn" data-caption="">
                                     <i class="fas fa-play"></i>
                                   </a>
                               </div>
-                          </div>
-
+                            </div>
                       </div>
                       <div class="col-lg-6 col-md-6 col-sm-12 content-column">
                           <div id="content_block_1">
@@ -77,7 +76,7 @@
         </section>
         <!-- about-section end -->
 
-          <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal fade" id="myModal" @change="chrmClick()" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
 
@@ -140,33 +139,32 @@ export default {
             })
     })
 
-    $(document).ready(function() {
-  // Gets the video src from the data-src on each button
-  var $videoSrc;
-  $("#vdo-btn").click(function() {
-    $videoSrc = $(this).attr("href");
-    console.log("button clicked" + $videoSrc);
-  });
+    //  $(document).ready(function() {
+    //   // Gets the video src from the data-src on each button
+    //   var $videoSrc;
+    //   $("#vdo-btn").click(function() {
+    //     $videoSrc = $(this).attr("href");
+    //     console.log("button clicked" + $videoSrc);
+    //   });
 
-  // when the modal is opened autoplay it
-  $("#myModal").on("shown.bs.modal", function(e) {
-    console.log("modal opened" + $videoSrc);
-    // set the video src to autoplay and not to show related video. Youtube related video is like a box of chocolates... you never know what you're gonna get
-    $("#video").attr(
-      "src",
-      $videoSrc + "?autoplay=1&showinfo=0&modestbranding=1&rel=0&mute=0"
-    );
-  });
+    //   // when the modal is opened autoplay it
+    //   $("#myModal").on("shown.bs.modal", function(e) {
+    //     console.log("modal opened" + $videoSrc);
+    //     // set the video src to autoplay and not to show related video. Youtube related video is like a box of chocolates... you never know what you're gonna get
+    //     $("#video").attr(
+    //       "src",
+    //       $videoSrc + "?autoplay=1&showinfo=0&modestbranding=1&rel=0&mute=0"
+    //     );
+    //   });
 
-  // stop playing the youtube video when I close the modal
-  $("#myModal").on("hide.bs.modal", function(e) {
-    // a poor man's stop video
-    $("#video").attr("src", $videoSrc);
-  });
+    //   // stop playing the youtube video when I close the modal
+    //   $("#myModal").on("hide.bs.modal", function(e) {
+    //     // a poor man's stop video
+    //     $("#video").attr("src", $videoSrc);
+    //   });
 
-  // document ready
- 
-});
+    //   // document ready  
+    //   });
 
   },
   data() {
@@ -175,6 +173,36 @@ export default {
         data: {
             tab_name: ''
         }
+    }
+  },
+  methods: {
+    chrmClick(){
+      $(document).ready(function() {
+      // Gets the video src from the data-src on each button
+      var $videoSrc;
+      $("#vdo-btn").click(function() {
+        $videoSrc = $(this).attr("href");
+        console.log("button clicked" + $videoSrc);
+      });
+
+      // when the modal is opened autoplay it
+      $("#myModal").on("shown.bs.modal", function(e) {
+        console.log("modal opened" + $videoSrc);
+        // set the video src to autoplay and not to show related video. Youtube related video is like a box of chocolates... you never know what you're gonna get
+        $("#video").attr(
+          "src",
+          $videoSrc + "?autoplay=1&showinfo=0&modestbranding=1&rel=0&mute=0"
+        );
+      });
+
+      // stop playing the youtube video when I close the modal
+      $("#myModal").on("hide.bs.modal", function(e) {
+        // a poor man's stop video
+        $("#video").attr("src", $videoSrc);
+      });
+
+      // document ready  
+      });
     }
   }
 }

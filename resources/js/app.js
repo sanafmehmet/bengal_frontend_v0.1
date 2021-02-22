@@ -5,6 +5,8 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
+
+
 // We import JQuery
 const $ = require('jquery');
 // We declare it globally
@@ -34,6 +36,10 @@ import LeftSideBar from './components/leftsidebar.vue'
 
 import LayoutArea from './components/layout.vue'
 Vue.component('layout-area', LayoutArea)
+
+// For Home Page
+import BlogArea from './components/home/blog.vue'
+Vue.component('blog-area', BlogArea)
 
 import AboutUs from './components/home/aboutUs.vue'
 Vue.component('about-us', AboutUs)

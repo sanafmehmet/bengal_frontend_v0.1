@@ -370,6 +370,10 @@
 </script>
 
 <style scoped>
+/* @import url(https://fonts.googleapis.com/css?family=Rubik);
+* {
+    font-family: 'Rubik';
+} */
     /** About us Page Counter Area  Start **/
 .no-gutters {
 	padding: 0;

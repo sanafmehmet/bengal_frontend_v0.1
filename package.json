@@ -20,18 +20,24 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "bootstrap-css-only": "^4.4.1",
+        "bootstrap-vue": "^2.21.2",
         "jquery": "^3.5.1",
         "laravel-vue-pagination": "^2.3.1",
         "mdbvue": "^6.7.2",
         "noty": "^3.2.0-beta",
         "sweetalert2": "^10.8.1",
+        "v-video-embed": "^1.0.8",
         "vue": "^2.6.12",
+        "vue-carousel": "^0.18.0",
         "vue-count-to": "^1.0.13",
         "vue-lazy-youtube-video": "^2.3.0",
+        "vue-owl-carousel": "^2.0.3",
         "vue-responsive-video-background-player": "1.2.2",
         "vue-router": "^3.4.7",
         "vue-video": "^0.1.7",
         "vue-videojs7": "^0.1.5",
-        "vue-youtube": "^1.4.0"
+        "vue-youtube": "^1.4.0",
+        "vue-youtube-embed": "^2.2.2"
     }
 }

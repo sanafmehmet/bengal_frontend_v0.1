@@ -1,6 +1,6 @@
 <template>
-    <div>
-        <section class="achievements-area">
+ <div>
+      <section class="achievements-area">
         <div class="container">
           <div class="row">
             <div class="col-md-12">
@@ -8,58 +8,85 @@
                 <h4 class="sub-title">
                   Lorem Lorem
                 </h4>
-                <h2>Export Markets</h2>
+                <h2>Achievement Area</h2>
               </div>
             </div>
           </div>
         </div>
         <div class="container-fluid">
             <div class="row">
-              <div class="no-gutters col-md-4 col-lg-4 col">
+              <div class="no-gutters col-md-4 col-lg-4 col" v-for="a in achievements.data" :key="a.id">
                 <div class="achievements-bengal">
                     <div class="img">
-                      <img src="images/achivement.jpg" >
+                      <img :src="'http://192.168.1.6:8002/' + a.image" >
                     </div>
                     <div class="achi-details">
-                      <h3>Achievement Lorem Lorem</h3>
-                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-                      <a href="#">Read More</a>
+                      <h3>{{a.title}}</h3>
+                      <p>{{ a.desc }} </p>
+                      <a href="#">{{a.rm}}</a>
                     </div>
                 </div>
               </div>
-              <div class="no-gutters col-md-4 col-lg-4 col">
-                <div class="achievements-bengal">
-                    <div class="img">
-                      <img src="images/achivement.jpg" >
-                    </div>
-                    <div class="achi-details">
-                      <h3>Achievement Lorem Lorem</h3>
-                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-                      <a href="#">Read More</a>
-                    </div>
-                </div>
-              </div>
-              <div class="no-gutters col-md-4 col-lg-4 col">
-                <div class="achievements-bengal">
-                    <div class="img">
-                      <img src="images/achivement.jpg" >
-                    </div>
-                    <div class="achi-details">
-                      <h3>Achievement Lorem Lorem</h3>
-                      <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. </p>
-                      <a href="#">Read More</a>
-                    </div>
-                </div>
-              </div>
+             
             </div>
+			<div class="d-flex justify-content-end" style="margin-top:20px;">
+			<button style="color:white; font-size:16px; margin-right:10px; padding-right: 10px; padding-left: 10px;" @click.prevent="prevAcvnt"  class="btn btn-sm btn-info">Prev</button>
+	  		<button style="color:white; font-size:16px" @click.prevent="nextAcvnt" class="btn btn-sm btn-info">Next</button>
+		</div>
         </div>
       </section>  
-         
-    </div>
+        
+
+ </div>
+
 </template>
 
+
+<script>
+export default {
+    props: ['lang'],
+    created() {
+      this.getAcvmnts()
+    },
+    data() {
+      return {
+        page: 1,
+        achievements: [],
+        form: {
+          lang: this.lang
+        }
+      }
+    },
+    methods: {
+      getAcvmnts(){
+        axios.post('http://192.168.1.6:8002/api/getAchievements?page=' + this.page, this.form)
+          .then(({data}) => {
+            this.achievements = data
+            //console.log(this.achievements)
+          })
+      },
+      nextAcvnt(){
+        this.page = this.page + 1
+        axios.post('http://192.168.1.6:8002/api/getAchievements?page=' + this.page, this.form)
+          .then(({data}) => {
+            this.achievements = data
+            //console.log(this.achievements)
+          })
+      },
+	   prevAcvnt(){
+        this.page = this.page - 1
+        axios.post('http://192.168.1.6:8002/api/getAchievements?page=' + this.page, this.form)
+          .then(({data}) => {
+            this.achievements = data
+            //console.log(this.achievements)
+          })
+      }
+    }
+}
+</script>
+
 <style scoped>
-    /** Achievements Area  Start **/
+/** Achievements Area  Start **/
 .no-gutters {
 	padding: 0;
 }
@@ -98,7 +125,7 @@
 }
 .achievements-area {
 	background: #fbfbfb;
-	padding: 100px 0;
+	padding: 20px 0;
 }
 
 .achi-details h3 {

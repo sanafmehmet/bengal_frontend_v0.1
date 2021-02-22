@@ -503,7 +503,7 @@ export default {
           this.menuF = false
       },
       clickArabic(){
-          //this.$root.$emit('arabic', this.arabic)
+          this.$root.$emit('arabic', this.arabic)
           this.menuE = false
           this.menuA = true
           this.menuG = false

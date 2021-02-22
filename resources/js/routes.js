@@ -1,5 +1,6 @@
 
 import Home from './components/home.vue'
+
 import AboutUs from './components/aboutus/aboutus.vue'
 import Career from './components/career/career.vue'
 import News from './components/news/news.vue'

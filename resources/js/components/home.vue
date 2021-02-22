@@ -9,7 +9,11 @@
 
             <map-area></map-area>
 
+            <blog-area></blog-area>
+
             <achievement-area></achievement-area>
+
+            
 
             <partner-area></partner-area>
         </div>
