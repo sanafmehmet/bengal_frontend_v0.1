@@ -2312,10 +2312,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  created: function created() {},
+  created: function created() {//  $(document).ready(function() {
+    //   // Gets the video src from the data-src on each button
+    //   var $videoSrc;
+    //   $("#vdo-btn").click(function() {
+    //     $videoSrc = $(this).attr("href");
+    //     console.log("button clicked" + $videoSrc);
+    //   });
+    //   // when the modal is opened autoplay it
+    //   $("#myModal").on("shown.bs.modal", function(e) {
+    //     console.log("modal opened" + $videoSrc);
+    //     // set the video src to autoplay and not to show related video. Youtube related video is like a box of chocolates... you never know what you're gonna get
+    //     $("#video").attr(
+    //       "src",
+    //       $videoSrc + "?autoplay=1&showinfo=0&modestbranding=1&rel=0&mute=0"
+    //     );
+    //   });
+    //   // stop playing the youtube video when I close the modal
+    //   $("#myModal").on("hide.bs.modal", function(e) {
+    //     // a poor man's stop video
+    //     $("#video").attr("src", $videoSrc);
+    //   });
+    //   // document ready  
+    //   });
+  },
   data: function data() {
     return {};
   },
@@ -2437,12 +2458,15 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   created: function created() {
     var _this = this;
 
-    this.data.tab_name = 'english';
-    axios.get('http://192.168.1.6:8002/api/aboutus', {
+    this.data.tab_name = 'English';
+    axios.get('http://192.168.1.6:8002/api/getAboutus', {
       params: this.data
     }).then(function (_ref) {
       var data = _ref.data;
@@ -2451,7 +2475,7 @@ __webpack_require__.r(__webpack_exports__);
     });
     this.$root.$on('english', function (e) {
       _this.data.tab_name = e;
-      axios.get('http://192.168.1.6:8002/api/aboutus', {
+      axios.get('http://192.168.1.6:8002/api/getAboutus', {
         params: _this.data
       }).then(function (_ref2) {
         var data = _ref2.data;
@@ -2461,7 +2485,7 @@ __webpack_require__.r(__webpack_exports__);
     });
     this.$root.$on('french', function (e) {
       _this.data.tab_name = e;
-      axios.get('http://192.168.1.6:8002/api/aboutus', {
+      axios.get('http://192.168.1.6:8002/api/getAboutus', {
         params: _this.data
       }).then(function (_ref3) {
         var data = _ref3.data;
@@ -2471,50 +2495,18 @@ __webpack_require__.r(__webpack_exports__);
     });
     this.$root.$on('arabic', function (e) {
       _this.data.tab_name = e;
-      axios.get('http://192.168.1.6:8002/api/aboutus', {
+      axios.get('http://192.168.1.6:8002/api/getAboutus', {
         params: _this.data
       }).then(function (_ref4) {
         var data = _ref4.data;
         _this.abouts = data;
         console.log(_this.abouts);
       });
-    }); //  $(document).ready(function() {
-    //   // Gets the video src from the data-src on each button
-    //   var $videoSrc;
-    //   $("#vdo-btn").click(function() {
-    //     $videoSrc = $(this).attr("href");
-    //     console.log("button clicked" + $videoSrc);
-    //   });
-    //   // when the modal is opened autoplay it
-    //   $("#myModal").on("shown.bs.modal", function(e) {
-    //     console.log("modal opened" + $videoSrc);
-    //     // set the video src to autoplay and not to show related video. Youtube related video is like a box of chocolates... you never know what you're gonna get
-    //     $("#video").attr(
-    //       "src",
-    //       $videoSrc + "?autoplay=1&showinfo=0&modestbranding=1&rel=0&mute=0"
-    //     );
-    //   });
-    //   // stop playing the youtube video when I close the modal
-    //   $("#myModal").on("hide.bs.modal", function(e) {
-    //     // a poor man's stop video
-    //     $("#video").attr("src", $videoSrc);
-    //   });
-    //   // document ready  
-    //   });
-  },
-  data: function data() {
-    return {
-      abouts: [],
-      data: {
-        tab_name: ''
-      }
-    };
-  },
-  methods: {
-    chrmClick: function chrmClick() {
+    });
+    this.$on('chairman', function (e) {
       $(document).ready(function () {
         // Gets the video src from the data-src on each button
-        var $videoSrc;
+        var $videoSrc = e;
         $("#vdo-btn").click(function () {
           $videoSrc = $(this).attr("href");
           console.log("button clicked" + $videoSrc);
@@ -2531,6 +2523,42 @@ __webpack_require__.r(__webpack_exports__);
           $("#video").attr("src", $videoSrc);
         }); // document ready  
       });
+    });
+  },
+  data: function data() {
+    return {
+      abouts: {},
+      url: 'https://www.youtube.com/embed/TTyFV-qhQtQ',
+      data: {
+        tab_name: ''
+      }
+    };
+  },
+  methods: {
+    chrmClick: function chrmClick() {
+      this.$emit('chairman', this.url); // $(document).ready(function() {
+      // // Gets the video src from the data-src on each button
+      // var $videoSrc;
+      // $("#vdo-btn").click(function() {
+      //   $videoSrc = $(this).attr("href");
+      //   console.log("button clicked" + $videoSrc);
+      // });
+      // // when the modal is opened autoplay it
+      // $("#myModal").on("shown.bs.modal", function(e) {
+      //   console.log("modal opened" + $videoSrc);
+      //   // set the video src to autoplay and not to show related video. Youtube related video is like a box of chocolates... you never know what you're gonna get
+      //   $("#video").attr(
+      //     "src",
+      //     $videoSrc + "?autoplay=1&showinfo=0&modestbranding=1&rel=0&mute=0"
+      //   );
+      // });
+      // // stop playing the youtube video when I close the modal
+      // $("#myModal").on("hide.bs.modal", function(e) {
+      //   // a poor man's stop video
+      //   $("#video").attr("src", $videoSrc);
+      // });
+      // // document ready  
+      // });
     }
   }
 });
@@ -2629,6 +2657,2952 @@ __webpack_require__.r(__webpack_exports__);
       axios.post('http://192.168.1.6:8002/api/getAchievements?page=' + this.page, this.form).then(function (_ref3) {
         var data = _ref3.data;
         _this3.achievements = data; //console.log(this.achievements)
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/home/category.vue?vue&type=script&lang=js&":
+/*!************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/home/category.vue?vue&type=script&lang=js& ***!
+  \************************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['lang'],
+  created: function created() {
+    var _this = this;
+
+    this.getData();
+    this.$root.$on('english', function (e) {
+      _this.form.lang = e;
+      axios.get('http://192.168.1.6:8002/api/getProfit', {
+        params: _this.form
+      }).then(function (_ref) {
+        var data = _ref.data;
+        _this.profit = data.profit;
+        _this.details = data.details;
+        _this.image = data.image;
+      });
+    });
+    this.$root.$on('arabic', function (e) {
+      _this.form.lang = e;
+      axios.get('http://192.168.1.6:8002/api/getProfit', {
+        params: _this.form
+      }).then(function (_ref2) {
+        var data = _ref2.data;
+        _this.profit = data.profit;
+        _this.details = data.details;
+        _this.image = data.image;
+      });
+    });
+  },
+  data: function data() {
+    return {
+      profit: {},
+      details: [],
+      image: {},
+      form: {
+        lang: ''
+      }
+    };
+  },
+  methods: {
+    getData: function getData() {
+      var _this2 = this;
+
+      this.form.lang = 'English';
+      axios.get('http://192.168.1.6:8002/api/getProfit', {
+        params: this.form
+      }).then(function (_ref3) {
+        var data = _ref3.data;
+        _this2.profit = data.profit;
+        _this2.details = data.details;
+        _this2.image = data.image; //console.log(this.profit)
+        //console.log(this.details)
+        //console.log(this.images)
+      });
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/home/counter.vue?vue&type=script&lang=js&":
+/*!***********************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/home/counter.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var vue_count_to__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue-count-to */ "./node_modules/vue-count-to/dist/vue-count-to.min.js");
+/* harmony import */ var vue_count_to__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue_count_to__WEBPACK_IMPORTED_MODULE_0__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+
+/* harmony default export */ __webpack_exports__["default"] = ({
+  components: {
+    countTo: vue_count_to__WEBPACK_IMPORTED_MODULE_0___default.a
+  },
+  created: function created() {
+    var _this = this;
+
+    this.getData();
+    this.$on('vice_chairman', function (e) {
+      $(document).ready(function () {
+        // Gets the video src from the data-src on each button
+        var $videoSrc = e;
+        $("#vdo-btn").click(function () {
+          $videoSrc = $(this).attr("href");
+          console.log("button clicked" + $videoSrc);
+        }); // when the modal is opened autoplay it
+
+        $("#myModal").on("shown.bs.modal", function (e) {
+          console.log("modal opened" + $videoSrc); // set the video src to autoplay and not to show related video. Youtube related video is like a box of chocolates... you never know what you're gonna get
+
+          $("#video").attr("src", $videoSrc + "?autoplay=1&showinfo=0&modestbranding=1&rel=0&mute=0");
+        }); // stop playing the youtube video when I close the modal
+
+        $("#myModal").on("hide.bs.modal", function (e) {
+          // a poor man's stop video
+          $("#video").attr("src", $videoSrc);
+        }); // document ready  
+      });
+    });
+    this.$root.$on('english', function (e) {
+      _this.form.lang = e;
+      axios.get('http://192.168.1.6:8002/api/getCounter', {
+        params: _this.form
+      }).then(function (_ref) {
+        var data = _ref.data;
+        _this.counter = data;
+      });
+    });
+    this.$root.$on('arabic', function (e) {
+      _this.form.lang = e;
+      axios.get('http://192.168.1.6:8002/api/getCounter', {
+        params: _this.form
+      }).then(function (_ref2) {
+        var data = _ref2.data;
+        _this.counter = data;
+      });
+    });
+  },
+  data: function data() {
+    return {
+      startVal: 1000,
+      endVal: 5000,
+      url: 'https://www.youtube.com/embed/Jfrjeg26Cwk',
+      counter: {},
+      form: {
+        lang: ''
+      }
+    };
+  },
+  methods: {
+    getData: function getData() {
+      var _this2 = this;
+
+      this.form.lang = 'English';
+      axios.get('http://192.168.1.6:8002/api/getCounter', {
+        params: this.form
+      }).then(function (_ref3) {
+        var data = _ref3.data;
+        _this2.counter = data;
+        console.log(_this2.counter);
+      });
+    },
+    viceChairman: function viceChairman() {
+      this.$emit('vice_chairman', this.url);
+    }
+  }
+});
+
+/***/ }),
+
+/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/home/map.vue?vue&type=script&lang=js&":
+/*!*******************************************************************************************************************************************************************!*\
+  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/home/map.vue?vue&type=script&lang=js& ***!
+  \*******************************************************************************************************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+/* harmony default export */ __webpack_exports__["default"] = ({
+  created: function created() {
+    var _this = this;
+
+    this.getData();
+    this.$root.$on('english', function (e) {
+      _this.form.lang = e;
+      axios.get('http://192.168.1.6:8002/api/getExport', {
+        params: _this.form
+      }).then(function (_ref) {
+        var data = _ref.data;
+        _this.expt = data;
+      });
+    });
+    this.$root.$on('arabic', function (e) {
+      _this.form.lang = e;
+      axios.get('http://192.168.1.6:8002/api/getExport', {
+        params: _this.form
+      }).then(function (_ref2) {
+        var data = _ref2.data;
+        _this.expt = data;
+      });
+    });
+  },
+  data: function data() {
+    return {
+      expt: {},
+      form: {
+        lang: ''
+      }
+    };
+  },
+  methods: {
+    getData: function getData() {
+      var _this2 = this;
+
+      this.form.lang = 'English';
+      axios.get('http://192.168.1.6:8002/api/getExport', {
+        params: this.form
+      }).then(function (_ref3) {
+        var data = _ref3.data;
+        _this2.expt = data;
+        console.log(_this2["export"]);
       });
     }
   }
@@ -2892,142 +5866,6 @@ __webpack_require__.r(__webpack_exports__);
       lang: ''
     };
   }
-});
-
-/***/ }),
-
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/leftsidebar.vue?vue&type=script&lang=js&":
-/*!**********************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/leftsidebar.vue?vue&type=script&lang=js& ***!
-  \**********************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {// if (!User.loggedIn()) {
-    //     this.$router.push({
-    //         name: '/'
-    //     })
-    // }
-  },
-  data: function data() {
-    return {
-      role: '',
-      enableSalary: true,
-      enableClient: true,
-      enableJobOrder: true,
-      enableEstimate: true,
-      enableConveyance: true,
-      enableRequisition: true,
-      enablePaymentVoucher: true,
-      enableSetting: true
-    };
-  },
-  methods: {}
 });
 
 /***/ }),
@@ -3764,9 +6602,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: {
     txt: {
@@ -3822,13 +6657,14 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     clickEnglish: function clickEnglish() {
+      this.$root.$emit('english', this.english);
       this.menuE = true;
       this.menuA = false;
       this.menuG = false;
       this.menuF = false; //this.$emit()
     },
     clickGerman: function clickGerman() {
-      //this.$root.$emit('german', this.german)
+      this.$root.$emit('german', this.german);
       this.menuE = false;
       this.menuA = false;
       this.menuG = true;
@@ -3842,7 +6678,7 @@ __webpack_require__.r(__webpack_exports__);
       this.menuF = false;
     },
     clickFrench: function clickFrench() {
-      //this.$root.$emit('french', this.french)
+      this.$root.$emit('french', this.french);
       this.menuE = false;
       this.menuA = false;
       this.menuG = false;
@@ -4107,7 +6943,26 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n    /** Business Catagory Area  Start **/\n.section-header.left-heading[data-v-48eb6e1a] {\n\ttext-align: left;\n\tmargin-left: 0;\n}\n.section-header[data-v-48eb6e1a] {\n\tmax-width: 550px;\n\tmargin: 0 auto;\n\tpadding-bottom: 30px;\n\tposition: relative;\n\tz-index: 10;\n\ttext-align: center;\n}\n.section-header .section-heading .sub-heading[data-v-48eb6e1a] {\n\tfont-family: 'Roboto', sans-serif;\n\tfont-weight: 500;\n}\n.text-orng[data-v-48eb6e1a] {\n\tcolor: #004ea0;\n}\n.text-blue[data-v-48eb6e1a] {\n    color: #00954c;\n}\n.section-header .section-heading .title[data-v-48eb6e1a] {\n\tfont-size: 50px;\n\ttext-align: left;\n}\n.section-header .section-heading .desc[data-v-48eb6e1a] {\n\tfont-size: 16px;\n\tmax-width: 450px;\n}\nul.profit-list[data-v-48eb6e1a] {\n\tmargin-bottom: 20px;\n}\nul.profit-list li[data-v-48eb6e1a] {\n\tfont-size: 16px;\n\tfont-weight: 500;\n\tmargin-bottom: 20px;\n\tdisplay: flex;\n\talign-items: center;\n}\n.custom.profit-list li i[data-v-48eb6e1a] {\n    margin-right: 10px;\n}\n.theme-btn.btn-orange i[data-v-48eb6e1a] {\n\tmargin-left: 10px;\n}\n.theme-btn.btn-orange[data-v-48eb6e1a] {\n\tcolor: #fff;\n\tbackground-color: #004ea0;\n}\n.theme-btn[data-v-48eb6e1a] {\n\tdisplay: inline-flex;\n\talign-items: center;\n\tjustify-content: center;\n\tpadding: 15px 40px;\n\tcolor: #fff;\n\ttransition: 0.5s all;\n\twhite-space: nowrap;\n\tfont-size: 16px;\n\tfont-weight: 500;\n}\n.section-header .section-heading[data-v-48eb6e1a] {\n\tposition: relative;\n}\n.bg-light-white[data-v-48eb6e1a] {\n\tbackground-color: #f3f5f7;\n}\n.section-padding[data-v-48eb6e1a] {\n\tpadding: 120px 0;\n}\nul.profit-list[data-v-48eb6e1a]{\n    margin-bottom: 20px;\n}\nul.profit-list li[data-v-48eb6e1a]{\n    font-size: 16px;\n    font-weight: 500;\n    margin-bottom: 20px;\n    display: flex;\n    align-items: center;\n}\n.profit-chart-box[data-v-48eb6e1a]{\n    background-color: transparent;\n    height: 100%;\n    width: calc(100% - 80px);\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    position: relative;\n    margin-left: 80px;\n}\n.profit-chart-box[data-v-48eb6e1a]:before{\n    content: '';\n    position: absolute;\n    top: 50px;\n    left: 50px;\n    width: calc(100% - 100px);\n    height: calc(100% - 100px);\n    background: #fff;\n}\n.profit-chart-box .chart-logo[data-v-48eb6e1a]{\n    width: 100px;\n    height: 100px;\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    position: relative;\n    margin: 20px;\n}\n.profit-chart-box .chart-logo[data-v-48eb6e1a]:before{\n    content: '';\n    border: 4px solid #f3f5f7;\n    position: absolute;\n    top: -20px;\n    left: -20px;\n    width: calc(100% + 40px);\n    height: calc(100% + 40px);\n}\n.profit-chart-box .profit-icon[data-v-48eb6e1a]{\n    height: 100px;\n    width: 100px;\n    justify-content: center;\n    border: 4px solid #f3f5f7;\n    text-align: center;\n    padding: 18px 0px;\n    background: #fff;\n    position: absolute;\n}\n.profit-chart-box .profit-icon[data-v-48eb6e1a]:hover{\n    color: #14212b;\n    border-color: #004ea0;\n}\n.profit-chart-box .profit-icon .icon[data-v-48eb6e1a]{\n    display: block;\n    flex-basis: 100%;\n    text-align: center;\n    font-size: 32px;\n    line-height: 1;\n    color: #004ea0;\n}\n.profit-chart-box .profit-icon .icon-text[data-v-48eb6e1a]{\n    flex-basis: 100%;\n    text-align: center;\n    font-size: 14px;\n\tfont-weight: 600;\n\tcolor: #1b1b1b;\n}\n.profit-chart-box .profit-icon.icon-ps-1[data-v-48eb6e1a]{\n    top: 0;\n    left: 0;\n}\n.profit-chart-box .profit-icon.icon-ps-2[data-v-48eb6e1a]{\n    top: 0;\n    left: 50%;\n    transform: translateX(-50%);\n}\n.profit-chart-box .profit-icon.icon-ps-3[data-v-48eb6e1a]{\n    top: 0;\n    right: 0;\n}\n.profit-chart-box .profit-icon.icon-ps-4[data-v-48eb6e1a]{\n    left: 0;\n    top: 50%;\n    transform: translateY(-50%);\n}\n.profit-chart-box .profit-icon.icon-ps-5[data-v-48eb6e1a]{\n    right: 0;\n    top: 50%;\n    transform: translateY(-50%);\n}\n.profit-chart-box .profit-icon.icon-ps-6[data-v-48eb6e1a]{\n    bottom: 0;\n    left: 0;\n}\n.profit-chart-box .profit-icon.icon-ps-7[data-v-48eb6e1a]{\n    bottom: 0;\n    left: 50%;\n    transform: translateX(-50%);\n}\n.profit-chart-box .profit-icon.icon-ps-8[data-v-48eb6e1a]{\n    bottom: 0;\n    right: 0;\n}\n/* Extra small devices (portrait phones, less than 576px)*/\n/* No media query since this is the default in Bootstrap*/\n@media (min-width: 576px) {\n}\n/* Medium devices (tablets, 768px and up)*/\n@media only screen and (max-width: 575px) and (min-width: 300px)  {\n.profit-chart-box[data-v-48eb6e1a] {\n\t\tmargin-top:70px;\n\t\tmargin-left: 0;\n\t\theight: 380px;\n}\n}\n/* Medium devices (tablets, 768px and up)*/\n@media only screen and (max-width: 767px) and (min-width: 576px)  {\n.profit-chart-box[data-v-48eb6e1a] {\n\t\tmargin-top:70px;\n\t\tmargin-left: 0;\n\t\theight: 380px;\n}\n}\n/* Medium devices (tablets, 768px and up)*/\n@media only screen and (max-width: 991px) and (min-width: 768px)  {\n.section-header .section-heading .title[data-v-48eb6e1a] {\n\t\tfont-size: 24px;\n}\n.profit-chart-box[data-v-48eb6e1a] {\n\t\twidth: calc(100% - 40px);\n}\n}\n/* Large devices (desktops, 992px and up)*/\n@media only screen and (max-width: 1199px) and (min-width: 992px)  {\n}\n/* Extra large devices (large desktops, 1200px and up)*/\n@media only screen and (max-width: 1600px) and (min-width: 1200px)  {\n}\n/** Business Catagory Area END **/\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n    /** Business Catagory Area  Start **/\n.section-header.left-heading[data-v-48eb6e1a] {\n\ttext-align: left;\n\tmargin-left: 0;\n}\n.section-header[data-v-48eb6e1a] {\n\tmax-width: 550px;\n\tmargin: 0 auto;\n\tpadding-bottom: 30px;\n\tposition: relative;\n\tz-index: 10;\n\ttext-align: center;\n}\n.section-header .section-heading .sub-heading[data-v-48eb6e1a] {\n\tfont-family: 'Roboto', sans-serif;\n\tfont-weight: 500;\n}\n.text-orng[data-v-48eb6e1a] {\n\tcolor: #004ea0;\n}\n.text-blue[data-v-48eb6e1a] {\n    color: #00954c;\n}\n.section-header .section-heading .title[data-v-48eb6e1a] {\n\tfont-size: 50px;\n\ttext-align: left;\n}\n.section-header .section-heading .desc[data-v-48eb6e1a] {\n\tfont-size: 16px;\n\tmax-width: 450px;\n}\nul.profit-list[data-v-48eb6e1a] {\n\tmargin-bottom: 20px;\n}\nul.profit-list li[data-v-48eb6e1a] {\n\tfont-size: 16px;\n\tfont-weight: 500;\n\tmargin-bottom: 20px;\n\tdisplay: flex;\n\talign-items: center;\n}\n.custom.profit-list li i[data-v-48eb6e1a] {\n    margin-right: 10px;\n}\n.theme-btn.btn-orange i[data-v-48eb6e1a] {\n\tmargin-left: 10px;\n}\n.theme-btn.btn-orange[data-v-48eb6e1a] {\n\tcolor: #fff;\n\tbackground-color: #004ea0;\n}\n.theme-btn[data-v-48eb6e1a] {\n\tdisplay: inline-flex;\n\talign-items: center;\n\tjustify-content: center;\n\tpadding: 15px 40px;\n\tcolor: #fff;\n\ttransition: 0.5s all;\n\twhite-space: nowrap;\n\tfont-size: 16px;\n\tfont-weight: 500;\n}\n.section-header .section-heading[data-v-48eb6e1a] {\n\tposition: relative;\n}\n.bg-light-white[data-v-48eb6e1a] {\n\tbackground-color: #f3f5f7;\n}\n.section-padding[data-v-48eb6e1a] {\n\tpadding: 120px 0;\n}\nul.profit-list[data-v-48eb6e1a]{\n    margin-bottom: 20px;\n}\nul.profit-list li[data-v-48eb6e1a]{\n    font-size: 16px;\n    font-weight: 500;\n    margin-bottom: 20px;\n    display: flex;\n    align-items: center;\n}\n.profit-chart-box[data-v-48eb6e1a]{\n    background-color: transparent;\n    height: 100%;\n    width: calc(100% - 80px);\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    position: relative;\n    margin-left: 80px;\n}\n.profit-chart-box[data-v-48eb6e1a]:before{\n    content: '';\n    position: absolute;\n    top: 50px;\n    left: 50px;\n    width: calc(100% - 100px);\n    height: calc(100% - 100px);\n    background: #fff;\n}\n.profit-chart-box .chart-logo[data-v-48eb6e1a]{\n    width: 100px;\n    height: 100px;\n    display: inline-flex;\n    align-items: center;\n    justify-content: center;\n    position: relative;\n    margin: 20px;\n}\n.profit-chart-box .chart-logo[data-v-48eb6e1a]:before{\n    content: '';\n    border: 4px solid #f3f5f7;\n    position: absolute;\n    top: -20px;\n    left: -20px;\n    width: calc(100% + 40px);\n    height: calc(100% + 40px);\n}\n.profit-chart-box .profit-icon[data-v-48eb6e1a]{\n    height: 100px;\n    width: 100px;\n    justify-content: center;\n    border: 4px solid #f3f5f7;\n    text-align: center;\n    padding: 18px 0px;\n    background: #fff;\n    position: absolute;\n}\n.profit-chart-box .profit-icon[data-v-48eb6e1a]:hover{\n    color: #14212b;\n    border-color: #004ea0;\n}\n.profit-chart-box .profit-icon .icon[data-v-48eb6e1a]{\n    display: block;\n    flex-basis: 100%;\n    text-align: center;\n    font-size: 32px;\n    line-height: 1;\n    color: #004ea0;\n}\n.profit-chart-box .profit-icon .icon-text[data-v-48eb6e1a]{\n    flex-basis: 100%;\n    text-align: center;\n    font-size: 14px;\n\tfont-weight: 600;\n\tcolor: #1b1b1b;\n}\n.profit-chart-box .profit-icon.icon-ps-1[data-v-48eb6e1a]{\n    top: 0;\n    left: 0;\n}\n.profit-chart-box .profit-icon.icon-ps-2[data-v-48eb6e1a]{\n    top: 0;\n    left: 50%;\n    transform: translateX(-50%);\n}\n.profit-chart-box .profit-icon.icon-ps-3[data-v-48eb6e1a]{\n    top: 0;\n    right: 0;\n}\n.profit-chart-box .profit-icon.icon-ps-4[data-v-48eb6e1a]{\n    left: 0;\n    top: 50%;\n    transform: translateY(-50%);\n}\n.profit-chart-box .profit-icon.icon-ps-5[data-v-48eb6e1a]{\n    right: 0;\n    top: 50%;\n    transform: translateY(-50%);\n}\n.profit-chart-box .profit-icon.icon-ps-6[data-v-48eb6e1a]{\n    bottom: 0;\n    left: 0;\n}\n.profit-chart-box .profit-icon.icon-ps-7[data-v-48eb6e1a]{\n    bottom: 0;\n    left: 50%;\n    transform: translateX(-50%);\n}\n.profit-chart-box .profit-icon.icon-ps-8[data-v-48eb6e1a]{\n    bottom: 0;\n    right: 0;\n}\n/* Extra small devices (portrait phones, less than 576px)*/\n/* No media query since this is the default in Bootstrap*/\n@media (min-width: 576px) {\n}\n/* Medium devices (tablets, 768px and up)*/\n@media only screen and (max-width: 575px) and (min-width: 300px)  {\n.profit-chart-box[data-v-48eb6e1a] {\n\t\tmargin-top:70px;\n\t\tmargin-left: 0;\n\t\theight: 380px;\n}\n}\n/* Medium devices (tablets, 768px and up)*/\n@media only screen and (max-width: 767px) and (min-width: 576px)  {\n.profit-chart-box[data-v-48eb6e1a] {\n\t\tmargin-top:70px;\n\t\tmargin-left: 0;\n\t\theight: 380px;\n}\n}\n/* Medium devices (tablets, 768px and up)*/\n@media only screen and (max-width: 991px) and (min-width: 768px)  {\n.section-header .section-heading .title[data-v-48eb6e1a] {\n\t\tfont-size: 24px;\n}\n.profit-chart-box[data-v-48eb6e1a] {\n\t\twidth: calc(100% - 40px);\n}\n}\n/* Large devices (desktops, 992px and up)*/\n@media only screen and (max-width: 1199px) and (min-width: 992px)  {\n}\n/* Extra large devices (large desktops, 1200px and up)*/\n@media only screen and (max-width: 1600px) and (min-width: 1200px)  {\n}\n/** Business Catagory Area END **/\n", ""]);
+
+// exports
+
+
+/***/ }),
+
+/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/home/counter.vue?vue&type=style&index=0&id=76962297&scoped=true&lang=css&":
+/*!******************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/home/counter.vue?vue&type=style&index=0&id=76962297&scoped=true&lang=css& ***!
+  \******************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
+// imports
+
+
+// module
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n    /** Counter-area **/\n.single_counter i[data-v-76962297] {\n    color: #0070ba;\n    display: inline-block;\n    font-size: 18px;\n}\n.single_counter h3[data-v-76962297] {\n    display: inline-block;\n    font-family: 'Rubik', sans-serif;\n    font-size: 23px;\n    font-weight: 700;\n    padding-left: 8px;\n}\n.single_counter > p[data-v-76962297] {\n    color: #b9b9b9;\n    font-family: 'Rubik', sans-serif;\n    font-size: 14px;\n    font-weight: 400;\n    padding-left: 11px;\n    position: relative;\n}\n.single_counter > p[data-v-76962297]::after {\n    background: #ffcb3d;\n    content: \"\";\n    height: 20px;\n    left: 0;\n    position: absolute;\n    top: 5px;\n    width: 1px;\n}\n.single_counter[data-v-76962297] {\n    display: inline-block;\n    margin-right: 100px;\n}\n.promot_area[data-v-76962297] {\n    padding: 50px 0 52px;\n    position: relative;\n    background: #004ea0;\n    background-repeat: no-repeat;\n    background-attachment: fixed;\n}\n.promo_text[data-v-76962297] {\n    position: relative;\n    z-index: 1;\n    color: #fff;\n}\n.promo_text > h3[data-v-76962297],\n.post_title[data-v-76962297] {\n    font-size: 22px;\n    font-weight: 700;\n    text-transform: uppercase;\n    margin-bottom: 17px;\n    font-family: \"Open Sans\", sans-serif;\n}\n.promo_text > p[data-v-76962297] {\n    color: #e9e9e9;\n    font-family: \"Open Sans\", sans-serif;\n    font-size: 14px;\n    font-weight: 300;\n    line-height: 21px;\n    margin-bottom: 0;\n    width: 75%;\n}\n.promot_area[data-v-76962297]::after {\n    background: rgba(2, 27, 39, 0.93);\n    content: \"\";\n    height: 100%;\n    left: 0;\n    position: absolute;\n    top: 0;\n    width: 100%;\n}\n.promot_area .cl-effect-2 a span[data-v-76962297] {\n    margin-top: 10px;\n    height: 55px;\n    line-height: 55px;\n    width: 190px;\n}\n.promot_area .row[data-v-76962297] {\n    position: relative;\n    z-index: 4;\n}\n.aboutbox[data-v-76962297] {\n\tpadding-bottom: 60px;\n}\n#video_block_1 .video-inner[data-v-76962297] {\n\tposition: absolute;\n\twidth: 100%;\n\tpadding: 153px 0px;\n\tbackground-repeat: no-repeat;\n\tbackground-position: center;\n\ttext-align: center;\n\tright: 0;\n\tbottom: -52px;\n}\n#video_block_1 .video-inner a[data-v-76962297] {\n\tposition: relative;\n\tdisplay: inline-block;\n\tfont-size: 24px;\n\twidth: 54px;\n\theight: 54px;\n\tline-height: 54px;\n\tbackground: rgba(255,255,255,0.95);\n\ttext-align: center;\n\tborder-radius: 50%;\n}\n#video_block_1 .video-inner a[data-v-76962297]:after, \n  #video_block_1 .video-inner a[data-v-76962297]:before {\n\twidth: 70px;\n\theight: 70px;\n\tborder-radius: 50%;\n\tbackground: transparent;\n\tposition: absolute;\n\ttop: 50%;\n\tleft: 50%;\n\ttransform: translate(-50%, -50%);\n\t-webkit-animation-delay: .9s;\n\tanimation-delay: .9s;\n\tcontent: \"\";\n\tposition: absolute;\n\tbox-shadow: 0 0 0 0 rgba(255, 255, 255, 0.6);\n\t-webkit-animation: ripple-data-v-76962297 3s infinite;\n\tanimation: ripple-data-v-76962297 3s infinite;\n\ttransition: all .4s ease;\n}\n#video_block_1 .video-inner a[data-v-76962297]:after {\n\t-webkit-animation-delay: .6s;\n\tanimation-delay: .6s;\n}\n@-webkit-keyframes ripple-data-v-76962297 {\n70% {\n\t\t\tbox-shadow: 0 0 0 40px rgba(255, 255, 255, 0);\n}\n100% {\n\t\t\tbox-shadow: 0 0 0 0 rgba(255, 255, 255, 0);\n}\n}\n@keyframes ripple-data-v-76962297 {\n70% {\n\t\t\tbox-shadow: 0 0 0 40px rgba(255, 255, 255, 0);\n}\n100% {\n\t\t\tbox-shadow: 0 0 0 0 rgba(255, 255, 255, 0);\n}\n}\n  \n  \n/* Extra small devices (portrait phones, less than 576px)*/\n/* No media query since this is the default in Bootstrap*/\n\n/* Small devices (landscape phones, 576px and up)*/\n@media (min-width: 576px) {\n}\n/* Medium devices (tablets, 768px and up)*/\n@media only screen and (max-width: 575px) and (min-width: 300px)  {\n.single_counter[data-v-76962297] {\n\t\tmargin-right: 75px;\n}\n#video_block_1 .video-inner[data-v-76962297] {\n\t\t\n\t\twidth: 34%;\n\t\tpadding: 87px 0px;\n\t\tbottom: -52px;\n}\n.promo_text > h3[data-v-76962297], .post_title[data-v-76962297] {\n\t\tfont-size: 18px;\n}\n.promo_text[data-v-76962297] {\n\t\twidth: 90%;\n}\n}\n/* Medium devices (tablets, 768px and up)*/\n@media only screen and (max-width: 767px) and (min-width: 576px)  {\n#video_block_1 .video-inner[data-v-76962297]{\n\t\twidth: 57%;\n}\n}\n/* Medium devices (tablets, 768px and up)*/\n@media only screen and (max-width: 991px) and (min-width: 768px)  {\n.single_counter[data-v-76962297] {\n\t\tmargin-right: 25px;\n}\n}\n/* Large devices (desktops, 992px and up)*/\n@media only screen and (max-width: 1199px) and (min-width: 992px)  {\n.single_counter[data-v-76962297] {\n\t\tmargin-right: 60px;\n}\n}\n/* Extra large devices (large desktops, 1200px and up)*/\n@media only screen and (max-width: 1600px) and (min-width: 1200px)  {\n}\n/** Counter Area  End **/\n", ""]);
 
 // exports
 
@@ -4126,7 +6981,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 
 // module
-exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n    /** map  Area  Start **/\n.export-area-map .title[data-v-f3978912] {\n\tposition: absolute;\n\tcolor: #fff;\n\ttext-align: right;\n\tright: 23%;\n\ttop: 8%;\n}\n.title h4[data-v-f3978912] {\n\tfont-size: 18px;\n\tposition: relative;\n}\n.title h4[data-v-f3978912]::before {\n\tposition: absolute;\n\twidth: 63px;\n\theight: 2px;\n\tbackground: #fff;\n\ttop: 10px;\n\tleft: 101%;\n\tcontent: \"\";\n}\n.title h2[data-v-f3978912] {\n\tfont-size: 48px;\n}\n.map-location[data-v-f3978912] {\n\tbackground: #fff;\n\tpadding: 4px;\n\tmax-width: 500px;\n\tposition: absolute;\n\tz-index: 9;\n}\n.map-colm-sec2[data-v-f3978912] {\n\tpadding: 8px 12px;\n\tposition: relative;\n}\n.map-colm-sec1[data-v-f3978912] {\n\tpadding-right: 8px;\n\tborder-right: 1px solid #c5dbdf;\n}\n.map-colm[data-v-f3978912] {\n\tdisplay: flex;\n}\n.map-colm-sec2 img[data-v-f3978912] {\n\twidth: 15px;\n\theight: auto;\n\tposition: absolute;\n\ttop: 0;\n\tbottom: 0;\n\tleft: 2px;\n\tright: 0;\n\tmargin: auto;\n}\n.map-colm .map-colm-sec1 a[data-v-f3978912]{\n\tfont-size: 14px;\n\tcolor: #000 !important;\n\ttext-decoration: none;\n}\n.canada[data-v-f3978912] {\n\ttop: 30%;\n\tleft: 20%;\n}\n.usa[data-v-f3978912] {\n\ttop: 46%;\n\tleft: 20%;\n}\n.maxico[data-v-f3978912] {\n\tleft: 12%;\n\ttop: 54%;\n}\n.nicaragua[data-v-f3978912] {\n\tleft: 15%;\n\ttop: 60%;\n}\n.dominicanrepublic[data-v-f3978912] {\n\ttop: 53%;\n\tleft: 26%;\n}\n.brazil[data-v-f3978912] {\n\ttop: 67%;\n\tleft: 30%;\n}\n.ireland[data-v-f3978912] {\n\ttop: 34%;\n\tleft: 37%;\n}\n.switzerland[data-v-f3978912]{\n\ttop: 38%;\nleft: 36%;\n}\n.germany[data-v-f3978912]{\n\ttop: 42%;\nleft: 36%;\n}\n.france[data-v-f3978912]{\n\ttop: 46%;\nleft: 37%;\n}\n.spain[data-v-f3978912]{\n\ttop: 50%;\n\tleft: 36%;\n}\n.portugal[data-v-f3978912]{\n\ttop: 54%;\n\tleft: 36%;\n}\n.sweden[data-v-f3978912] {\n\ttop: 28%;\n\tleft: 43%;\n}\n.netherlands[data-v-f3978912] {\n\ttop: 32%;\n\tleft: 42%;\n}\n.denmark[data-v-f3978912] {\n\ttop: 40%;\n\tleft: 42%;\n}\n.belgium[data-v-f3978912] {\n\ttop: 43%;\n\tleft: 43%;\n}\n.uk[data-v-f3978912] {\n\ttop: 36%;\n\tleft: 43%;\n}\n.slovakia[data-v-f3978912] {\n\ttop: 40%;\n\tleft: 48%;\n}\n.poland[data-v-f3978912] {\n\ttop: 37%;\n\tleft: 49%;\n}\n.czechrepublic[data-v-f3978912] {\n\ttop: 43%;\n\tleft: 48%;\n}\n.hungary[data-v-f3978912] {\n\ttop: 40%;\n\tleft: 54%;\n}\n.austria[data-v-f3978912] {\n\ttop: 46%;\n\tleft: 43%;\n}\n.romania[data-v-f3978912]{\n\ttop: 46%;\n\tleft: 48%;\n}\n.italy[data-v-f3978912]{\n\ttop: 49%;\n\tleft: 43%;\n}\n.slovenia[data-v-f3978912]{\n\ttop: 49%;\n\tleft: 47%;\n}\n.bulgaria[data-v-f3978912]{\n\ttop: 49%;\n\tleft: 52%;\n}\n.greece[data-v-f3978912] {\n\ttop: 52%;\n\tleft: 47%;\n}\n.croatia[data-v-f3978912] {\n\ttop: 52%;\n\tleft: 52%;\n}\n.cyprus[data-v-f3978912]{\n\ttop: 55%;\n\tleft: 52%;\n}\n.saudi[data-v-f3978912]{\n\ttop: 58%;\nleft: 48%;\n}\n.yemen[data-v-f3978912]{\n\ttop: 61%;\nleft: 53%;\n}\n.somalia[data-v-f3978912]{\n\ttop: 64%;\nleft: 52%;\n}\n.sudan[data-v-f3978912]{\n\ttop: 67%;\nleft: 52%;\n}\n.iran[data-v-f3978912]{\n\ttop: 52%;\n\tleft: 57%;\n}\n.qatar[data-v-f3978912]{\n\ttop: 55%;\n\tleft: 57%;\n}\n.bahrain[data-v-f3978912]{\n\ttop: 58%;\n\tleft: 57%;\n}\n.kuwait[data-v-f3978912]{\n\ttop: 61%;\n\tleft: 58%;\n}\n.uae[data-v-f3978912]{\n\ttop: 64%;\n\tleft: 58%;\n}\n.napal[data-v-f3978912]{\n\ttop: 50%;\n\tleft: 61%;\n}\n.india[data-v-f3978912]{\n\ttop: 55%;\nleft: 62%;\n}\n.maldives[data-v-f3978912]{\n\ttop: 64%;\nleft: 62%;\n}\n.myanmar[data-v-f3978912]{\n\ttop: 55%;\nleft: 67%;\n}\n.thailand[data-v-f3978912]{\n\ttop: 58%;\n\tleft: 70%;\n}\n.malaysia[data-v-f3978912]{\n\ttop: 63%;\nleft: 71%;\n}\n.singapore[data-v-f3978912]{\n\ttop: 71%;\nright: 27%;\n}\n.australia[data-v-f3978912]{\n\ttop: 75%;\nright: 22%;\n}\n.newZealand[data-v-f3978912]{\n\ttop: 90%;\nright: 15%;\n}\n.southkorea[data-v-f3978912]{\n\ttop: 46%;\nright: 16%;\n}\n.japan[data-v-f3978912]{\n\ttop: 50%;\nright: 19%;\n}\n.cambadia[data-v-f3978912]{\n\ttop: 53%;\nright: 22%;\n}\n.philippines[data-v-f3978912]{\n\ttop: 56%;\nright: 19%;\n}\n.tasttimor[data-v-f3978912] {\n\ttop: 67%;\n\tleft: 72%;\n}\n.site-title[data-v-f3978912]{\n\tdisplay: none;\n\ttext-align: center;\n}\n.site-title h2[data-v-f3978912] {\n\tfont-size: 26px !important;\n\tfont-size: 16px;\ndisplay: inline-block;\nposition: relative;\n}\n.site-title h4.sub-title[data-v-f3978912] {\n\tfont-size: 16px;\n\tposition: relative;\n}\n.site-title h4.sub-title[data-v-f3978912]::before {\n\tcontent: \"\";\n\tdisplay: block;\n\theight: 2px;\n\twidth: 63px;\n\tbackground: #354e8d;\n\ttop: 10px;\n\tleft: 108%;\n\tposition: absolute;\n}\n", ""]);
+exports.push([module.i, "\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n    /** map  Area  Start **/\n.export-area-map .title[data-v-f3978912] {\n\tposition: absolute;\n\tcolor: #fff;\n\ttext-align: right;\n\tright: 23%;\n\ttop: 8%;\n}\n.title h4[data-v-f3978912] {\n\tfont-size: 18px;\n\tposition: relative;\n}\n.title h4[data-v-f3978912]::before {\n\tposition: absolute;\n\twidth: 63px;\n\theight: 2px;\n\tbackground: #fff;\n\ttop: 10px;\n\tleft: 101%;\n\tcontent: \"\";\n}\n.title h2[data-v-f3978912] {\n\tfont-size: 48px;\n}\n.map-location[data-v-f3978912] {\n\tbackground: #fff;\n\tpadding: 4px;\n\tmax-width: 500px;\n\tposition: absolute;\n\tz-index: 9;\n}\n.map-colm-sec2[data-v-f3978912] {\n\tpadding: 8px 12px;\n\tposition: relative;\n}\n.map-colm-sec1[data-v-f3978912] {\n\tpadding-right: 8px;\n\tborder-right: 1px solid #c5dbdf;\n}\n.map-colm[data-v-f3978912] {\n\tdisplay: flex;\n}\n.map-colm-sec2 img[data-v-f3978912] {\n\twidth: 15px;\n\theight: auto;\n\tposition: absolute;\n\ttop: 0;\n\tbottom: 0;\n\tleft: 2px;\n\tright: 0;\n\tmargin: auto;\n}\n.map-colm .map-colm-sec1 a[data-v-f3978912]{\n\tfont-size: 14px;\n\tcolor: #000 !important;\n\ttext-decoration: none;\n}\n.canada[data-v-f3978912] {\n\ttop: 30%;\n\tleft: 20%;\n}\n.usa[data-v-f3978912] {\n\ttop: 46%;\n\tleft: 20%;\n}\n.maxico[data-v-f3978912] {\n\tleft: 12%;\n\ttop: 54%;\n}\n.nicaragua[data-v-f3978912] {\n\tleft: 15%;\n\ttop: 60%;\n}\n.dominicanrepublic[data-v-f3978912] {\n\ttop: 53%;\n\tleft: 26%;\n}\n.brazil[data-v-f3978912] {\n\ttop: 67%;\n\tleft: 30%;\n}\n.ireland[data-v-f3978912] {\n\ttop: 34%;\n\tleft: 37%;\n}\n.switzerland[data-v-f3978912]{\n\ttop: 38%;\nleft: 36%;\n}\n.germany[data-v-f3978912]{\n\ttop: 42%;\nleft: 36%;\n}\n.france[data-v-f3978912]{\n\ttop: 46%;\nleft: 37%;\n}\n.spain[data-v-f3978912]{\n\ttop: 50%;\n\tleft: 36%;\n}\n.portugal[data-v-f3978912]{\n\ttop: 54%;\n\tleft: 36%;\n}\n.sweden[data-v-f3978912] {\n\ttop: 28%;\n\tleft: 43%;\n}\n.netherlands[data-v-f3978912] {\n\ttop: 32%;\n\tleft: 42%;\n}\n.denmark[data-v-f3978912] {\n\ttop: 40%;\n\tleft: 42%;\n}\n.belgium[data-v-f3978912] {\n\ttop: 43%;\n\tleft: 43%;\n}\n.uk[data-v-f3978912] {\n\ttop: 36%;\n\tleft: 43%;\n}\n.slovakia[data-v-f3978912] {\n\ttop: 40%;\n\tleft: 48%;\n}\n.poland[data-v-f3978912] {\n\ttop: 37%;\n\tleft: 49%;\n}\n.czechrepublic[data-v-f3978912] {\n\ttop: 43%;\n\tleft: 48%;\n}\n.hungary[data-v-f3978912] {\n\ttop: 40%;\n\tleft: 54%;\n}\n.austria[data-v-f3978912] {\n\ttop: 46%;\n\tleft: 43%;\n}\n.romania[data-v-f3978912]{\n\ttop: 46%;\n\tleft: 48%;\n}\n.italy[data-v-f3978912]{\n\ttop: 49%;\n\tleft: 43%;\n}\n.slovenia[data-v-f3978912]{\n\ttop: 49%;\n\tleft: 47%;\n}\n.bulgaria[data-v-f3978912]{\n\ttop: 49%;\n\tleft: 52%;\n}\n.greece[data-v-f3978912] {\n\ttop: 52%;\n\tleft: 47%;\n}\n.croatia[data-v-f3978912] {\n\ttop: 52%;\n\tleft: 52%;\n}\n.cyprus[data-v-f3978912]{\n\ttop: 55%;\n\tleft: 52%;\n}\n.saudi[data-v-f3978912]{\n\ttop: 58%;\nleft: 48%;\n}\n.yemen[data-v-f3978912]{\n\ttop: 61%;\nleft: 53%;\n}\n.somalia[data-v-f3978912]{\n\ttop: 64%;\nleft: 52%;\n}\n.sudan[data-v-f3978912]{\n\ttop: 67%;\nleft: 52%;\n}\n.iran[data-v-f3978912]{\n\ttop: 52%;\n\tleft: 57%;\n}\n.qatar[data-v-f3978912]{\n\ttop: 55%;\n\tleft: 57%;\n}\n.bahrain[data-v-f3978912]{\n\ttop: 58%;\n\tleft: 57%;\n}\n.kuwait[data-v-f3978912]{\n\ttop: 61%;\n\tleft: 58%;\n}\n.uae[data-v-f3978912]{\n\ttop: 64%;\n\tleft: 58%;\n}\n.napal[data-v-f3978912]{\n\ttop: 50%;\n\tleft: 61%;\n}\n.india[data-v-f3978912]{\n\ttop: 55%;\nleft: 62%;\n}\n.maldives[data-v-f3978912]{\n\ttop: 64%;\nleft: 62%;\n}\n.myanmar[data-v-f3978912]{\n\ttop: 55%;\nleft: 67%;\n}\n.thailand[data-v-f3978912]{\n\ttop: 58%;\n\tleft: 70%;\n}\n.malaysia[data-v-f3978912]{\n\ttop: 63%;\nleft: 71%;\n}\n.singapore[data-v-f3978912]{\n\ttop: 71%;\nright: 27%;\n}\n.australia[data-v-f3978912]{\n\ttop: 75%;\nright: 22%;\n}\n.newZealand[data-v-f3978912]{\n\ttop: 90%;\nright: 15%;\n}\n.southkorea[data-v-f3978912]{\n\ttop: 46%;\nright: 16%;\n}\n.japan[data-v-f3978912]{\n\ttop: 50%;\nright: 19%;\n}\n.cambadia[data-v-f3978912]{\n\ttop: 53%;\nright: 22%;\n}\n.philippines[data-v-f3978912]{\n\ttop: 56%;\nright: 19%;\n}\n.tasttimor[data-v-f3978912] {\n\ttop: 67%;\n\tleft: 72%;\n}\n.site-title[data-v-f3978912]{\n\tdisplay: none;\n\ttext-align: center;\n}\n.site-title h2[data-v-f3978912] {\n\tfont-size: 26px !important;\n\tfont-size: 16px;\ndisplay: inline-block;\nposition: relative;\n}\n.site-title h4.sub-title[data-v-f3978912] {\n\tfont-size: 16px;\n\tposition: relative;\n}\n.site-title h4.sub-title[data-v-f3978912]::before {\n\tcontent: \"\";\n\tdisplay: block;\n\theight: 2px;\n\twidth: 63px;\n\tbackground: #354e8d;\n\ttop: 10px;\n\tleft: 108%;\n\tposition: absolute;\n}\n", ""]);
 
 // exports
 
@@ -4165,25 +7020,6 @@ exports = module.exports = __webpack_require__(/*! ../../../../node_modules/css-
 
 // module
 exports.push([module.i, "\n.investor-details h3[data-v-790c54fc] {\n\tcolor: #222;\n\tfont-size: 22px;\n}\n.investor-details p[data-v-790c54fc] {\n\tcolor: #777;\n\tfont-size: 16px;\n}\n.investor-details span[data-v-790c54fc] {\n\tcolor: #222;\n\tfont-size: 20px;\n}\n.investor-details[data-v-790c54fc] {\n\tpadding-top: 20px;\n\tpadding-left: 10px;\n\tpadding-bottom: 20px;\n}\n.row[data-v-790c54fc]:nth-child(even){\n    display: flex;\n\tflex-direction: row-reverse;\n\tmargin-top: 100px;\n}\n.investor-div[data-v-790c54fc] {\n\tbox-shadow: 2px 2px 15px rgb(0,0,0, .15);\n\tbackground: #fff;\n}\n.investor-area[data-v-790c54fc] {\n\tpadding: 100px 0;\n\tposition: relative;\n}\n.investor-area .row[data-v-790c54fc]{\n\tposition: relative;\n\tpadding: 125px 0;\n}\n.investor-area .row[data-v-790c54fc]::before {\n\tcontent: \"\";\n\tbackground: #eeeeee;\n\twidth: 100%;\n\theight: 100%;\n\ttop: 0;\n\tleft: 25%;\n\tposition: absolute;\n\tz-index: -1;\n}\n.investor-area .row[data-v-790c54fc]:nth-child(2n)::before{\n\tleft: -25% !important;\n}\n.nav-tabs .nav-item.show .nav-link[data-v-790c54fc], .nav-tabs .nav-link[data-v-790c54fc] {\n\tcolor: #777 !important;\n}\n.nav-tabs .nav-item.show .nav-link[data-v-790c54fc], .nav-tabs .nav-link.active[data-v-790c54fc]{\n\tcolor: #222 !important;\n}\n.investor-invest ul[data-v-790c54fc] {\n\tpadding-left: 0;\n\tlist-style: none;\n}\n.investor-invest ul li a[data-v-790c54fc] {\n\tline-height: 30px;\n\tcolor: #0070ba;\n}\n.investor-invest[data-v-790c54fc] {\n\tpadding-top: 30px;\n}\n.tab-heading[data-v-790c54fc] {\n\tpadding-top: 20px;\n}\n.tab-heading h2[data-v-790c54fc] {\n\tmargin-bottom: 40px;\n}\n.tab-heading h5[data-v-790c54fc] {\n\tmargin-bottom: 40px;\n}\n.investor-invest.pd-r[data-v-790c54fc] {\n\tpadding-right: 44px;\n}\n/* Extra small devices (portrait phones, less than 576px)*/\n/* No media query since this is the default in Bootstrap*/\n@media (min-width: 576px) {\n}\n/* Medium devices (tablets, 768px and up)*/\n@media only screen and (max-width: 575px) and (min-width: 300px)  {\n.investor-area .row[data-v-790c54fc]::before {\n\t\t\n\t\tleft: 0 !important;\n}\n.investor-area .row[data-v-790c54fc]:nth-child(2n)::before {\n\t\tleft: 0 !important;\n}\n}\n/* Medium devices (tablets, 768px and up)*/\n@media only screen and (max-width: 767px) and (min-width: 576px)  {\n.investor-area .row[data-v-790c54fc]::before {\n\t\t\n\t\tleft: 0 !important;\n}\n.investor-area .row[data-v-790c54fc]:nth-child(2n)::before {\n\t\tleft: 0 !important;\n}\n}\n/* Medium devices (tablets, 768px and up)*/\n@media only screen and (max-width: 991px) and (min-width: 768px)  {\n}\n/* Large devices (desktops, 992px and up)*/\n@media only screen and (max-width: 1199px) and (min-width: 992px)  {\n}\n/* Extra large devices (large desktops, 1200px and up)*/\n@media only screen and (max-width: 1600px) and (min-width: 1200px)  {\n} \n\n/** Investor Graphics Area  Start **/\n.no-gutters[data-v-790c54fc] {\n\tpadding: 0;\n}\n.site-title[data-v-790c54fc] {\n\ttext-align: center;\n\tmargin-bottom: 60px;\n}\n.site-title h4[data-v-790c54fc] {\n\tfont-size: 18px;\n\tposition: relative;\n\tcolor: #0070ba;\n\tdisplay:inline-block;\n}\n.site-title h2[data-v-790c54fc] {\n\tfont-size: 48px;\n\tcolor: #222;\n}\n.achi-details[data-v-790c54fc] {\n\tpadding-left: 20px;\n}\n.achi-details a[data-v-790c54fc] {\n\tcolor: #0e75bc;\n\tfont-weight: bold;\n\tfont-size: 16px;\n\tdisplay: block;\n}\n.site-title h4[data-v-790c54fc]::before {\n\tposition: absolute;\n\twidth: 63px;\n\theight: 2px;\n\tbackground: #0070ba;\n\ttop: 10px;\n\tleft: 110%;\n\tcontent: \"\";\n}\n.bengal-chart-area[data-v-790c54fc] {\n\tpadding: 100px 0;\n}\n@media (min-width: 576px) {\n}\n/* Medium devices (tablets, 768px and up)*/\n@media only screen and (max-width: 575px) and (min-width: 300px)  {\n.site-title h2[data-v-790c54fc] {\n\t\tfont-size: 36px;\n}\n}\n/* Medium devices (tablets, 768px and up)*/\n@media only screen and (max-width: 767px) and (min-width: 576px)  {\n}\n/* Medium devices (tablets, 768px and up)*/\n@media only screen and (max-width: 991px) and (min-width: 768px)  {\n}\n/* Large devices (desktops, 992px and up)*/\n@media only screen and (max-width: 1199px) and (min-width: 992px)  {\n}\n/* Extra large devices (large desktops, 1200px and up)*/\n@media only screen and (max-width: 1600px) and (min-width: 1200px)  {\n}\n", ""]);
-
-// exports
-
-
-/***/ }),
-
-/***/ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/leftsidebar.vue?vue&type=style&index=0&id=d15bb40c&scoped=true&lang=css&":
-/*!*****************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/leftsidebar.vue?vue&type=style&index=0&id=d15bb40c&scoped=true&lang=css& ***!
-  \*****************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loader/lib/css-base.js */ "./node_modules/css-loader/lib/css-base.js")(false);
-// imports
-
-
-// module
-exports.push([module.i, "\n#spanTag[data-v-d15bb40c] {\r\n    color: chocolate\n}\nli[data-v-d15bb40c]:hover {\r\n    background-color: darkslategray;\n}\r\n", ""]);
 
 // exports
 
@@ -36797,6 +39633,36 @@ if(false) {}
 
 /***/ }),
 
+/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/home/counter.vue?vue&type=style&index=0&id=76962297&scoped=true&lang=css&":
+/*!**********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/home/counter.vue?vue&type=style&index=0&id=76962297&scoped=true&lang=css& ***!
+  \**********************************************************************************************************************************************************************************************************************************************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+
+var content = __webpack_require__(/*! !../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./counter.vue?vue&type=style&index=0&id=76962297&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/home/counter.vue?vue&type=style&index=0&id=76962297&scoped=true&lang=css&");
+
+if(typeof content === 'string') content = [[module.i, content, '']];
+
+var transform;
+var insertInto;
+
+
+
+var options = {"hmr":true}
+
+options.transform = transform
+options.insertInto = undefined;
+
+var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
+
+if(content.locals) module.exports = content.locals;
+
+if(false) {}
+
+/***/ }),
+
 /***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/home/map.vue?vue&type=style&index=0&id=f3978912&scoped=true&lang=css&":
 /*!******************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
   !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/home/map.vue?vue&type=style&index=0&id=f3978912&scoped=true&lang=css& ***!
@@ -36880,36 +39746,6 @@ options.transform = transform
 options.insertInto = undefined;
 
 var update = __webpack_require__(/*! ../../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
-
-if(content.locals) module.exports = content.locals;
-
-if(false) {}
-
-/***/ }),
-
-/***/ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/leftsidebar.vue?vue&type=style&index=0&id=d15bb40c&scoped=true&lang=css&":
-/*!*********************************************************************************************************************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/style-loader!./node_modules/css-loader??ref--6-1!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src??ref--6-2!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/leftsidebar.vue?vue&type=style&index=0&id=d15bb40c&scoped=true&lang=css& ***!
-  \*********************************************************************************************************************************************************************************************************************************************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, exports, __webpack_require__) {
-
-
-var content = __webpack_require__(/*! !../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./leftsidebar.vue?vue&type=style&index=0&id=d15bb40c&scoped=true&lang=css& */ "./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/leftsidebar.vue?vue&type=style&index=0&id=d15bb40c&scoped=true&lang=css&");
-
-if(typeof content === 'string') content = [[module.i, content, '']];
-
-var transform;
-var insertInto;
-
-
-
-var options = {"hmr":true}
-
-options.transform = transform
-options.insertInto = undefined;
-
-var update = __webpack_require__(/*! ../../../node_modules/style-loader/lib/addStyles.js */ "./node_modules/style-loader/lib/addStyles.js")(content, options);
 
 if(content.locals) module.exports = content.locals;
 
@@ -40990,6 +43826,17 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 /***/ }),
 
+/***/ "./node_modules/v-video-embed/dist/video-embed.min.js":
+/*!************************************************************!*\
+  !*** ./node_modules/v-video-embed/dist/video-embed.min.js ***!
+  \************************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+!function(e,t){if(true)module.exports=t();else { var o, r; }}(window,(function(){return function(e){var t={};function r(o){if(t[o])return t[o].exports;var n=t[o]={i:o,l:!1,exports:{}};return e[o].call(n.exports,n,n.exports,r),n.l=!0,n.exports}return r.m=e,r.c=t,r.d=function(e,t,o){r.o(e,t)||Object.defineProperty(e,t,{enumerable:!0,get:o})},r.r=function(e){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(e,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(e,"__esModule",{value:!0})},r.t=function(e,t){if(1&t&&(e=r(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var o=Object.create(null);if(r.r(o),Object.defineProperty(o,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var n in e)r.d(o,n,function(t){return e[t]}.bind(null,n));return o},r.n=function(e){var t=e&&e.__esModule?function(){return e.default}:function(){return e};return r.d(t,"a",t),t},r.o=function(e,t){return Object.prototype.hasOwnProperty.call(e,t)},r.p="",r(r.s=0)}([function(e,t,r){"use strict";r.r(t);var o=function(e,t,r,o,n,i,s,a){var l,u="function"==typeof e?e.options:e;if(t&&(u.render=t,u.staticRenderFns=r,u._compiled=!0),o&&(u.functional=!0),i&&(u._scopeId="data-v-"+i),s?(l=function(e){(e=e||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext)||"undefined"==typeof __VUE_SSR_CONTEXT__||(e=__VUE_SSR_CONTEXT__),n&&n.call(this,e),e&&e._registeredComponents&&e._registeredComponents.add(s)},u._ssrRegister=l):n&&(l=a?function(){n.call(this,this.$root.$options.shadowRoot)}:n),l)if(u.functional){u._injectStyles=l;var c=u.render;u.render=function(e,t){return l.call(t),c(e,t)}}else{var d=u.beforeCreate;u.beforeCreate=d?[].concat(d,l):[l]}return{exports:e,options:u}}({props:{css:{type:String,default:"embed-responsive-16by9"},src:{type:String},params:{type:Object}},data:function(){return{valid:!1,url:"",videos:[{reg:/^((?:https?:)?\/\/)?((?:www|m)\.)?((?:youtube\.com|youtu.be))(\/(?:[\w\-]+\?v=|embed\/|v\/)?)([\w\-]+)(\S+)?$/i,url:"https://www.youtube.com/embed/$5",params:{"picture-in-picture":1,accelerometer:1,gyroscope:1}},{reg:/^.*vimeo.com\/(\d+)($|\/|\b)/i,url:"https://player.vimeo.com/video/$1",params:{title:0,byline:0,portrait:0}},{reg:/^.*(?:\/video|dai.ly)\/([A-Za-z0-9]+)([^#\&\?]*).*/i,url:"https://www.dailymotion.com/embed/video/$1",params:{autoplay:0}},{reg:/^.*coub.com\/(?:embed|view)\/([A-Za-z0-9]+)([^#\&\?]*).*/i,url:"https://coub.com/embed/$1",params:{autoplay:0}}]}},watch:{src:function(e){this.parse()}},methods:{parse:function(){if(this.src)for(var e=0;e<this.videos.length;e++){var t=this.videos[e];if(t.reg.exec(this.src)){var r=Object.assign({},t.params,this.params),o=Object.keys(r).map((function(e){return e+"="+r[e]})).join("&"),n=t.url.indexOf("?")>=0?"&":"?";return this.url=this.src.replace(t.reg,t.url)+n+o,void(this.valid=!0)}}this.valid=!1}},mounted:function(){this.parse()}},(function(){var e=this.$createElement,t=this._self._c||e;return this.valid?t("div",{staticClass:"embed-responsive",class:[this.css]},[t("iframe",{staticClass:"embed-responsive-item",attrs:{loading:"lazy",sandbox:"allow-forms allow-scripts allow-pointer-lock allow-same-origin allow-top-navigation allow-presentation",allowfullscreen:"",src:this.url}})]):this._e()}),[],!1,null,null,null).exports,n={install:function(e){e.__embed_installed||(e.__embed_installed=!0,e.component("video-embed",o))}};"undefined"!=typeof window&&window.Vue&&Vue.use(n);t.default=n}])}));
+
+/***/ }),
+
 /***/ "./node_modules/vue-count-to/dist/vue-count-to.min.js":
 /*!************************************************************!*\
   !*** ./node_modules/vue-count-to/dist/vue-count-to.min.js ***!
@@ -40999,6 +43846,18 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 
 !function(t,e){ true?module.exports=e():undefined}(this,function(){return function(t){function e(n){if(i[n])return i[n].exports;var a=i[n]={i:n,l:!1,exports:{}};return t[n].call(a.exports,a,a.exports,e),a.l=!0,a.exports}var i={};return e.m=t,e.c=i,e.i=function(t){return t},e.d=function(t,i,n){e.o(t,i)||Object.defineProperty(t,i,{configurable:!1,enumerable:!0,get:n})},e.n=function(t){var i=t&&t.__esModule?function(){return t.default}:function(){return t};return e.d(i,"a",i),i},e.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},e.p="/dist/",e(e.s=2)}([function(t,e,i){var n=i(4)(i(1),i(5),null,null);t.exports=n.exports},function(t,e,i){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var n=i(3);e.default={props:{startVal:{type:Number,required:!1,default:0},endVal:{type:Number,required:!1,default:2017},duration:{type:Number,required:!1,default:3e3},autoplay:{type:Boolean,required:!1,default:!0},decimals:{type:Number,required:!1,default:0,validator:function(t){return t>=0}},decimal:{type:String,required:!1,default:"."},separator:{type:String,required:!1,default:","},prefix:{type:String,required:!1,default:""},suffix:{type:String,required:!1,default:""},useEasing:{type:Boolean,required:!1,default:!0},easingFn:{type:Function,default:function(t,e,i,n){return i*(1-Math.pow(2,-10*t/n))*1024/1023+e}}},data:function(){return{localStartVal:this.startVal,displayValue:this.formatNumber(this.startVal),printVal:null,paused:!1,localDuration:this.duration,startTime:null,timestamp:null,remaining:null,rAF:null}},computed:{countDown:function(){return this.startVal>this.endVal}},watch:{startVal:function(){this.autoplay&&this.start()},endVal:function(){this.autoplay&&this.start()}},mounted:function(){this.autoplay&&this.start(),this.$emit("mountedCallback")},methods:{start:function(){this.localStartVal=this.startVal,this.startTime=null,this.localDuration=this.duration,this.paused=!1,this.rAF=(0,n.requestAnimationFrame)(this.count)},pauseResume:function(){this.paused?(this.resume(),this.paused=!1):(this.pause(),this.paused=!0)},pause:function(){(0,n.cancelAnimationFrame)(this.rAF)},resume:function(){this.startTime=null,this.localDuration=+this.remaining,this.localStartVal=+this.printVal,(0,n.requestAnimationFrame)(this.count)},reset:function(){this.startTime=null,(0,n.cancelAnimationFrame)(this.rAF),this.displayValue=this.formatNumber(this.startVal)},count:function(t){this.startTime||(this.startTime=t),this.timestamp=t;var e=t-this.startTime;this.remaining=this.localDuration-e,this.useEasing?this.countDown?this.printVal=this.localStartVal-this.easingFn(e,0,this.localStartVal-this.endVal,this.localDuration):this.printVal=this.easingFn(e,this.localStartVal,this.endVal-this.localStartVal,this.localDuration):this.countDown?this.printVal=this.localStartVal-(this.localStartVal-this.endVal)*(e/this.localDuration):this.printVal=this.localStartVal+(this.localStartVal-this.startVal)*(e/this.localDuration),this.countDown?this.printVal=this.printVal<this.endVal?this.endVal:this.printVal:this.printVal=this.printVal>this.endVal?this.endVal:this.printVal,this.displayValue=this.formatNumber(this.printVal),e<this.localDuration?this.rAF=(0,n.requestAnimationFrame)(this.count):this.$emit("callback")},isNumber:function(t){return!isNaN(parseFloat(t))},formatNumber:function(t){t=t.toFixed(this.decimals),t+="";var e=t.split("."),i=e[0],n=e.length>1?this.decimal+e[1]:"",a=/(\d+)(\d{3})/;if(this.separator&&!this.isNumber(this.separator))for(;a.test(i);)i=i.replace(a,"$1"+this.separator+"$2");return this.prefix+i+n+this.suffix}},destroyed:function(){(0,n.cancelAnimationFrame)(this.rAF)}}},function(t,e,i){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var n=i(0),a=function(t){return t&&t.__esModule?t:{default:t}}(n);e.default=a.default,"undefined"!=typeof window&&window.Vue&&window.Vue.component("count-to",a.default)},function(t,e,i){"use strict";Object.defineProperty(e,"__esModule",{value:!0});var n=0,a="webkit moz ms o".split(" "),r=void 0,o=void 0;if("undefined"==typeof window)e.requestAnimationFrame=r=function(){},e.cancelAnimationFrame=o=function(){};else{e.requestAnimationFrame=r=window.requestAnimationFrame,e.cancelAnimationFrame=o=window.cancelAnimationFrame;for(var s=void 0,u=0;u<a.length&&(!r||!o);u++)s=a[u],e.requestAnimationFrame=r=r||window[s+"RequestAnimationFrame"],e.cancelAnimationFrame=o=o||window[s+"CancelAnimationFrame"]||window[s+"CancelRequestAnimationFrame"];r&&o||(e.requestAnimationFrame=r=function(t){var e=(new Date).getTime(),i=Math.max(0,16-(e-n)),a=window.setTimeout(function(){t(e+i)},i);return n=e+i,a},e.cancelAnimationFrame=o=function(t){window.clearTimeout(t)})}e.requestAnimationFrame=r,e.cancelAnimationFrame=o},function(t,e){t.exports=function(t,e,i,n){var a,r=t=t||{},o=typeof t.default;"object"!==o&&"function"!==o||(a=t,r=t.default);var s="function"==typeof r?r.options:r;if(e&&(s.render=e.render,s.staticRenderFns=e.staticRenderFns),i&&(s._scopeId=i),n){var u=Object.create(s.computed||null);Object.keys(n).forEach(function(t){var e=n[t];u[t]=function(){return e}}),s.computed=u}return{esModule:a,exports:r,options:s}}},function(t,e){t.exports={render:function(){var t=this,e=t.$createElement;return(t._self._c||e)("span",[t._v("\n  "+t._s(t.displayValue)+"\n")])},staticRenderFns:[]}}])});
 //# sourceMappingURL=vue-count-to.min.js.map
+
+/***/ }),
+
+/***/ "./node_modules/vue-js-modal/dist/index.js":
+/*!*************************************************!*\
+  !*** ./node_modules/vue-js-modal/dist/index.js ***!
+  \*************************************************/
+/*! no static exports found */
+/***/ (function(module, exports, __webpack_require__) {
+
+!function(t,e){ true?module.exports=e():undefined}(window,function(){return i={},o.m=n=[function(t,e,n){var i=n(7);"string"==typeof i&&(i=[[t.i,i,""]]),i.locals&&(t.exports=i.locals);(0,n(4).default)("d763679c",i,!1,{})},function(t,e,n){var i=n(10);"string"==typeof i&&(i=[[t.i,i,""]]),i.locals&&(t.exports=i.locals);(0,n(4).default)("6b9cc0e0",i,!1,{})},function(t,e,n){var i=n(12);"string"==typeof i&&(i=[[t.i,i,""]]),i.locals&&(t.exports=i.locals);(0,n(4).default)("663c004e",i,!1,{})},function(t,e){t.exports=function(n){var a=[];return a.toString=function(){return this.map(function(t){var e=function(t,e){var n=t[1]||"",i=t[3];if(!i)return n;if(e&&"function"==typeof btoa){var o=function(t){return"/*# sourceMappingURL=data:application/json;charset=utf-8;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(t))))+" */"}(i),r=i.sources.map(function(t){return"/*# sourceURL="+i.sourceRoot+t+" */"});return[n].concat(r).concat([o]).join("\n")}return[n].join("\n")}(t,n);return t[2]?"@media "+t[2]+"{"+e+"}":e}).join("")},a.i=function(t,e){"string"==typeof t&&(t=[[null,t,""]]);for(var n={},i=0;i<this.length;i++){var o=this[i][0];"number"==typeof o&&(n[o]=!0)}for(i=0;i<t.length;i++){var r=t[i];"number"==typeof r[0]&&n[r[0]]||(e&&!r[2]?r[2]=e:e&&(r[2]="("+r[2]+") and ("+e+")"),a.push(r))}},a}},function(t,e,n){"use strict";function l(t,e){for(var n=[],i={},o=0;o<e.length;o++){var r=e[o],a=r[0],s={id:t+":"+o,css:r[1],media:r[2],sourceMap:r[3]};i[a]?i[a].parts.push(s):n.push(i[a]={id:a,parts:[s]})}return n}n.r(e),n.d(e,"default",function(){return p});var i="undefined"!=typeof document;if("undefined"!=typeof DEBUG&&DEBUG&&!i)throw new Error("vue-style-loader cannot be used in a non-browser environment. Use { target: 'node' } in your Webpack config to indicate a server-rendering environment.");var u={},o=i&&(document.head||document.getElementsByTagName("head")[0]),r=null,a=0,c=!1,s=function(){},d=null,h="data-vue-ssr-id",f="undefined"!=typeof navigator&&/msie [6-9]\b/.test(navigator.userAgent.toLowerCase());function p(a,t,e,n){c=e,d=n||{};var s=l(a,t);return v(s),function(t){for(var e=[],n=0;n<s.length;n++){var i=s[n];(o=u[i.id]).refs--,e.push(o)}t?v(s=l(a,t)):s=[];for(n=0;n<e.length;n++){var o;if(0===(o=e[n]).refs){for(var r=0;r<o.parts.length;r++)o.parts[r]();delete u[o.id]}}}}function v(t){for(var e=0;e<t.length;e++){var n=t[e],i=u[n.id];if(i){i.refs++;for(var o=0;o<i.parts.length;o++)i.parts[o](n.parts[o]);for(;o<n.parts.length;o++)i.parts.push(b(n.parts[o]));i.parts.length>n.parts.length&&(i.parts.length=n.parts.length)}else{var r=[];for(o=0;o<n.parts.length;o++)r.push(b(n.parts[o]));u[n.id]={id:n.id,refs:1,parts:r}}}}function m(){var t=document.createElement("style");return t.type="text/css",o.appendChild(t),t}function b(e){var n,i,t=document.querySelector("style["+h+'~="'+e.id+'"]');if(t){if(c)return s;t.parentNode.removeChild(t)}if(f){var o=a++;t=r=r||m(),n=w.bind(null,t,o,!1),i=w.bind(null,t,o,!0)}else t=m(),n=function(t,e){var n=e.css,i=e.media,o=e.sourceMap;i&&t.setAttribute("media",i);d.ssrId&&t.setAttribute(h,e.id);o&&(n+="\n/*# sourceURL="+o.sources[0]+" */",n+="\n/*# sourceMappingURL=data:application/json;base64,"+btoa(unescape(encodeURIComponent(JSON.stringify(o))))+" */");if(t.styleSheet)t.styleSheet.cssText=n;else{for(;t.firstChild;)t.removeChild(t.firstChild);t.appendChild(document.createTextNode(n))}}.bind(null,t),i=function(){t.parentNode.removeChild(t)};return n(e),function(t){if(t){if(t.css===e.css&&t.media===e.media&&t.sourceMap===e.sourceMap)return;n(e=t)}else i()}}var y,g=(y=[],function(t,e){return y[t]=e,y.filter(Boolean).join("\n")});function w(t,e,n,i){var o=n?"":i.css;if(t.styleSheet)t.styleSheet.cssText=g(e,o);else{var r=document.createTextNode(o),a=t.childNodes;a[e]&&t.removeChild(a[e]),a.length?t.insertBefore(r,a[e]):t.appendChild(r)}}},function(t,M,e){"use strict";(function(t){var i=function(){if("undefined"!=typeof Map)return Map;function i(t,n){var i=-1;return t.some(function(t,e){return t[0]===n&&(i=e,!0)}),i}return Object.defineProperty(t.prototype,"size",{get:function(){return this.__entries__.length},enumerable:!0,configurable:!0}),t.prototype.get=function(t){var e=i(this.__entries__,t),n=this.__entries__[e];return n&&n[1]},t.prototype.set=function(t,e){var n=i(this.__entries__,t);~n?this.__entries__[n][1]=e:this.__entries__.push([t,e])},t.prototype.delete=function(t){var e=this.__entries__,n=i(e,t);~n&&e.splice(n,1)},t.prototype.has=function(t){return!!~i(this.__entries__,t)},t.prototype.clear=function(){this.__entries__.splice(0)},t.prototype.forEach=function(t,e){void 0===e&&(e=null);for(var n=0,i=this.__entries__;n<i.length;n++){var o=i[n];t.call(e,o[1],o[0])}},t;function t(){this.__entries__=[]}}(),n="undefined"!=typeof window&&"undefined"!=typeof document&&window.document===document,e=void 0!==t&&t.Math===Math?t:"undefined"!=typeof self&&self.Math===Math?self:"undefined"!=typeof window&&window.Math===Math?window:Function("return this")(),l="function"==typeof requestAnimationFrame?requestAnimationFrame.bind(e):function(t){return setTimeout(function(){return t(Date.now())},1e3/60)},u=2;var o=["top","right","bottom","left","width","height","size","weight"],r="undefined"!=typeof MutationObserver,a=(s.prototype.addObserver=function(t){~this.observers_.indexOf(t)||this.observers_.push(t),this.connected_||this.connect_()},s.prototype.removeObserver=function(t){var e=this.observers_,n=e.indexOf(t);~n&&e.splice(n,1),!e.length&&this.connected_&&this.disconnect_()},s.prototype.refresh=function(){this.updateObservers_()&&this.refresh()},s.prototype.updateObservers_=function(){var t=this.observers_.filter(function(t){return t.gatherActive(),t.hasActive()});return t.forEach(function(t){return t.broadcastActive()}),0<t.length},s.prototype.connect_=function(){n&&!this.connected_&&(document.addEventListener("transitionend",this.onTransitionEnd_),window.addEventListener("resize",this.refresh),r?(this.mutationsObserver_=new MutationObserver(this.refresh),this.mutationsObserver_.observe(document,{attributes:!0,childList:!0,characterData:!0,subtree:!0})):(document.addEventListener("DOMSubtreeModified",this.refresh),this.mutationEventsAdded_=!0),this.connected_=!0)},s.prototype.disconnect_=function(){n&&this.connected_&&(document.removeEventListener("transitionend",this.onTransitionEnd_),window.removeEventListener("resize",this.refresh),this.mutationsObserver_&&this.mutationsObserver_.disconnect(),this.mutationEventsAdded_&&document.removeEventListener("DOMSubtreeModified",this.refresh),this.mutationsObserver_=null,this.mutationEventsAdded_=!1,this.connected_=!1)},s.prototype.onTransitionEnd_=function(t){var e=t.propertyName,n=void 0===e?"":e;o.some(function(t){return!!~n.indexOf(t)})&&this.refresh()},s.getInstance=function(){return this.instance_||(this.instance_=new s),this.instance_},s.instance_=null,s);function s(){function t(){r&&(r=!1,i()),a&&n()}function e(){l(t)}function n(){var t=Date.now();if(r){if(t-s<u)return;a=!0}else a=!(r=!0),setTimeout(e,o);s=t}var i,o,r,a,s;this.connected_=!1,this.mutationEventsAdded_=!1,this.mutationsObserver_=null,this.observers_=[],this.onTransitionEnd_=this.onTransitionEnd_.bind(this),this.refresh=(i=this.refresh.bind(this),a=r=!(o=20),s=0,n)}var c=function(t,e){for(var n=0,i=Object.keys(e);n<i.length;n++){var o=i[n];Object.defineProperty(t,o,{value:e[o],enumerable:!1,writable:!1,configurable:!0})}return t},h=function(t){return t&&t.ownerDocument&&t.ownerDocument.defaultView||e},f=y(0,0,0,0);function p(t){return parseFloat(t)||0}function v(n){for(var t=[],e=1;e<arguments.length;e++)t[e-1]=arguments[e];return t.reduce(function(t,e){return t+p(n["border-"+e+"-width"])},0)}function d(t){var e=t.clientWidth,n=t.clientHeight;if(!e&&!n)return f;var i,o=h(t).getComputedStyle(t),r=function(t){for(var e={},n=0,i=["top","right","bottom","left"];n<i.length;n++){var o=i[n],r=t["padding-"+o];e[o]=p(r)}return e}(o),a=r.left+r.right,s=r.top+r.bottom,l=p(o.width),u=p(o.height);if("border-box"===o.boxSizing&&(Math.round(l+a)!==e&&(l-=v(o,"left","right")+a),Math.round(u+s)!==n&&(u-=v(o,"top","bottom")+s)),(i=t)!==h(i).document.documentElement){var c=Math.round(l+a)-e,d=Math.round(u+s)-n;1!==Math.abs(c)&&(l-=c),1!==Math.abs(d)&&(u-=d)}return y(r.left,r.top,l,u)}var m="undefined"!=typeof SVGGraphicsElement?function(t){return t instanceof h(t).SVGGraphicsElement}:function(t){return t instanceof h(t).SVGElement&&"function"==typeof t.getBBox};function b(t){return n?m(t)?y(0,0,(e=t.getBBox()).width,e.height):d(t):f;var e}function y(t,e,n,i){return{x:t,y:e,width:n,height:i}}var g=(w.prototype.isActive=function(){var t=b(this.target);return(this.contentRect_=t).width!==this.broadcastWidth||t.height!==this.broadcastHeight},w.prototype.broadcastRect=function(){var t=this.contentRect_;return this.broadcastWidth=t.width,this.broadcastHeight=t.height,t},w);function w(t){this.broadcastWidth=0,this.broadcastHeight=0,this.contentRect_=y(0,0,0,0),this.target=t}var _=function(t,e){var n,i,o,r,a,s,l,u=(i=(n=e).x,o=n.y,r=n.width,a=n.height,s="undefined"!=typeof DOMRectReadOnly?DOMRectReadOnly:Object,l=Object.create(s.prototype),c(l,{x:i,y:o,width:r,height:a,top:o,right:i+r,bottom:a+o,left:i}),l);c(this,{target:t,contentRect:u})},E=(x.prototype.observe=function(t){if(!arguments.length)throw new TypeError("1 argument required, but only 0 present.");if("undefined"!=typeof Element&&Element instanceof Object){if(!(t instanceof h(t).Element))throw new TypeError('parameter 1 is not of type "Element".');var e=this.observations_;e.has(t)||(e.set(t,new g(t)),this.controller_.addObserver(this),this.controller_.refresh())}},x.prototype.unobserve=function(t){if(!arguments.length)throw new TypeError("1 argument required, but only 0 present.");if("undefined"!=typeof Element&&Element instanceof Object){if(!(t instanceof h(t).Element))throw new TypeError('parameter 1 is not of type "Element".');var e=this.observations_;e.has(t)&&(e.delete(t),e.size||this.controller_.removeObserver(this))}},x.prototype.disconnect=function(){this.clearActive(),this.observations_.clear(),this.controller_.removeObserver(this)},x.prototype.gatherActive=function(){var e=this;this.clearActive(),this.observations_.forEach(function(t){t.isActive()&&e.activeObservations_.push(t)})},x.prototype.broadcastActive=function(){if(this.hasActive()){var t=this.callbackCtx_,e=this.activeObservations_.map(function(t){return new _(t.target,t.broadcastRect())});this.callback_.call(t,e,t),this.clearActive()}},x.prototype.clearActive=function(){this.activeObservations_.splice(0)},x.prototype.hasActive=function(){return 0<this.activeObservations_.length},x);function x(t,e,n){if(this.activeObservations_=[],this.observations_=new i,"function"!=typeof t)throw new TypeError("The callback provided as parameter 1 is not a function.");this.callback_=t,this.controller_=e,this.callbackCtx_=n}var T=new("undefined"!=typeof WeakMap?WeakMap:i),O=function t(e){if(!(this instanceof t))throw new TypeError("Cannot call a class as a function.");if(!arguments.length)throw new TypeError("1 argument required, but only 0 present.");var n=a.getInstance(),i=new E(e,n,this);T.set(this,i)};["observe","unobserve","disconnect"].forEach(function(e){O.prototype[e]=function(){var t;return(t=T.get(this))[e].apply(t,arguments)}});var S=void 0!==e.ResizeObserver?e.ResizeObserver:O;M.a=S}).call(this,e(8))},function(t,e,n){"use strict";var i=n(0);n.n(i).a},function(t,e,n){(t.exports=n(3)(!1)).push([t.i,"\n.vue-modal-resizer {\n  display: block;\n  overflow: hidden;\n  position: absolute;\n  width: 12px;\n  height: 12px;\n  right: 0;\n  bottom: 0;\n  z-index: 9999999;\n  background: transparent;\n  cursor: se-resize;\n}\n.vue-modal-resizer::after {\n  display: block;\n  position: absolute;\n  content: '';\n  background: transparent;\n  left: 0;\n  top: 0;\n  width: 0;\n  height: 0;\n  border-bottom: 10px solid #ddd;\n  border-left: 10px solid transparent;\n}\n.vue-modal-resizer.clicked::after {\n  border-bottom: 10px solid #369be9;\n}\n",""])},function(t,e){var n;n=function(){return this}();try{n=n||new Function("return this")()}catch(t){"object"==typeof window&&(n=window)}t.exports=n},function(t,e,n){"use strict";var i=n(1);n.n(i).a},function(t,e,n){(t.exports=n(3)(!1)).push([t.i,"\n.vm--block-scroll {\n  overflow: hidden;\n  width: 100vw;\n}\n.vm--container {\n  position: fixed;\n  box-sizing: border-box;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100vh;\n  z-index: 999;\n}\n.vm--overlay {\n  position: fixed;\n  box-sizing: border-box;\n  left: 0;\n  top: 0;\n  width: 100%;\n  height: 100vh;\n  background: rgba(0, 0, 0, 0.2);\n  /* z-index: 999; */\n  opacity: 1;\n}\n.vm--container.scrollable {\n  height: 100%;\n  min-height: 100vh;\n  overflow-y: auto;\n  -webkit-overflow-scrolling: touch;\n}\n.vm--modal {\n  position: relative;\n  overflow: hidden;\n  box-sizing: border-box;\n\n  background-color: white;\n  border-radius: 3px;\n  box-shadow: 0 20px 60px -2px rgba(27, 33, 58, 0.4);\n}\n.vm--container.scrollable .vm--modal {\n  margin-bottom: 2px;\n}\n.vm--top-right-slot {\n  display: block;\n  position: absolute;\n  right: 0;\n  top: 0;\n}\n.vm-transition--overlay-enter-active,\n.vm-transition--overlay-leave-active {\n  transition: all 50ms;\n}\n.vm-transition--overlay-enter,\n.vm-transition--overlay-leave-active {\n  opacity: 0;\n}\n.vm-transition--modal-enter-active,\n.vm-transition--modal-leave-active {\n  transition: all 400ms;\n}\n.vm-transition--modal-enter,\n.vm-transition--modal-leave-active {\n  opacity: 0;\n  transform: translateY(-20px);\n}\n.vm-transition--default-enter-active,\n.vm-transition--default-leave-active {\n  transition: all 2ms;\n}\n.vm-transition--default-enter,\n.vm-transition--default-leave-active {\n  opacity: 0;\n}\n",""])},function(t,e,n){"use strict";var i=n(2);n.n(i).a},function(t,e,n){(t.exports=n(3)(!1)).push([t.i,"\n.vue-dialog {\n  font-size: 14px;\n}\n.vue-dialog div {\n  box-sizing: border-box;\n}\n.vue-dialog-content {\n  flex: 1 0 auto;\n  width: 100%;\n  padding: 14px;\n}\n.vue-dialog-content-title {\n  font-weight: 600;\n  padding-bottom: 14px;\n}\n.vue-dialog-buttons {\n  display: flex;\n  flex: 0 1 auto;\n  width: 100%;\n  border-top: 1px solid #eee;\n}\n.vue-dialog-buttons-none {\n  width: 100%;\n  padding-bottom: 14px;\n}\n.vue-dialog-button {\n  font-size: inherit;\n  background: transparent;\n  padding: 0;\n  margin: 0;\n  border: 0;\n  cursor: pointer;\n  box-sizing: border-box;\n  line-height: 40px;\n  height: 40px;\n  color: inherit;\n  font: inherit;\n  outline: none;\n}\n.vue-dialog-button:hover {\n  background: #f9f9f9;\n}\n.vue-dialog-button:active {\n  background: #f3f3f3;\n}\n.vue-dialog-button:not(:first-of-type) {\n  border-left: 1px solid #eee;\n}\n",""])},function(t,e,n){"use strict";n.r(e),n.d(e,"Modal",function(){return W}),n.d(e,"Dialog",function(){return U}),n.d(e,"version",function(){return J});function i(){var e=this,t=e.$createElement,n=e._self._c||t;return e.visible?n("div",{class:e.containerClass},[n("transition",{attrs:{name:e.guaranteedOverlayTransition},on:{"before-enter":e.beforeOverlayTransitionEnter,"after-enter":e.afterOverlayTransitionEnter,"before-leave":e.beforeOverlayTransitionLeave,"after-leave":e.afterOverlayTransitionLeave}},[e.visibility.overlay?n("div",{staticClass:"vm--overlay",attrs:{"data-modal":e.name,"aria-expanded":e.visibility.overlay.toString()},on:{click:function(t){return t.target!==t.currentTarget?null:(t.stopPropagation(),e.onOverlayClick(t))}}},[n("div",{staticClass:"vm--top-right-slot"},[e._t("top-right")],2)]):e._e()]),e._v(" "),n("transition",{attrs:{name:e.guaranteedModalTransition},on:{"before-enter":e.beforeModalTransitionEnter,"after-enter":e.afterModalTransitionEnter,"before-leave":e.beforeModalTransitionLeave,"after-leave":e.afterModalTransitionLeave}},[e.visibility.modal?n("div",{ref:"modal",class:e.modalClass,style:e.modalStyle,attrs:{"aria-expanded":e.visibility.modal.toString(),role:"dialog","aria-modal":"true"}},[e._t("default"),e._v(" "),e.resizable&&!e.isAutoHeight?n("resizer",{attrs:{"min-width":e.minWidth,"min-height":e.minHeight,"max-width":e.maxWidth,"max-height":e.maxHeight},on:{resize:e.onModalResize}}):e._e()],2):e._e()])],1):e._e()}function o(){var t=this.$createElement;return(this._self._c||t)("div",{class:this.className})}o._withStripped=i._withStripped=!0;function h(t,e,n){return n<t?t:e<n?e:n}function r(t,e,n){return e in t?Object.defineProperty(t,e,{value:n,enumerable:!0,configurable:!0,writable:!0}):t[e]=n,t}function a(t,e){return function(t){if(Array.isArray(t))return t}(t)||function(t,e){var n=[],i=!0,o=!1,r=void 0;try{for(var a,s=t[Symbol.iterator]();!(i=(a=s.next()).done)&&(n.push(a.value),!e||n.length!==e);i=!0);}catch(t){o=!0,r=t}finally{try{i||null==s.return||s.return()}finally{if(o)throw r}}return n}(t,e)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance")}()}function s(){var t=window.innerWidth,e=document.documentElement.clientWidth;return t&&e?Math.min(t,e):e||t}function l(t){return t.split(";").map(function(t){return t.trim()}).filter(Boolean).map(function(t){return t.split(":")}).reduce(function(t,e){var n=a(e,2);return function(e){for(var t=1;t<arguments.length;t++){var n=null!=arguments[t]?arguments[t]:{},i=Object.keys(n);"function"==typeof Object.getOwnPropertySymbols&&(i=i.concat(Object.getOwnPropertySymbols(n).filter(function(t){return Object.getOwnPropertyDescriptor(n,t).enumerable}))),i.forEach(function(t){r(e,t,n[t])})}return e}({},t,r({},n[0],n[1]))},{})}function f(t){return t.touches&&0<t.touches.length?t.touches[0]:t}var p=["INPUT","TEXTAREA","SELECT"],c=function(t){var e=0<arguments.length&&void 0!==t?t:0;return function(){return(e++).toString()}}(),u={name:"VueJsModalResizer",props:{minHeight:{type:Number,default:0},minWidth:{type:Number,default:0},maxWidth:{type:Number,default:Number.MAX_SAFE_INTEGER},maxHeight:{type:Number,default:Number.MAX_SAFE_INTEGER}},data:function(){return{clicked:!1,size:{}}},mounted:function(){this.$el.addEventListener("mousedown",this.start,!1)},computed:{className:function(){return["vue-modal-resizer",{clicked:this.clicked}]}},methods:{start:function(t){this.clicked=!0,window.addEventListener("mousemove",this.mousemove,!1),window.addEventListener("mouseup",this.stop,!1),t.stopPropagation(),t.preventDefault()},stop:function(){this.clicked=!1,window.removeEventListener("mousemove",this.mousemove,!1),window.removeEventListener("mouseup",this.stop,!1),this.$emit("resize-stop",{element:this.$el.parentElement,size:this.size})},mousemove:function(t){this.resize(t)},resize:function(t){var e=this.$el.parentElement;if(e){var n=t.clientX-e.offsetLeft,i=t.clientY-e.offsetTop,o=Math.min(s(),this.maxWidth),r=Math.min(window.innerHeight,this.maxHeight);n=h(this.minWidth,o,n),i=h(this.minHeight,r,i),this.size={width:n,height:i},e.style.width=n+"px",e.style.height=i+"px",this.$emit("resize",{element:e,size:this.size})}}}};n(6);function d(t,e,n,i,o,r,a,s){var l,u="function"==typeof t?t.options:t;if(e&&(u.render=e,u.staticRenderFns=n,u._compiled=!0),i&&(u.functional=!0),r&&(u._scopeId="data-v-"+r),a?(l=function(t){(t=t||this.$vnode&&this.$vnode.ssrContext||this.parent&&this.parent.$vnode&&this.parent.$vnode.ssrContext)||"undefined"==typeof __VUE_SSR_CONTEXT__||(t=__VUE_SSR_CONTEXT__),o&&o.call(this,t),t&&t._registeredComponents&&t._registeredComponents.add(a)},u._ssrRegister=l):o&&(l=s?function(){o.call(this,this.$root.$options.shadowRoot)}:o),l)if(u.functional){u._injectStyles=l;var c=u.render;u.render=function(t,e){return l.call(e),c(t,e)}}else{var d=u.beforeCreate;u.beforeCreate=d?[].concat(d,l):[l]}return{exports:t,options:u}}var v=d(u,o,[],!1,null,null,null);v.options.__file="src/components/Resizer.vue";var m=v.exports;function b(t){return(b="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(t)}function y(t){switch(b(t)){case"number":return{type:"px",value:t};case"string":return function(e){if("auto"===e)return{type:e,value:0};var t=_.find(function(t){return t.regexp.test(e)});return t?{type:t.name,value:parseFloat(e)}:{type:"",value:e}}(t);default:return{type:"",value:t}}}function g(t){if("string"!=typeof t)return 0<=t;var e=y(t);return("%"===e.type||"px"===e.type)&&0<e.value}var w="[-+]?[0-9]*.?[0-9]+",_=[{name:"px",regexp:new RegExp("^".concat(w,"px$"))},{name:"%",regexp:new RegExp("^".concat(w,"%$"))},{name:"px",regexp:new RegExp("^".concat(w,"$"))}],E=n(5),x="undefined"!=typeof window&&window.ResizeObserver?ResizeObserver:E.a;function T(t,e){for(var n=0;n<e.length;n++){var i=e[n];i.enumerable=i.enumerable||!1,i.configurable=!0,"value"in i&&(i.writable=!0),Object.defineProperty(t,i.key,i)}}function O(t){return function(t){if(Array.isArray(t)){for(var e=0,n=new Array(t.length);e<t.length;e++)n[e]=t[e];return n}}(t)||function(t){if(Symbol.iterator in Object(t)||"[object Arguments]"===Object.prototype.toString.call(t))return Array.from(t)}(t)||function(){throw new TypeError("Invalid attempt to spread non-iterable instance")}()}function S(t){return e='button:not([disabled]), select:not([disabled]), a[href]:not([disabled]), area[href]:not([disabled]), [contentEditable=""]:not([disabled]), [contentEditable="true"]:not([disabled]), [contentEditable="TRUE"]:not([disabled]), textarea:not([disabled]), iframe:not([disabled]), input:not([disabled]), summary:not([disabled]), [tabindex]:not([tabindex="-1"])',O(t.querySelectorAll(e)||[]);var e}function M(t){return t==document.activeElement}var k=function(){function t(){!function(t,e){if(!(t instanceof e))throw new TypeError("Cannot call a class as a function")}(this,t),this.root=null,this.elements=[],this.onKeyDown=this.onKeyDown.bind(this),this.enable=this.enable.bind(this),this.disable=this.disable.bind(this),this.firstElement=this.firstElement.bind(this),this.lastElement=this.lastElement.bind(this)}var e,n,i;return e=t,(n=[{key:"lastElement",value:function(){return this.elements[this.elements.length-1]||null}},{key:"firstElement",value:function(){return this.elements[0]||null}},{key:"onKeyDown",value:function(t){var e;if("Tab"===(e=t).key||9===e.keyCode)return t.shiftKey&&M(this.firstElement())?(this.lastElement().focus(),void t.preventDefault()):!document.activeElement||M(this.lastElement())?(this.firstElement().focus(),void t.preventDefault()):void 0}},{key:"enabled",value:function(){return!!this.root}},{key:"enable",value:function(t){if(t){this.root=t,this.elements=S(this.root);var e=this.firstElement();e&&e.focus(),this.root.addEventListener("keydown",this.onKeyDown)}}},{key:"disable",value:function(){this.root.removeEventListener("keydown",this.onKeyDown),this.root=null}}])&&T(e.prototype,n),i&&T(e,i),t}();function L(t,e,n){return e in t?Object.defineProperty(t,e,{value:n,enumerable:!0,configurable:!0,writable:!0}):t[e]=n,t}function z(t,e){return function(t){if(Array.isArray(t))return t}(t)||function(t,e){var n=[],i=!0,o=!1,r=void 0;try{for(var a,s=t[Symbol.iterator]();!(i=(a=s.next()).done)&&(n.push(a.value),!e||n.length!==e);i=!0);}catch(t){o=!0,r=t}finally{try{i||null==s.return||s.return()}finally{if(o)throw r}}return n}(t,e)||function(){throw new TypeError("Invalid attempt to destructure non-iterable instance")}()}var $="vm-transition--default",A="enter",C="entering",j="leave",R="leavng",H={name:"VueJsModal",props:{name:{required:!0,type:String},resizable:{type:Boolean,default:!1},adaptive:{type:Boolean,default:!1},draggable:{type:[Boolean,String],default:!1},scrollable:{type:Boolean,default:!1},focusTrap:{type:Boolean,default:!1},reset:{type:Boolean,default:!1},overlayTransition:{type:String,default:"vm-transition--overlay"},transition:{type:String,default:"vm-transition--modal"},clickToClose:{type:Boolean,default:!0},classes:{type:[String,Array],default:function(){return[]}},styles:{type:[String,Array,Object]},minWidth:{type:Number,default:0,validator:function(t){return 0<=t}},minHeight:{type:Number,default:0,validator:function(t){return 0<=t}},maxWidth:{type:Number,default:Number.MAX_SAFE_INTEGER},maxHeight:{type:Number,default:Number.MAX_SAFE_INTEGER},width:{type:[Number,String],default:600,validator:g},height:{type:[Number,String],default:300,validator:function(t){return"auto"===t||g(t)}},shiftX:{type:Number,default:.5,validator:function(t){return 0<=t&&t<=1}},shiftY:{type:Number,default:.5,validator:function(t){return 0<=t&&t<=1}}},components:{Resizer:m},data:function(){return{visible:!1,visibility:{modal:!1,overlay:!1},overlayTransitionState:null,modalTransitionState:null,shiftLeft:0,shiftTop:0,modal:{width:0,widthType:"px",height:0,heightType:"px",renderedHeight:0},viewportHeight:0,viewportWidth:0}},created:function(){this.setInitialSize()},beforeMount:function(){this.$modal.subscription.$on("toggle",this.onToggle),window.addEventListener("resize",this.onWindowResize),window.addEventListener("orientationchange",this.onWindowResize),this.onWindowResize(),this.scrollable&&!this.isAutoHeight&&console.warn('Modal "'.concat(this.name,'" has scrollable flag set to true ')+'but height is not "auto" ('.concat(this.height,")")),this.clickToClose&&window.addEventListener("keyup",this.onEscapeKeyUp)},mounted:function(){var n=this;this.resizeObserver=new x(function(t){if(0<t.length){var e=z(t,1)[0];n.modal.renderedHeight=e.contentRect.height}}),this.$focusTrap=new k},beforeDestroy:function(){this.$modal.subscription.$off("toggle",this.onToggle),window.removeEventListener("resize",this.onWindowResize),window.removeEventListener("orientationchange",this.onWindowResize),this.clickToClose&&window.removeEventListener("keyup",this.onEscapeKeyUp),document.body.classList.remove("vm--block-scroll")},computed:{guaranteedOverlayTransition:function(){return this.overlayTransition||$},guaranteedModalTransition:function(){return this.transition||$},isAutoHeight:function(){return"auto"===this.modal.heightType},position:function(){var t=this.viewportHeight,e=this.viewportWidth,n=this.shiftLeft,i=this.shiftTop,o=this.shiftX,r=this.shiftY,a=this.trueModalWidth,s=this.trueModalHeight,l=e-a,u=Math.max(t-s,0),c=i+r*u;return{left:parseInt(h(0,l,n+o*l)),top:!s&&this.isAutoHeight?void 0:parseInt(h(0,u,c))}},trueModalWidth:function(){var t=this.viewportWidth,e=this.modal,n=this.adaptive,i=this.minWidth,o=this.maxWidth,r="%"===e.widthType?t/100*e.width:e.width;if(n){var a=Math.max(i,Math.min(t,o));return h(i,a,r)}return r},trueModalHeight:function(){var t=this.viewportHeight,e=this.modal,n=this.isAutoHeight,i=this.adaptive,o=this.minHeight,r=this.maxHeight,a="%"===e.heightType?t/100*e.height:e.height;if(n)return this.modal.renderedHeight;if(i){var s=Math.max(o,Math.min(t,r));return h(o,s,a)}return a},autoHeight:function(){return this.adaptive&&this.modal.renderedHeight>=this.viewportHeight?Math.max(this.minHeight,this.viewportHeight)+"px":"auto"},containerClass:function(){return["vm--container",this.scrollable&&this.isAutoHeight&&"scrollable"]},modalClass:function(){return["vm--modal",this.classes]},stylesProp:function(){return"string"==typeof this.styles?l(this.styles):this.styles},modalStyle:function(){return[this.stylesProp,{top:this.position.top+"px",left:this.position.left+"px",width:this.trueModalWidth+"px",height:this.isAutoHeight?this.autoHeight:this.trueModalHeight+"px"}]},isComponentReadyToBeDestroyed:function(){return this.overlayTransitionState===j&&this.modalTransitionState===j}},watch:{isComponentReadyToBeDestroyed:function(t){t&&(this.visible=!1)}},methods:{startTransitionEnter:function(){this.visibility.overlay=!0,this.visibility.modal=!0},startTransitionLeave:function(){this.visibility.overlay=!1,this.visibility.modal=!1},beforeOverlayTransitionEnter:function(){this.overlayTransitionState=C},afterOverlayTransitionEnter:function(){this.overlayTransitionState=A},beforeOverlayTransitionLeave:function(){this.overlayTransitionState=R},afterOverlayTransitionLeave:function(){this.overlayTransitionState=j},beforeModalTransitionEnter:function(){var t=this;this.modalTransitionState=C,this.$nextTick(function(){t.resizeObserver.observe(t.$refs.modal)})},afterModalTransitionEnter:function(){this.modalTransitionState=A,this.draggable&&this.addDraggableListeners(),this.focusTrap&&this.$focusTrap.enable(this.$refs.modal);var t=this.createModalEvent({state:"opened"});this.$emit("opened",t)},beforeModalTransitionLeave:function(){this.modalTransitionState=R,this.resizeObserver.unobserve(this.$refs.modal),this.$focusTrap.enabled()&&this.$focusTrap.disable()},afterModalTransitionLeave:function(){this.modalTransitionState=j;var t=this.createModalEvent({state:"closed"});this.$emit("closed",t)},onToggle:function(t,e,n){if(this.name===t){var i=void 0===e?!this.visible:e;this.toggle(i,n)}},setInitialSize:function(){var t=y(this.width),e=y(this.height);this.modal.width=t.value,this.modal.widthType=t.type,this.modal.height=e.value,this.modal.heightType=e.type},onEscapeKeyUp:function(t){27===t.which&&this.visible&&this.$modal.hide(this.name)},onWindowResize:function(){this.viewportWidth=s(),this.viewportHeight=window.innerHeight,this.ensureShiftInWindowBounds()},createModalEvent:function(t){var e=0<arguments.length&&void 0!==t?t:{};return function(e){for(var t=1;t<arguments.length;t++){var n=null!=arguments[t]?arguments[t]:{},i=Object.keys(n);"function"==typeof Object.getOwnPropertySymbols&&(i=i.concat(Object.getOwnPropertySymbols(n).filter(function(t){return Object.getOwnPropertyDescriptor(n,t).enumerable}))),i.forEach(function(t){L(e,t,n[t])})}return e}({name:this.name,ref:this.$refs.modal||null},e)},onModalResize:function(t){this.modal.widthType="px",this.modal.width=t.size.width,this.modal.heightType="px",this.modal.height=t.size.height;var e=this.modal.size;this.$emit("resize",this.createModalEvent({size:e}))},open:function(t){var e=this;this.reset&&(this.setInitialSize(),this.shiftLeft=0,this.shiftTop=0),this.scrollable&&document.body.classList.add("vm--block-scroll");var n=!1,i=this.createModalEvent({cancel:function(){n=!0},state:"before-open",params:t});this.$emit("before-open",i),n?this.scrollable&&document.body.classList.remove("vm--block-scroll"):("undefined"!=typeof document&&document.activeElement&&"BODY"!==document.activeElement.tagName&&document.activeElement.blur&&document.activeElement.blur(),this.visible=!0,this.$nextTick(function(){e.startTransitionEnter()}))},close:function(t){this.scrollable&&document.body.classList.remove("vm--block-scroll");var e=!1,n=this.createModalEvent({cancel:function(){e=!0},state:"before-close",params:t});this.$emit("before-close",n),e||this.startTransitionLeave()},toggle:function(t,e){this.visible!==t&&(t?this.open(e):this.close(e))},getDraggableElement:function(){return!0===this.draggable?this.$refs.modal:"string"==typeof this.draggable?this.$refs.modal.querySelector(this.draggable):null},onOverlayClick:function(){this.clickToClose&&this.toggle(!1)},addDraggableListeners:function(){var a=this,t=this.getDraggableElement();if(t){var s=0,l=0,u=0,c=0,e=function(t){var e=t.target;if(!(n=e)||-1===p.indexOf(n.nodeName)){var n,i=f(t),o=i.clientX,r=i.clientY;document.addEventListener("mousemove",d),document.addEventListener("touchmove",d),document.addEventListener("mouseup",h),document.addEventListener("touchend",h),s=o,l=r,u=a.shiftLeft,c=a.shiftTop}},d=function(t){var e=f(t),n=e.clientX,i=e.clientY;a.shiftLeft=u+n-s,a.shiftTop=c+i-l,t.preventDefault()},h=function t(e){a.ensureShiftInWindowBounds(),document.removeEventListener("mousemove",d),document.removeEventListener("touchmove",d),document.removeEventListener("mouseup",t),document.removeEventListener("touchend",t),e.preventDefault()};t.addEventListener("mousedown",e),t.addEventListener("touchstart",e)}},ensureShiftInWindowBounds:function(){var t=this.viewportHeight,e=this.viewportWidth,n=this.shiftLeft,i=this.shiftTop,o=this.shiftX,r=this.shiftY,a=this.trueModalWidth,s=this.trueModalHeight,l=e-a,u=Math.max(t-s,0),c=n+o*l,d=i+r*u;this.shiftLeft-=c-h(0,l,c),this.shiftTop-=d-h(0,u,d)}}},N=(n(9),d(H,i,[],!1,null,null,null));N.options.__file="src/components/Modal.vue";function D(){var n=this,t=n.$createElement,i=n._self._c||t;return i(n.$modal.context.componentName,{tag:"component",attrs:{name:"dialog",height:"auto",classes:["vue-dialog",this.params.class],width:n.width,"shift-y":.3,adaptive:!0,"focus-trap":!0,clickToClose:n.clickToClose,transition:n.transition},on:{"before-open":n.beforeOpened,"before-close":n.beforeClosed,opened:function(t){return n.$emit("opened",t)},closed:function(t){return n.$emit("closed",t)}}},[i("div",{staticClass:"vue-dialog-content"},[n.params.title?i("div",{staticClass:"vue-dialog-content-title",domProps:{innerHTML:n._s(n.params.title||"")}}):n._e(),n._v(" "),n.params.component?i(n.params.component,n._b({tag:"component"},"component",n.params.props,!1)):i("div",{domProps:{innerHTML:n._s(n.params.text||"")}})],1),n._v(" "),n.buttons?i("div",{staticClass:"vue-dialog-buttons"},n._l(n.buttons,function(t,e){return i("button",{key:e,class:t.class||"vue-dialog-button",style:n.buttonStyle,attrs:{type:"button",tabindex:"0"},domProps:{innerHTML:n._s(t.title)},on:{click:function(t){return t.stopPropagation(),n.click(e,t)}}},[n._v(n._s(t.title))])}),0):i("div",{staticClass:"vue-dialog-buttons-none"})])}var W=N.exports;D._withStripped=!0;var P={name:"VueJsDialog",props:{width:{type:[Number,String],default:400},clickToClose:{type:Boolean,default:!0},transition:{type:String}},data:function(){return{params:{}}},computed:{buttons:function(){return this.params.buttons||[]},buttonStyle:function(){return{flex:"1 1 ".concat(100/this.buttons.length,"%")}}},methods:{beforeOpened:function(t){this.params=t.params||{},this.$emit("before-opened",t)},beforeClosed:function(t){this.params={},this.$emit("before-closed",t)},click:function(t,e,n){var i=2<arguments.length&&void 0!==n?n:"click",o=this.buttons[t],r=null==o?void 0:o.handler;"function"==typeof r&&r(t,e,{source:i})}}},B=(n(11),d(P,D,[],!1,null,null,null));B.options.__file="src/components/Dialog.vue";function I(){var n=this,t=n.$createElement,i=n._self._c||t;return i("div",{attrs:{id:"modals-container"}},n._l(n.modals,function(e){return i("modal",n._g(n._b({key:e.id,on:{closed:function(t){return n.remove(e.id)}}},"modal",e.modalAttrs,!1),e.modalListeners),[i(e.component,n._g(n._b({tag:"component",on:{close:function(t){return n.$modal.hide(e.modalAttrs.name,t)}}},"component",e.componentAttrs,!1),n.$listeners))],1)}),1)}var U=B.exports;function X(t,e,n){return e in t?Object.defineProperty(t,e,{value:n,enumerable:!0,configurable:!0,writable:!0}):t[e]=n,t}I._withStripped=!0;var F=d({data:function(){return{modals:[]}},created:function(){this.$root.__modalContainer=this},mounted:function(){var t=this;this.$modal.subscription.$on("hide-all",function(){t.modals=[]})},methods:{add:function(t,e,n,i){var o=this,r=1<arguments.length&&void 0!==e?e:{},a=2<arguments.length&&void 0!==n?n:{},s=3<arguments.length&&void 0!==i?i:{},l=c(),u=a.name||"dynamic_modal_"+l;this.modals.push({id:l,modalAttrs:function(e){for(var t=1;t<arguments.length;t++){var n=null!=arguments[t]?arguments[t]:{},i=Object.keys(n);"function"==typeof Object.getOwnPropertySymbols&&(i=i.concat(Object.getOwnPropertySymbols(n).filter(function(t){return Object.getOwnPropertyDescriptor(n,t).enumerable}))),i.forEach(function(t){X(e,t,n[t])})}return e}({},a,{name:u}),modalListeners:s,component:t,componentAttrs:r}),this.$nextTick(function(){o.$modal.show(u)})},remove:function(e){var t=this.modals.findIndex(function(t){return t.id===e});-1!==t&&this.modals.splice(t,1)}}},I,[],!1,null,null,null);F.options.__file="src/components/ModalsContainer.vue";var G=F.exports;function V(t){return(V="function"==typeof Symbol&&"symbol"==typeof Symbol.iterator?function(t){return typeof t}:function(t){return t&&"function"==typeof Symbol&&t.constructor===Symbol&&t!==Symbol.prototype?"symbol":typeof t})(t)}function q(t,e,n){return e in t?Object.defineProperty(t,e,{value:n,enumerable:!0,configurable:!0,writable:!0}):t[e]=n,t}var K=function(i,t){function o(t,e,n,i){var o,r=2<arguments.length&&void 0!==n?n:{},a=3<arguments.length?i:void 0,s=null===(o=c.root)||void 0===o?void 0:o.__modalContainer,l=u.dynamicDefaults||{};null!=s&&s.add(t,e,function(e){for(var t=1;t<arguments.length;t++){var n=null!=arguments[t]?arguments[t]:{},i=Object.keys(n);"function"==typeof Object.getOwnPropertySymbols&&(i=i.concat(Object.getOwnPropertySymbols(n).filter(function(t){return Object.getOwnPropertyDescriptor(n,t).enumerable}))),i.forEach(function(t){q(e,t,n[t])})}return e}({},l,r),a)}var u=1<arguments.length&&void 0!==t?t:{},r=new i,c={root:null,componentName:u.componentName||"Modal"};return{context:c,subscription:r,show:function(){for(var t=arguments.length,e=new Array(t),n=0;n<t;n++)e[n]=arguments[n];var i=e[0];switch(V(i)){case"string":(function(t,e){r.$emit("toggle",t,!0,e)}).apply(void 0,e);break;case"object":case"function":o.apply(void 0,e);break;default:console.warn("[vue-js-modal] $modal() received an unsupported argument as a first argument.",i)}},hide:function(t,e){r.$emit("toggle",t,!1,e)},hideAll:function(){r.$emit("hide-all")},toggle:function(t,e){r.$emit("toggle",t,void 0,e)},setDynamicModalContainer:function(t){c.root=t;var e,n=(e=document.createElement("div"),document.body.appendChild(e),e);new i({parent:t,render:function(t){return t(G)}}).$mount(n)}}},Y={install:function(e,t){var n=1<arguments.length&&void 0!==t?t:{};if(!e.prototype.$modal){var i=new K(e,n);Object.defineProperty(e.prototype,"$modal",{get:function(){if(this instanceof e){var t=this.$root;i.context.root||i.setDynamicModalContainer(t)}return i}}),e.component(i.context.componentName,W),n.dialog&&e.component("VDialog",U)}}},J="__VERSION__";e.default=Y}],o.c=i,o.d=function(t,e,n){o.o(t,e)||Object.defineProperty(t,e,{enumerable:!0,get:n})},o.r=function(t){"undefined"!=typeof Symbol&&Symbol.toStringTag&&Object.defineProperty(t,Symbol.toStringTag,{value:"Module"}),Object.defineProperty(t,"__esModule",{value:!0})},o.t=function(e,t){if(1&t&&(e=o(e)),8&t)return e;if(4&t&&"object"==typeof e&&e&&e.__esModule)return e;var n=Object.create(null);if(o.r(n),Object.defineProperty(n,"default",{enumerable:!0,value:e}),2&t&&"string"!=typeof e)for(var i in e)o.d(n,i,function(t){return e[t]}.bind(null,i));return n},o.n=function(t){var e=t&&t.__esModule?function(){return t.default}:function(){return t};return o.d(e,"a",e),e},o.o=function(t,e){return Object.prototype.hasOwnProperty.call(t,e)},o.p="/dist/",o(o.s=13);function o(t){if(i[t])return i[t].exports;var e=i[t]={i:t,l:!1,exports:{}};return n[t].call(e.exports,e,e.exports,o),e.l=!0,e.exports}var n,i});
+//# sourceMappingURL=index.js.map
 
 /***/ }),
 
@@ -42811,7 +45670,52 @@ var render = function() {
       _c("div", { staticClass: "auto-container" }, [
         _c("div", { staticClass: "inner-container clearfix" }, [
           _c("div", { staticClass: "row clearfix" }, [
-            _vm._m(0),
+            _c(
+              "div",
+              { staticClass: "col-lg-6 col-md-6 col-sm-12 video-column" },
+              [
+                _c(
+                  "div",
+                  {
+                    staticClass: "video-inner",
+                    attrs: { id: "video_block_1" }
+                  },
+                  [
+                    _c(
+                      "div",
+                      {
+                        staticClass: "video-inner",
+                        staticStyle: {
+                          "background-image": "url(images/about-us.jpg)"
+                        }
+                      },
+                      [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "lightbox-image video-btn",
+                            attrs: {
+                              id: "vdo-btn",
+                              href: "https://www.youtube.com/embed/TTyFV-qhQtQ",
+                              "data-toggle": "modal",
+                              "data-target": "#myModal",
+                              "data-caption": ""
+                            },
+                            on: {
+                              click: function($event) {
+                                $event.preventDefault()
+                                return _vm.chrmClick($event)
+                              }
+                            }
+                          },
+                          [_c("i", { staticClass: "fas fa-play" })]
+                        )
+                      ]
+                    )
+                  ]
+                )
+              ]
+            ),
             _vm._v(" "),
             _c(
               "div",
@@ -42829,7 +45733,25 @@ var render = function() {
                       _c("p", [_vm._v(_vm._s(_vm.abouts.desc))])
                     ]),
                     _vm._v(" "),
-                    _vm._m(1)
+                    _c("div", { staticClass: "btn-box" }, [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "theme-btn",
+                          attrs: {
+                            href: "about.html",
+                            "data-toggle": "modal",
+                            "data-target": "#exampleModalLong"
+                          }
+                        },
+                        [
+                          _vm._v(_vm._s(_vm.abouts.view_more)),
+                          _c("i", {
+                            staticClass: "fas fa-long-arrow-alt-right"
+                          })
+                        ]
+                      )
+                    ])
                   ])
                 ])
               ]
@@ -42838,93 +45760,13 @@ var render = function() {
         ])
       ]),
       _vm._v(" "),
-      _vm._m(2)
+      _vm._m(0)
     ]),
     _vm._v(" "),
-    _c(
-      "div",
-      {
-        staticClass: "modal fade",
-        attrs: {
-          id: "myModal",
-          tabindex: "-1",
-          role: "dialog",
-          "aria-labelledby": "exampleModalLabel",
-          "aria-hidden": "true"
-        },
-        on: {
-          change: function($event) {
-            return _vm.chrmClick()
-          }
-        }
-      },
-      [_vm._m(3)]
-    )
+    _vm._m(1)
   ])
 }
 var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "div",
-      { staticClass: "col-lg-6 col-md-6 col-sm-12 video-column" },
-      [
-        _c(
-          "div",
-          { staticClass: "video-inner", attrs: { id: "video_block_1" } },
-          [
-            _c(
-              "div",
-              {
-                staticClass: "video-inner",
-                staticStyle: { "background-image": "url(images/about-us.jpg)" }
-              },
-              [
-                _c(
-                  "a",
-                  {
-                    staticClass: "lightbox-image video-btn",
-                    attrs: {
-                      id: "vdo-btn",
-                      href: "https://www.youtube.com/embed/Jfrjeg26Cwk",
-                      "data-toggle": "modal",
-                      "data-target": "#myModal",
-                      "data-caption": ""
-                    }
-                  },
-                  [_c("i", { staticClass: "fas fa-play" })]
-                )
-              ]
-            )
-          ]
-        )
-      ]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "btn-box" }, [
-      _c(
-        "a",
-        {
-          staticClass: "theme-btn",
-          attrs: {
-            href: "about.html",
-            "data-toggle": "modal",
-            "data-target": "#exampleModalLong"
-          }
-        },
-        [
-          _vm._v("View More"),
-          _c("i", { staticClass: "fas fa-long-arrow-alt-right" })
-        ]
-      )
-    ])
-  },
   function() {
     var _vm = this
     var _h = _vm.$createElement
@@ -42977,41 +45819,63 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "div",
-      { staticClass: "modal-dialog", attrs: { role: "document" } },
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "myModal",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalLabel",
+          "aria-hidden": "true"
+        }
+      },
       [
-        _c("div", { staticClass: "modal-content" }, [
-          _c("div", { staticClass: "modal-body" }, [
-            _c(
-              "button",
-              {
-                staticClass: "close",
-                attrs: {
-                  type: "button",
-                  "data-dismiss": "modal",
-                  "aria-label": "Close"
-                }
-              },
-              [_c("span", { attrs: { "aria-hidden": "true" } }, [_vm._v("×")])]
-            ),
-            _vm._v(" "),
-            _c(
-              "div",
-              { staticClass: "embed-responsive embed-responsive-16by9" },
-              [
-                _c("iframe", {
-                  staticClass: "embed-responsive-item",
-                  attrs: {
-                    src: "",
-                    id: "video",
-                    allowfullscreen: "",
-                    allowscriptaccess: "always",
-                    allow: "autoplay"
-                  }
-                })
-              ]
-            )
-          ])
-        ])
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-body" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "close",
+                    attrs: {
+                      type: "button",
+                      "data-dismiss": "modal",
+                      "aria-label": "Close"
+                    }
+                  },
+                  [
+                    _c("span", { attrs: { "aria-hidden": "true" } }, [
+                      _vm._v("×")
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  {
+                    staticClass:
+                      "embed-responsive embed-responsive-16by9 z-depth-1-half"
+                  },
+                  [
+                    _c("iframe", {
+                      staticClass: "embed-responsive-item",
+                      attrs: {
+                        src: "",
+                        id: "video",
+                        allowfullscreen: "",
+                        allowscriptaccess: "always",
+                        allow: "autoplay"
+                      }
+                    })
+                  ]
+                )
+              ])
+            ])
+          ]
+        )
       ]
     )
   }
@@ -43252,50 +46116,45 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("section", { staticClass: "section-padding bg-light-white" }, [
-        _c("div", { staticClass: "container" }, [
-          _c("div", { staticClass: "row" }, [
-            _c("div", { staticClass: "col-lg-6 col-md-6 mb-md-80" }, [
+  return _c("div", [
+    _c("section", { staticClass: "section-padding bg-light-white" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row" }, [
+          _c(
+            "div",
+            { staticClass: "col-lg-6 col-md-6 mb-md-80" },
+            [
               _c("div", { staticClass: "section-header left-heading pb-0" }, [
                 _c("div", { staticClass: "section-heading" }, [
                   _c("h6", { staticClass: "text-orng mb-xl-10 sub-heading" }, [
-                    _c("span", [_vm._v("Profit Share")])
+                    _c("span", [_vm._v(_vm._s(_vm.profit.heading))])
                   ]),
                   _vm._v(" "),
                   _c("h3", { staticClass: "text-blue fw-700 title" }, [
-                    _vm._v("Any kind business profit share"),
+                    _vm._v(_vm._s(_vm.profit.title)),
                     _c("span", { staticClass: "text-orng" }, [_vm._v(".")])
                   ]),
                   _vm._v(" "),
                   _c("p", { staticClass: "desc" }, [
-                    _vm._v(
-                      "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam."
-                    )
+                    _vm._v(_vm._s(_vm.profit.desc))
                   ])
                 ])
               ]),
               _vm._v(" "),
-              _c("ul", { staticClass: "custom profit-list" }, [
-                _c("li", [
-                  _c("i", { staticClass: "fas fa-check" }),
-                  _c("span", { staticClass: "font-weight:bold" }, [
-                    _vm._v("Kind business & shop profit share")
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("li", [
-                  _c("i", { staticClass: "fas fa-check" }),
-                  _vm._v("Solid solution with great intregation")
-                ])
-              ]),
+              _vm._l(_vm.details, function(d) {
+                return _c(
+                  "ul",
+                  { key: d.id, staticClass: "custom profit-list" },
+                  [
+                    _c("li", [
+                      _c("i", { staticClass: "fas fa-check" }),
+                      _c("span", { staticClass: "font-weight:bold" }, [
+                        _vm._v(_vm._s(d.desc_item))
+                      ])
+                    ])
+                  ]
+                )
+              }),
               _vm._v(" "),
               _c(
                 "a",
@@ -43304,160 +46163,187 @@ var staticRenderFns = [
                   attrs: { href: "project-detail.html" }
                 },
                 [
-                  _vm._v("\n                      Case Study "),
+                  _vm._v(
+                    "\n                      " +
+                      _vm._s(_vm.profit.case_study) +
+                      " "
+                  ),
                   _c("i", { staticClass: "fa fa-plus" })
                 ]
               )
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "col-lg-6 col-md-6 col-xs-12" }, [
-              _c("div", { staticClass: "profit-chart-box" }, [
-                _c(
-                  "a",
-                  { staticClass: "chart-logo", attrs: { href: "index.html" } },
-                  [
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-lg-6 col-md-6 col-xs-12" }, [
+            _c("div", { staticClass: "profit-chart-box" }, [
+              _vm._m(0),
+              _vm._v(" "),
+              _c(
+                "a",
+                { staticClass: "profit-icon icon-ps-1", attrs: { href: "#" } },
+                [
+                  _c("span", { staticClass: "icon" }, [
                     _c("img", {
-                      staticClass: "image-fit",
-                      attrs: { src: "images/bengal-cat-logo.png", alt: "" }
+                      attrs: {
+                        src: "http://192.168.1.6:8002/" + _vm.image.image_1
+                      }
                     })
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "profit-icon icon-ps-1",
-                    attrs: { href: "#" }
-                  },
-                  [
-                    _c("span", { staticClass: "icon" }, [
-                      _c("img", { attrs: { src: "images/cat-logo.jpg" } })
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "icon-text" }, [
-                      _vm._v("Finance")
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "profit-icon icon-ps-2",
-                    attrs: { href: "#" }
-                  },
-                  [
-                    _c("span", { staticClass: "icon" }, [
-                      _c("img", { attrs: { src: "images/cat-logo.jpg" } })
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "icon-text" }, [
-                      _vm._v("Consultancy")
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "profit-icon icon-ps-3",
-                    attrs: { href: "#" }
-                  },
-                  [
-                    _c("span", { staticClass: "icon" }, [
-                      _c("img", { attrs: { src: "images/cat-logo.jpg" } })
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "icon-text" }, [_vm._v("Tax")])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "profit-icon icon-ps-4",
-                    attrs: { href: "#" }
-                  },
-                  [
-                    _c("span", { staticClass: "icon" }, [
-                      _c("img", { attrs: { src: "images/cat-logo.jpg" } })
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "icon-text" }, [
-                      _vm._v("Profit Share")
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "profit-icon icon-ps-5",
-                    attrs: { href: "#" }
-                  },
-                  [
-                    _c("span", { staticClass: "icon" }, [
-                      _c("img", { attrs: { src: "images/cat-logo.jpg" } })
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "icon-text" }, [
-                      _vm._v("Banking")
-                    ])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "profit-icon icon-ps-6",
-                    attrs: { href: "#" }
-                  },
-                  [
-                    _c("span", { staticClass: "icon" }, [
-                      _c("img", { attrs: { src: "images/cat-logo.jpg" } })
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "icon-text" }, [_vm._v("Growth")])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "profit-icon icon-ps-7",
-                    attrs: { href: "#" }
-                  },
-                  [
-                    _c("span", { staticClass: "icon" }, [
-                      _c("img", { attrs: { src: "images/cat-logo.jpg" } })
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "icon-text" }, [_vm._v("Policy")])
-                  ]
-                ),
-                _vm._v(" "),
-                _c(
-                  "a",
-                  {
-                    staticClass: "profit-icon icon-ps-8",
-                    attrs: { href: "#" }
-                  },
-                  [
-                    _c("span", { staticClass: "icon" }, [
-                      _c("img", { attrs: { src: "images/cat-logo.jpg" } })
-                    ]),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "icon-text" }, [
-                      _vm._v("Home Loan")
-                    ])
-                  ]
-                )
-              ])
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "icon-text" }, [
+                    _vm._v(_vm._s(_vm.image.title_1))
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                { staticClass: "profit-icon icon-ps-2", attrs: { href: "#" } },
+                [
+                  _c("span", { staticClass: "icon" }, [
+                    _c("img", {
+                      attrs: {
+                        src: "http://192.168.1.6:8002/" + _vm.image.image_2
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "icon-text" }, [
+                    _vm._v(_vm._s(_vm.image.title_2))
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                { staticClass: "profit-icon icon-ps-3", attrs: { href: "#" } },
+                [
+                  _c("span", { staticClass: "icon" }, [
+                    _c("img", {
+                      attrs: {
+                        src: "http://192.168.1.6:8002/" + _vm.image.image_3
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "icon-text" }, [
+                    _vm._v(_vm._s(_vm.image.title_3))
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                { staticClass: "profit-icon icon-ps-4", attrs: { href: "#" } },
+                [
+                  _c("span", { staticClass: "icon" }, [
+                    _c("img", {
+                      attrs: {
+                        src: "http://192.168.1.6:8002/" + _vm.image.image_4
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "icon-text" }, [
+                    _vm._v(_vm._s(_vm.image.title_4))
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                { staticClass: "profit-icon icon-ps-5", attrs: { href: "#" } },
+                [
+                  _c("span", { staticClass: "icon" }, [
+                    _c("img", {
+                      attrs: {
+                        src: "http://192.168.1.6:8002/" + _vm.image.image_5
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "icon-text" }, [
+                    _vm._v(_vm._s(_vm.image.title_5))
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                { staticClass: "profit-icon icon-ps-6", attrs: { href: "#" } },
+                [
+                  _c("span", { staticClass: "icon" }, [
+                    _c("img", {
+                      attrs: {
+                        src: "http://192.168.1.6:8002/" + _vm.image.image_6
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "icon-text" }, [
+                    _vm._v(_vm._s(_vm.image.title_6))
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                { staticClass: "profit-icon icon-ps-7", attrs: { href: "#" } },
+                [
+                  _c("span", { staticClass: "icon" }, [
+                    _c("img", {
+                      attrs: {
+                        src: "http://192.168.1.6:8002/" + _vm.image.image_7
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "icon-text" }, [
+                    _vm._v(_vm._s(_vm.image.title_7))
+                  ])
+                ]
+              ),
+              _vm._v(" "),
+              _c(
+                "a",
+                { staticClass: "profit-icon icon-ps-8", attrs: { href: "#" } },
+                [
+                  _c("span", { staticClass: "icon" }, [
+                    _c("img", {
+                      attrs: {
+                        src: "http://192.168.1.6:8002/" + _vm.image.image_8
+                      }
+                    })
+                  ]),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "icon-text" }, [
+                    _vm._v(_vm._s(_vm.image.title_8))
+                  ])
+                ]
+              )
             ])
           ])
         ])
       ])
     ])
+  ])
+}
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      { staticClass: "chart-logo", attrs: { href: "index.html" } },
+      [
+        _c("img", {
+          staticClass: "image-fit",
+          attrs: { src: "images/bengal-cat-logo.png", alt: "" }
+        })
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -43466,10 +46352,10 @@ render._withStripped = true
 
 /***/ }),
 
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/home/counter.vue?vue&type=template&id=76962297&":
-/*!***************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/home/counter.vue?vue&type=template&id=76962297& ***!
-  \***************************************************************************************************************************************************************************************************************/
+/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/home/counter.vue?vue&type=template&id=76962297&scoped=true&":
+/*!***************************************************************************************************************************************************************************************************************************!*\
+  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/home/counter.vue?vue&type=template&id=76962297&scoped=true& ***!
+  \***************************************************************************************************************************************************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -43481,9 +46367,216 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_vm._v("\n  dfd\n")])
+  return _c("div", [
+    _c("section", { staticClass: "counter-vice-quote" }, [
+      _c("div", { staticClass: "container" }, [
+        _c("div", { staticClass: "row" }, [
+          _c("div", { staticClass: "col-sm-12 align-items-center" }, [
+            _c("div", { staticClass: "aboutbox" }, [
+              _c("div", { staticClass: "counter_area " }, [
+                _c("div", { staticClass: "single_counter" }, [
+                  _c("i", { staticClass: "fas fa-user" }),
+                  _vm._v(" "),
+                  _c(
+                    "h3",
+                    { staticClass: "counter" },
+                    [
+                      _c("countTo", {
+                        attrs: {
+                          startVal: _vm.startVal,
+                          endVal: _vm.endVal,
+                          duration: 3000
+                        }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("p", [_vm._v("Employees")])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "single_counter" }, [
+                  _c("i", { staticClass: "fas fa-file-export" }),
+                  _vm._v(" "),
+                  _c(
+                    "h3",
+                    { staticClass: "counter" },
+                    [
+                      _c("countTo", {
+                        attrs: { startVal: 0, endVal: 50, duration: 4000 }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("p", [_vm._v("Export Countries ")])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "single_counter" }, [
+                  _c("i", { staticClass: "fas fa-industry" }),
+                  _vm._v(" "),
+                  _c(
+                    "h3",
+                    { staticClass: "counter" },
+                    [
+                      _c("countTo", {
+                        attrs: { startVal: 0, endVal: 12, duration: 4000 }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("p", [_vm._v("Factories")])
+                ]),
+                _vm._v(" "),
+                _c("div", { staticClass: "single_counter" }, [
+                  _c("i", { staticClass: "fas fa-baseball-ball" }),
+                  _vm._v(" "),
+                  _c(
+                    "h3",
+                    { staticClass: "counter" },
+                    [
+                      _c("countTo", {
+                        attrs: { startVal: 0, endVal: 26, duration: 4000 }
+                      })
+                    ],
+                    1
+                  ),
+                  _vm._v(" "),
+                  _c("p", [_vm._v("SBUS")])
+                ])
+              ])
+            ])
+          ])
+        ])
+      ]),
+      _vm._v(" "),
+      _c("div", { staticClass: "promot_area" }, [
+        _c("div", { staticClass: "container" }, [
+          _c("div", { staticClass: "row" }, [
+            _c("div", { staticClass: "col-md-6 col-sm-12 col-xs-12" }, [
+              _c("div", { staticClass: "promo_text" }, [
+                _c("h3", [_vm._v(_vm._s(_vm.counter.title))]),
+                _vm._v(" "),
+                _c("p", [_vm._v(_vm._s(_vm.counter.desc))])
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass:
+                  "col-lg-6 col-md-6 col-sm-12 col-xs-12 video-column"
+              },
+              [
+                _c("div", { attrs: { id: "video_block_1" } }, [
+                  _c(
+                    "div",
+                    {
+                      staticClass: "video-inner",
+                      staticStyle: {
+                        "background-image": "url(images/vice-charman.png)"
+                      }
+                    },
+                    [
+                      _c(
+                        "a",
+                        {
+                          staticClass: "lightbox-image video-btn",
+                          attrs: {
+                            id: "vdo-btn",
+                            href: "https://www.youtube.com/embed/Jfrjeg26Cwk",
+                            "data-toggle": "modal",
+                            "data-target": "#myModal",
+                            "data-caption": ""
+                          },
+                          on: {
+                            click: function($event) {
+                              $event.preventDefault()
+                              return _vm.viceChairman($event)
+                            }
+                          }
+                        },
+                        [_c("i", { staticClass: "fas fa-play" })]
+                      )
+                    ]
+                  )
+                ])
+              ]
+            )
+          ])
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _vm._m(0)
+  ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass: "modal fade",
+        attrs: {
+          id: "myModal",
+          tabindex: "-1",
+          role: "dialog",
+          "aria-labelledby": "exampleModalLabel",
+          "aria-hidden": "true"
+        }
+      },
+      [
+        _c(
+          "div",
+          { staticClass: "modal-dialog", attrs: { role: "document" } },
+          [
+            _c("div", { staticClass: "modal-content" }, [
+              _c("div", { staticClass: "modal-body" }, [
+                _c(
+                  "button",
+                  {
+                    staticClass: "close",
+                    attrs: {
+                      type: "button",
+                      "data-dismiss": "modal",
+                      "aria-label": "Close"
+                    }
+                  },
+                  [
+                    _c("span", { attrs: { "aria-hidden": "true" } }, [
+                      _vm._v("×")
+                    ])
+                  ]
+                ),
+                _vm._v(" "),
+                _c(
+                  "div",
+                  { staticClass: "embed-responsive embed-responsive-16by9" },
+                  [
+                    _c("iframe", {
+                      staticClass: "embed-responsive-item",
+                      attrs: {
+                        src: "",
+                        id: "video",
+                        allowfullscreen: "",
+                        allowscriptaccess: "always",
+                        allow: "autoplay"
+                      }
+                    })
+                  ]
+                )
+              ])
+            ])
+          ]
+        )
+      ]
+    )
+  }
+]
 render._withStripped = true
 
 
@@ -43505,9412 +46598,7810 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _vm._m(0)
+  return _c("div", [
+    _c("section", { staticClass: "export-area" }, [
+      _vm._m(0),
+      _vm._v(" "),
+      _c("div", { staticClass: "container-full" }, [
+        _c("div", { staticClass: "row export-map" }, [
+          _c(
+            "div",
+            { staticClass: "col-md-12 export-area-map d-none d-sm-block" },
+            [
+              _c("div", { staticClass: "title col-sm-12" }, [
+                _c("h4", { staticClass: "sub-title" }, [
+                  _vm._v(
+                    "\n                  " +
+                      _vm._s(_vm.expt.heading) +
+                      "\n                "
+                  )
+                ]),
+                _vm._v(" "),
+                _c("h2", [_vm._v(_vm._s(_vm.expt.title))])
+              ]),
+              _vm._v(" "),
+              _c("img", { attrs: { src: "img/mapphoto.jpg" } }),
+              _vm._v(" "),
+              _vm._m(1),
+              _vm._v(" "),
+              _vm._m(2),
+              _vm._v(" "),
+              _vm._m(3),
+              _vm._v(" "),
+              _vm._m(4),
+              _vm._v(" "),
+              _vm._m(5),
+              _vm._v(" "),
+              _vm._m(6),
+              _vm._v(" "),
+              _vm._m(7),
+              _vm._v(" "),
+              _vm._m(8),
+              _vm._v(" "),
+              _vm._m(9),
+              _vm._v(" "),
+              _vm._m(10),
+              _vm._v(" "),
+              _vm._m(11),
+              _vm._v(" "),
+              _vm._m(12),
+              _vm._v(" "),
+              _vm._m(13),
+              _vm._v(" "),
+              _vm._m(14),
+              _vm._v(" "),
+              _vm._m(15),
+              _vm._v(" "),
+              _vm._m(16),
+              _vm._v(" "),
+              _vm._m(17),
+              _vm._v(" "),
+              _vm._m(18),
+              _vm._v(" "),
+              _vm._m(19),
+              _vm._v(" "),
+              _vm._m(20),
+              _vm._v(" "),
+              _vm._m(21),
+              _vm._v(" "),
+              _vm._m(22),
+              _vm._v(" "),
+              _vm._m(23),
+              _vm._v(" "),
+              _vm._m(24),
+              _vm._v(" "),
+              _vm._m(25),
+              _vm._v(" "),
+              _vm._m(26),
+              _vm._v(" "),
+              _vm._m(27),
+              _vm._v(" "),
+              _vm._m(28),
+              _vm._v(" "),
+              _vm._m(29),
+              _vm._v(" "),
+              _vm._m(30),
+              _vm._v(" "),
+              _vm._m(31),
+              _vm._v(" "),
+              _vm._m(32),
+              _vm._v(" "),
+              _vm._m(33),
+              _vm._v(" "),
+              _vm._m(34),
+              _vm._v(" "),
+              _vm._m(35),
+              _vm._v(" "),
+              _vm._m(36),
+              _vm._v(" "),
+              _vm._m(37),
+              _vm._v(" "),
+              _vm._m(38),
+              _vm._v(" "),
+              _vm._m(39),
+              _vm._v(" "),
+              _vm._m(40),
+              _vm._v(" "),
+              _vm._m(41),
+              _vm._v(" "),
+              _vm._m(42),
+              _vm._v(" "),
+              _vm._m(43),
+              _vm._v(" "),
+              _vm._m(44),
+              _vm._v(" "),
+              _vm._m(45),
+              _vm._v(" "),
+              _vm._m(46),
+              _vm._v(" "),
+              _vm._m(47),
+              _vm._v(" "),
+              _vm._m(48),
+              _vm._v(" "),
+              _vm._m(49),
+              _vm._v(" "),
+              _vm._m(50),
+              _vm._v(" "),
+              _vm._m(51),
+              _vm._v(" "),
+              _vm._m(52)
+            ]
+          ),
+          _vm._v(" "),
+          _vm._m(53)
+        ])
+      ])
+    ])
+  ])
 }
 var staticRenderFns = [
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", [
-      _c("section", { staticClass: "export-area" }, [
-        _c("div", { staticClass: "site-title col-sm-12" }, [
-          _c("h4", { staticClass: "sub-title" }, [
-            _vm._v("\n          Lorem Lorem\n        ")
-          ]),
+    return _c("div", { staticClass: "site-title col-sm-12" }, [
+      _c("h4", { staticClass: "sub-title" }, [
+        _vm._v("\n          Lorem Lorem\n        ")
+      ]),
+      _vm._v(" "),
+      _c("h2", [_vm._v("Export Markets")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location canada" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Canada")]
+          ),
           _vm._v(" "),
-          _c("h2", [_vm._v("Export Markets")])
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "canada" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
         ]),
         _vm._v(" "),
-        _c("div", { staticClass: "container-full" }, [
-          _c("div", { staticClass: "row export-map" }, [
-            _c(
-              "div",
-              { staticClass: "col-md-12 export-area-map d-none d-sm-block" },
-              [
-                _c("div", { staticClass: "title col-sm-12" }, [
-                  _c("h4", { staticClass: "sub-title" }, [
-                    _vm._v("\n                  Lorem Lorem\n                ")
-                  ]),
-                  _vm._v(" "),
-                  _c("h2", [_vm._v("Export Markets")])
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location usa" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Usa")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "usa" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
                 ]),
                 _vm._v(" "),
-                _c("img", { attrs: { src: "img/mapphoto.jpg" } }),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location canada" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Canada")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "canada" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
                 ]),
                 _vm._v(" "),
-                _c("div", { staticClass: "map-location usa" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Usa")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "usa" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location maxico" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Mexico")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "mexico" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location nicaragua" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Nicaragua")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "nicaragua" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location dominicanrepublic" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Dominican Republic")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "dominicanrepublic" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location brazil" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Brazil")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "brazil" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location ireland" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Ireland")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "ireland" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location switzerland" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Switzerland")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "switzerland" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location germany" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Germany")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "germany" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location france" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Faance")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "france" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location spain" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Spain")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "switzerland" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location portugal" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Portugal")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "switzerland" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location sweden" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Sweden")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "sweden" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location netherlands" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Netherlands")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "netherlands" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location uk" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("U.K")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "uk" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location denmark" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Denmark")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "denmark" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location belgium" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Belgium")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "belgium" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location slovakia " }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Slovakia")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "slovakia " }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location  poland" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v(" Poland")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: " poland" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location czechrepublic" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Czech Republic ")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "czechrepublic" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location hungary" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Hungary")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "hungary" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location austria" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Austria")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "austria" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location romania" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Romania")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "romania" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location italy" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Italy")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "italy" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location  slovenia" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Slovenia")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: " slovenia" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location bulgaria" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Bulgaria")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "bulgaria" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location greece" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Greece")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "greece" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location croatia" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Croatia")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "croatia" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location cyprus" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Cyprus")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "cyprus" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location saudi" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Saudi Arabia")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "saudi" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location yemen" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Yemen")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "yemen" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location somalia" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Somalia")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "somalia" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location sudan" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Sudan")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "sudan" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location iran" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Iran")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "iran" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location qatar" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Qatar")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "qatar" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location bahrain" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Bahrain")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "bahrain" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location kuwait" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Kuwait")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "kuwait" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location uae" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("UAE")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "uae" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location napal" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Napal")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "napal" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location india" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("India")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "india" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location maldives" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Maldives")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "maldives" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location myanmar" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Myanmar")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "myanmar" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location thailand" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Thailand")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "thailand" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location malaysia" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Malaysia")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "iran" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location singapore" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Singapore")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "singapore" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location tasttimor" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("East Timor")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "tasttimor" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location australia " }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Australia")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "australia" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location newZealand" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("NewZealand")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "newZealand" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location southkorea" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("South Korea")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "southkorea" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location japan" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Japan")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "japan" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location cambadia" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Cambodia")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "cambadia" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "map-location philippines" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Philippines")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "philippines" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
                 ])
-              ]
-            ),
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location maxico" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Mexico")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "mexico" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location nicaragua" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Nicaragua")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "nicaragua" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location dominicanrepublic" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Dominican Republic")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "dominicanrepublic" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location brazil" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Brazil")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "brazil" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location ireland" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Ireland")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "ireland" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location switzerland" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Switzerland")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "switzerland" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location germany" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Germany")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "germany" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location france" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Faance")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "france" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location spain" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Spain")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "switzerland" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location portugal" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Portugal")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "switzerland" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location sweden" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Sweden")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "sweden" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location netherlands" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Netherlands")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "netherlands" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location uk" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("U.K")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "uk" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location denmark" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Denmark")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "denmark" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location belgium" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Belgium")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "belgium" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location slovakia " }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Slovakia")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "slovakia " }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location  poland" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v(" Poland")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: " poland" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location czechrepublic" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Czech Republic ")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "czechrepublic" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location hungary" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Hungary")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "hungary" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location austria" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Austria")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "austria" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location romania" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Romania")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "romania" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location italy" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Italy")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "italy" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location  slovenia" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Slovenia")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: " slovenia" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location bulgaria" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Bulgaria")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "bulgaria" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location greece" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Greece")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "greece" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location croatia" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Croatia")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "croatia" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location cyprus" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Cyprus")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "cyprus" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location saudi" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Saudi Arabia")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "saudi" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location yemen" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Yemen")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "yemen" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location somalia" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Somalia")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "somalia" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location sudan" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Sudan")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "sudan" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location iran" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Iran")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "iran" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location qatar" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Qatar")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "qatar" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location bahrain" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Bahrain")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "bahrain" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location kuwait" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Kuwait")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "kuwait" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location uae" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("UAE")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "uae" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location napal" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Napal")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "napal" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location india" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("India")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "india" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location maldives" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Maldives")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "maldives" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location myanmar" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Myanmar")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "myanmar" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location thailand" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Thailand")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "thailand" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location malaysia" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Malaysia")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "iran" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location singapore" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Singapore")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "singapore" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location tasttimor" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("East Timor")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "tasttimor" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location australia " }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Australia")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "australia" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location newZealand" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("NewZealand")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "newZealand" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location southkorea" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("South Korea")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "southkorea" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location japan" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Japan")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "japan" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location cambadia" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Cambodia")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "cambadia" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "map-location philippines" }, [
+      _c("div", { staticClass: "map-colm" }, [
+        _c("div", { staticClass: "map-colm-sec1" }, [
+          _c(
+            "a",
+            {
+              staticClass: "map-point",
+              attrs: { href: "javascript:void(0);" }
+            },
+            [_vm._v("Philippines")]
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass: "map-location-details",
+              staticStyle: { display: "none" },
+              attrs: { id: "philippines" }
+            },
+            [
+              _c("ul", { staticClass: "india-colm" }, [
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/novelis-inc" } },
+                    [_vm._v("Novelis")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Cell Inc")]
+                  )
+                ]),
+                _vm._v(" "),
+                _c("li", [
+                  _c(
+                    "a",
+                    { attrs: { href: "/businesses/companies/av-group-nb" } },
+                    [_vm._v("AV Nackawic Inc")]
+                  )
+                ])
+              ])
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "map-colm-sec2" }, [
+          _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+            _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+          ])
+        ]),
+        _vm._v(" "),
+        _c(
+          "div",
+          { staticClass: "map-colm-sec2", staticStyle: { display: "none" } },
+          [
+            _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+              _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+            ])
+          ]
+        )
+      ])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      { staticClass: "col-md-12 export-area-map d-block d-sm-none" },
+      [
+        _c("img", { attrs: { src: "img/mapphoto.jpg" } }),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation canada-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Canada")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "canada" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/novelis-inc" }
+                        },
+                        [_vm._v("Novelis")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
+                      )
+                    ]),
+                    _vm._v(" "),
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
+                  ])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
             _vm._v(" "),
             _c(
               "div",
-              { staticClass: "col-md-12 export-area-map d-block d-sm-none" },
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
               [
-                _c("img", { attrs: { src: "img/mapphoto.jpg" } }),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation canada-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation usa-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Usa")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "usa" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Canada")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "canada" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation usa-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation maxico-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Mexico")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "mexico" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Usa")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "usa" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation maxico-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation nicaragua-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Nicaragua")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "nicaragua" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Mexico")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "mexico" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation nicaragua-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation dominicanrepublic-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Dominican Republic")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "dominicanrepublic" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Nicaragua")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "nicaragua" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation dominicanrepublic-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation brazil-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Brazil")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "brazil" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Dominican Republic")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "dominicanrepublic" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation brazil-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation ireland-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Ireland")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "ireland" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Brazil")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "brazil" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation ireland-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation switzerland-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Switzerland")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "switzerland" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Ireland")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "ireland" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation switzerland-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation germany-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Germany")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "germany" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Switzerland")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "switzerland" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation germany-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation france-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Faance")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "france" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Germany")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "germany" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation france-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation spain-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Spain")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "switzerland" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Faance")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "france" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation spain-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation portugal-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Portugal")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "switzerland" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Spain")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "switzerland" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation portugal-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation sweden-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Sweden")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "sweden" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Portugal")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "switzerland" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation sweden-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation netherlands-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Netherlands")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "netherlands" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Sweden")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "sweden" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation netherlands-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation uk-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("U.K")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "uk" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Netherlands")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "netherlands" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation uk-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation denmark-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Denmark")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "denmark" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("U.K")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "uk" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation denmark-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation belgium-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Belgium")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "belgium" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Denmark")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "denmark" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation belgium-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation slovakia-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Slovakia")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "slovakia " }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Belgium")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "belgium" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation slovakia-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation  poland-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v(" Poland")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: " poland" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Slovakia")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "slovakia " }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation  poland-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation czechrepublic-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Czech Republic ")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "czechrepublic" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v(" Poland")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: " poland" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation czechrepublic-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation hungary-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Hungary")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "hungary" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Czech Republic ")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "czechrepublic" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation hungary-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation austria-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Austria")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "austria" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Hungary")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "hungary" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation austria-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation romania-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Romania")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "romania" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Austria")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "austria" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation romania-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation italy-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Italy")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "italy" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Romania")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "romania" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation italy-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation  slovenia-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Slovenia")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: " slovenia" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Italy")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "italy" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation  slovenia-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation bulgaria-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Bulgaria")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "bulgaria" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Slovenia")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: " slovenia" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation bulgaria-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation greece-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Greece")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "greece" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Bulgaria")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "bulgaria" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation greece-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation croatia-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Croatia")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "croatia" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Greece")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "greece" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation croatia-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation cyprus-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Cyprus")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "cyprus" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Croatia")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "croatia" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation cyprus-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation saudi-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Saudi Arabia")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "saudi" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Cyprus")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "cyprus" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation saudi-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation yemen-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Yemen")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "yemen" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Saudi Arabia")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "saudi" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation yemen-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation somalia-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Somalia")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "somalia" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Yemen")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "yemen" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation somalia-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation sudan-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Sudan")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "sudan" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Somalia")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "somalia" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation sudan-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation iran-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Iran")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "iran" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Sudan")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "sudan" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation iran-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation qatar-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Qatar")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "qatar" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Iran")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "iran" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation qatar-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation bahrain-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Bahrain")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "bahrain" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Qatar")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "qatar" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation bahrain-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation kuwait-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Kuwait")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "kuwait" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Bahrain")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "bahrain" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation kuwait-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation uae-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("UAE")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "uae" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Kuwait")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "kuwait" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation uae-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation napal-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Napal")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "napal" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("UAE")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "uae" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation napal-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation india-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("India")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "india" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Napal")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "napal" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation india-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation maldives-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Maldives")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "maldives" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("India")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "india" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation maldives-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation myanmar-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Myanmar")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "myanmar" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Maldives")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "maldives" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation myanmar-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation thailand-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Thailand")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "thailand" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Myanmar")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "myanmar" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation thailand-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation malaysia-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Malaysia")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "iran" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Thailand")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "thailand" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation malaysia-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation singapore-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Singapore")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "singapore" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Malaysia")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "iran" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation singapore-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation tasttimor-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("East Timor")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "tasttimor" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Singapore")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "singapore" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation tasttimor-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation australia-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Australia")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "australia" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("East Timor")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "tasttimor" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation australia-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation newZealand-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("NewZealand")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "newZealand" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Australia")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "australia" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation newZealand-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation southkorea-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("South Korea")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "southkorea" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("NewZealand")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "newZealand" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation southkorea-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation japan-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Japan")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "japan" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("South Korea")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "southkorea" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation japan-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation cambadia-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Cambodia")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "cambadia" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Japan")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "japan" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation cambadia-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
+                ])
+              ]
+            )
+          ])
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "maplocation philippines-m" }, [
+          _c("div", { staticClass: "map-colm" }, [
+            _c("div", { staticClass: "map-colm-sec1" }, [
+              _c(
+                "a",
+                {
+                  staticClass: "map-point",
+                  attrs: { href: "javascript:void(0);" }
+                },
+                [_vm._v("Philippines")]
+              ),
+              _vm._v(" "),
+              _c(
+                "div",
+                {
+                  staticClass: "map-location-details",
+                  staticStyle: { display: "none" },
+                  attrs: { id: "philippines" }
+                },
+                [
+                  _c("ul", { staticClass: "india-colm" }, [
+                    _c("li", [
                       _c(
                         "a",
                         {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
+                          attrs: { href: "/businesses/companies/novelis-inc" }
                         },
-                        [_vm._v("Cambodia")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "cambadia" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
+                        [_vm._v("Novelis")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
+                    _c("li", [
                       _c(
                         "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Cell Inc")]
                       )
                     ]),
                     _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
+                    _c("li", [
+                      _c(
+                        "a",
+                        {
+                          attrs: { href: "/businesses/companies/av-group-nb" }
+                        },
+                        [_vm._v("AV Nackawic Inc")]
+                      )
+                    ])
                   ])
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "maplocation philippines-m" }, [
-                  _c("div", { staticClass: "map-colm" }, [
-                    _c("div", { staticClass: "map-colm-sec1" }, [
-                      _c(
-                        "a",
-                        {
-                          staticClass: "map-point",
-                          attrs: { href: "javascript:void(0);" }
-                        },
-                        [_vm._v("Philippines")]
-                      ),
-                      _vm._v(" "),
-                      _c(
-                        "div",
-                        {
-                          staticClass: "map-location-details",
-                          staticStyle: { display: "none" },
-                          attrs: { id: "philippines" }
-                        },
-                        [
-                          _c("ul", { staticClass: "india-colm" }, [
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/novelis-inc"
-                                  }
-                                },
-                                [_vm._v("Novelis")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Cell Inc")]
-                              )
-                            ]),
-                            _vm._v(" "),
-                            _c("li", [
-                              _c(
-                                "a",
-                                {
-                                  attrs: {
-                                    href: "/businesses/companies/av-group-nb"
-                                  }
-                                },
-                                [_vm._v("AV Nackawic Inc")]
-                              )
-                            ])
-                          ])
-                        ]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "map-colm-sec2" }, [
-                      _c(
-                        "a",
-                        { staticClass: "map-point", attrs: { href: "#" } },
-                        [_c("img", { attrs: { src: "img/plus.png", alt: "" } })]
-                      )
-                    ]),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      {
-                        staticClass: "map-colm-sec2",
-                        staticStyle: { display: "none" }
-                      },
-                      [
-                        _c(
-                          "a",
-                          { staticClass: "map-point", attrs: { href: "#" } },
-                          [
-                            _c("img", {
-                              attrs: { src: "img/minus.png", alt: "" }
-                            })
-                          ]
-                        )
-                      ]
-                    )
-                  ])
+                ]
+              )
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "map-colm-sec2" }, [
+              _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                _c("img", { attrs: { src: "img/plus.png", alt: "" } })
+              ])
+            ]),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "map-colm-sec2",
+                staticStyle: { display: "none" }
+              },
+              [
+                _c("a", { staticClass: "map-point", attrs: { href: "#" } }, [
+                  _c("img", { attrs: { src: "img/minus.png", alt: "" } })
                 ])
               ]
             )
           ])
         ])
-      ])
-    ])
+      ]
+    )
   }
 ]
 render._withStripped = true
@@ -54033,240 +55524,6 @@ var render = function() {
   )
 }
 var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/leftsidebar.vue?vue&type=template&id=d15bb40c&scoped=true&":
-/*!**************************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/leftsidebar.vue?vue&type=template&id=d15bb40c&scoped=true& ***!
-  \**************************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _c("div", [
-    _c(
-      "aside",
-      {
-        staticClass: "left-sidebar",
-        attrs: { "data-sidebarbg": "skin5", id: "sidebar" }
-      },
-      [
-        _c("div", { staticClass: "scroll-sidebar" }, [
-          _c("nav", { staticClass: "sidebar-nav" }, [
-            _c("ul", { staticClass: "p-t-30", attrs: { id: "sidebarnav" } }, [
-              _c(
-                "li",
-                { staticClass: "sidebar-item" },
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass:
-                        "sidebar-link waves-effect waves-dark sidebar-link",
-                      attrs: { to: "/home", "aria-expanded": "false" }
-                    },
-                    [
-                      _c("i", { staticClass: "mdi mdi-view-dashboard" }),
-                      _c("span", { staticClass: "hide-menu" }, [
-                        _vm._v("Dashboard")
-                      ])
-                    ]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                { staticClass: "sidebar-item" },
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass:
-                        "sidebar-link waves-effect waves-dark sidebar-link",
-                      attrs: { to: "/tab", "aria-expanded": "false" }
-                    },
-                    [
-                      _c("i", { staticClass: "mdi mdi-chart-bubble" }),
-                      _c("span", { staticClass: "hide-menu" }, [_vm._v("Tabs")])
-                    ]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _c(
-                "li",
-                { staticClass: "sidebar-item" },
-                [
-                  _c(
-                    "router-link",
-                    {
-                      staticClass:
-                        "sidebar-link waves-effect waves-dark sidebar-link",
-                      attrs: { to: "/tabs", "aria-expanded": "false" }
-                    },
-                    [
-                      _c("i", { staticClass: "mdi mdi-chart-bubble" }),
-                      _c("span", { staticClass: "hide-menu" }, [
-                        _vm._v("Tabs View")
-                      ])
-                    ]
-                  )
-                ],
-                1
-              ),
-              _vm._v(" "),
-              _vm.enableSetting
-                ? _c("li", { staticClass: "sidebar-item" }, [
-                    _vm._m(0),
-                    _vm._v(" "),
-                    _c(
-                      "ul",
-                      {
-                        staticClass: "collapse  first-level",
-                        attrs: { "aria-expanded": "false" }
-                      },
-                      [
-                        _vm.role == 5 || _vm.role == 1
-                          ? _c(
-                              "li",
-                              {
-                                staticClass: "sidebar-item",
-                                attrs: { id: "department" }
-                              },
-                              [
-                                _c(
-                                  "router-link",
-                                  {
-                                    staticClass: "sidebar-link",
-                                    attrs: { to: "/department" }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass: "mdi mdi-note-outline"
-                                    }),
-                                    _c(
-                                      "span",
-                                      {
-                                        staticClass: "hide-menu",
-                                        attrs: { id: "spanTag" }
-                                      },
-                                      [_vm._v("Department ")]
-                                    )
-                                  ]
-                                )
-                              ],
-                              1
-                            )
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm.role == 5 || _vm.role == 1
-                          ? _c(
-                              "li",
-                              {
-                                staticClass: "sidebar-item",
-                                attrs: { id: "designation" }
-                              },
-                              [
-                                _c(
-                                  "router-link",
-                                  {
-                                    staticClass: "sidebar-link",
-                                    attrs: { to: "/designation" }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass: "mdi mdi-note-outline"
-                                    }),
-                                    _c(
-                                      "span",
-                                      {
-                                        staticClass: "hide-menu",
-                                        attrs: { id: "spanTag" }
-                                      },
-                                      [_vm._v("Designation ")]
-                                    )
-                                  ]
-                                )
-                              ],
-                              1
-                            )
-                          : _vm._e(),
-                        _vm._v(" "),
-                        _vm.role == 1
-                          ? _c(
-                              "li",
-                              {
-                                staticClass: "sidebar-item",
-                                attrs: { id: "user" }
-                              },
-                              [
-                                _c(
-                                  "router-link",
-                                  {
-                                    staticClass: "sidebar-link",
-                                    attrs: { to: "/user" }
-                                  },
-                                  [
-                                    _c("i", {
-                                      staticClass: "mdi mdi-note-outline"
-                                    }),
-                                    _c(
-                                      "span",
-                                      {
-                                        staticClass: "hide-menu",
-                                        attrs: { id: "spanTag" }
-                                      },
-                                      [_vm._v("User ")]
-                                    )
-                                  ]
-                                )
-                              ],
-                              1
-                            )
-                          : _vm._e()
-                      ]
-                    )
-                  ])
-                : _vm._e()
-            ])
-          ])
-        ])
-      ]
-    )
-  ])
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass: "sidebar-link has-arrow waves-effect waves-dark",
-        attrs: { href: "javascript:void(0)", "aria-expanded": "false" }
-      },
-      [
-        _c("i", { staticClass: "mdi mdi-receipt" }),
-        _c("span", { staticClass: "hide-menu" }, [_vm._v("Settings ")])
-      ]
-    )
-  }
-]
 render._withStripped = true
 
 
@@ -64437,6 +65694,273 @@ if (inBrowser && window.Vue) {
 }
 
 /* harmony default export */ __webpack_exports__["default"] = (VueRouter);
+
+
+/***/ }),
+
+/***/ "./node_modules/vue-youtube-embed/lib/vue-youtube-embed.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/vue-youtube-embed/lib/vue-youtube-embed.js ***!
+  \*****************************************************************/
+/*! exports provided: default, YouTubePlayer, getIdFromURL, getTimeFromURL */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "YouTubePlayer", function() { return YouTubePlayer; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getIdFromURL", function() { return getIdFromURL; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "getTimeFromURL", function() { return getTimeFromURL; });
+/*!
+ * Vue YouTube Embed version 2.2.2
+ * under MIT License copyright 2019 kaorun343
+ */
+// fork from https://github.com/brandly/angular-youtube-embed
+
+if (!String.prototype.includes) {
+  String.prototype.includes = function () {
+    return String.prototype.indexOf.apply(this, arguments) !== -1
+  };
+}
+
+var youtubeRegexp = /https?:\/\/(?:[0-9A-Z-]+\.)?(?:youtu\.be\/|youtube(?:-nocookie)?\.com\S*[^\w\s-])([\w-]{11})(?=[^\w-]|$)(?![?=&+%\w.-]*(?:['"][^<>]*>|<\/a>))[?=&+%\w.-]*/ig;
+var timeRegexp = /t=(\d+)[ms]?(\d+)?s?/;
+
+/**
+ * get id from url
+ * @param  {string} url url
+ * @return {string}     id
+ */
+function getIdFromURL (url) {
+  var id = url.replace(youtubeRegexp, '$1');
+
+  if (id.includes(';')) {
+    var pieces = id.split(';');
+
+    if (pieces[1].includes('%')) {
+      var uriComponent = decodeURIComponent(pieces[1]);
+      id = ("http://youtube.com" + uriComponent).replace(youtubeRegexp, '$1');
+    } else {
+      id = pieces[0];
+    }
+  } else if (id.includes('#')) {
+    id = id.split('#')[0];
+  }
+
+  return id
+}
+
+/**
+ * get time from url
+ * @param  {string} url url
+ * @return {number}     time
+ */
+function getTimeFromURL (url) {
+  if ( url === void 0 ) url = '';
+
+  var times = url.match(timeRegexp);
+
+  if (!times) {
+    return 0
+  }
+
+  var full = times[0];
+  var minutes = times[1];
+  var seconds = times[2];
+
+  if (typeof seconds !== 'undefined') {
+    seconds = parseInt(seconds, 10);
+    minutes = parseInt(minutes, 10);
+  } else if (full.includes('m')) {
+    minutes = parseInt(minutes, 10);
+    seconds = 0;
+  } else {
+    seconds = parseInt(minutes, 10);
+    minutes = 0;
+  }
+
+  return seconds + (minutes * 60)
+}
+
+var container = {
+  scripts: [],
+  events: {},
+
+  run: function run () {
+    var this$1 = this;
+
+    this.scripts.forEach(function (callback) {
+      callback(this$1.YT);
+    });
+    this.scripts = [];
+  },
+
+  register: function register (callback) {
+    var this$1 = this;
+
+    if (this.YT) {
+      this.Vue.nextTick(function () {
+        callback(this$1.YT);
+      });
+    } else {
+      this.scripts.push(callback);
+    }
+  }
+};
+
+var pid = 0;
+
+var YouTubePlayer = {
+  name: 'YoutubeEmbed',
+  props: {
+    playerHeight: {
+      type: [String, Number],
+      default: '360'
+    },
+    playerWidth: {
+      type: [String, Number],
+      default: '640'
+    },
+    playerVars: {
+      type: Object,
+      default: function () { return ({ autoplay: 0, time: 0 }); }
+    },
+    videoId: {
+      type: String
+    },
+    mute: {
+      type: Boolean,
+      default: false
+    },
+    host: {
+      type: String,
+      default: 'https://www.youtube.com'
+    }
+  },
+  render: function render (h) {
+    return h('div', [
+      h('div', { attrs: { id: this.elementId }})
+    ])
+  },
+  template: '<div><div :id="elementId"></div></div>',
+  watch: {
+    playerWidth: 'setSize',
+    playerHeight: 'setSize',
+    videoId: 'update',
+    mute: 'setMute'
+  },
+  data: function data () {
+    pid += 1;
+    return {
+      elementId: ("youtube-player-" + pid),
+      player: {}
+    }
+  },
+  methods: {
+    setSize: function setSize () {
+      this.player.setSize(this.playerWidth, this.playerHeight);
+    },
+    setMute: function setMute (value) {
+      if (value) {
+        this.player.mute();
+      } else {
+        this.player.unMute();
+      }
+    },
+    update: function update (videoId) {
+      var name = (this.playerVars.autoplay ? 'load' : 'cue') + "VideoById";
+      if (this.player.hasOwnProperty(name)) {
+        this.player[name](videoId);
+      } else {
+        setTimeout(function () {
+          this.update(videoId);
+        }.bind(this), 100);
+      }
+    }
+  },
+  mounted: function mounted () {
+    var this$1 = this;
+
+    container.register(function (YouTube) {
+      var ref = this$1;
+      var playerHeight = ref.playerHeight;
+      var playerWidth = ref.playerWidth;
+      var playerVars = ref.playerVars;
+      var videoId = ref.videoId;
+      var host = ref.host;
+
+      this$1.player = new YouTube.Player(this$1.elementId, {
+        height: playerHeight,
+        width: playerWidth,
+        playerVars: playerVars,
+        videoId: videoId,
+        host: host,
+        events: {
+          onReady: function (event) {
+            this$1.setMute(this$1.mute);
+            this$1.$emit('ready', event);
+          },
+          onStateChange: function (event) {
+            if (event.data !== -1) {
+              this$1.$emit(container.events[event.data], event);
+            }
+          },
+          onError: function (event) {
+            this$1.$emit('error', event);
+          }
+        }
+      });
+    });
+  },
+  beforeDestroy: function beforeDestroy () {
+    if (this.player !== null && this.player.destroy) {
+      this.player.destroy();
+    }
+    delete this.player;
+  }
+};
+
+var index = {
+  install: function install (Vue, options) {
+    if ( options === void 0 ) options = {};
+
+    container.Vue = Vue;
+    YouTubePlayer.ready = YouTubePlayer.mounted;
+    var global = options.global; if ( global === void 0 ) global = true;
+    var componentId = options.componentId; if ( componentId === void 0 ) componentId = 'youtube';
+
+    if (global) {
+      // if there is a global component with "youtube" identifier already taken
+      // then we should let user to pass a new identifier.
+      Vue.component(componentId, YouTubePlayer);
+    }
+    Vue.prototype.$youtube = { getIdFromURL: getIdFromURL, getTimeFromURL: getTimeFromURL };
+
+    if (typeof window !== 'undefined' && typeof document !== 'undefined') {
+      var tag = document.createElement('script');
+      tag.src = 'https://www.youtube.com/player_api';
+      var firstScriptTag = document.getElementsByTagName('script')[0];
+      firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+
+      window.onYouTubeIframeAPIReady = function () {
+        container.YT = YT;
+        var PlayerState = YT.PlayerState;
+
+        container.events[PlayerState.ENDED] = 'ended';
+        container.events[PlayerState.PLAYING] = 'playing';
+        container.events[PlayerState.PAUSED] = 'paused';
+        container.events[PlayerState.BUFFERING] = 'buffering';
+        container.events[PlayerState.CUED] = 'cued';
+
+        container.Vue.nextTick(function () {
+          container.run();
+        });
+      };
+    }
+  }
+};
+
+/* harmony default export */ __webpack_exports__["default"] = (index);
+
 
 
 /***/ }),
@@ -76503,32 +78027,47 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(vue__WEBPACK_IMPORTED_MODULE_0__);
 /* harmony import */ var vue_router__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue-router */ "./node_modules/vue-router/dist/vue-router.esm.js");
-/* harmony import */ var _helpers_User__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./helpers/User */ "./resources/js/helpers/User.js");
-/* harmony import */ var _helpers_Notification__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./helpers/Notification */ "./resources/js/helpers/Notification.js");
-/* harmony import */ var _components_topbar_vue__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/topbar.vue */ "./resources/js/components/topbar.vue");
-/* harmony import */ var vue_responsive_video_background_player__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! vue-responsive-video-background-player */ "./node_modules/vue-responsive-video-background-player/dist/index.common.js");
-/* harmony import */ var vue_responsive_video_background_player__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(vue_responsive_video_background_player__WEBPACK_IMPORTED_MODULE_5__);
-/* harmony import */ var _components_leftsidebar_vue__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/leftsidebar.vue */ "./resources/js/components/leftsidebar.vue");
-/* harmony import */ var _components_layout_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/layout.vue */ "./resources/js/components/layout.vue");
-/* harmony import */ var _components_home_blog_vue__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/home/blog.vue */ "./resources/js/components/home/blog.vue");
-/* harmony import */ var _components_home_aboutUs_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/home/aboutUs.vue */ "./resources/js/components/home/aboutUs.vue");
-/* harmony import */ var _components_home_counter_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/home/counter.vue */ "./resources/js/components/home/counter.vue");
-/* harmony import */ var _components_home_category_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/home/category.vue */ "./resources/js/components/home/category.vue");
-/* harmony import */ var _components_home_map_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/home/map.vue */ "./resources/js/components/home/map.vue");
-/* harmony import */ var _components_home_achievement_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/home/achievement.vue */ "./resources/js/components/home/achievement.vue");
-/* harmony import */ var _components_home_partner_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/home/partner.vue */ "./resources/js/components/home/partner.vue");
-/* harmony import */ var _components_home_tab_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/home/tab.vue */ "./resources/js/components/home/tab.vue");
-/* harmony import */ var _components_footer_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/footer.vue */ "./resources/js/components/footer.vue");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
-/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_17___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_17__);
-/* harmony import */ var laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! laravel-vue-pagination */ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.common.js");
-/* harmony import */ var laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_18___default = /*#__PURE__*/__webpack_require__.n(laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_18__);
-/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ./routes */ "./resources/js/routes.js");
-__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
+/* harmony import */ var v_video_embed__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! v-video-embed */ "./node_modules/v-video-embed/dist/video-embed.min.js");
+/* harmony import */ var v_video_embed__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(v_video_embed__WEBPACK_IMPORTED_MODULE_2__);
+/* harmony import */ var vue_youtube_embed__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! vue-youtube-embed */ "./node_modules/vue-youtube-embed/lib/vue-youtube-embed.js");
+/* harmony import */ var vue_js_modal__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! vue-js-modal */ "./node_modules/vue-js-modal/dist/index.js");
+/* harmony import */ var vue_js_modal__WEBPACK_IMPORTED_MODULE_4___default = /*#__PURE__*/__webpack_require__.n(vue_js_modal__WEBPACK_IMPORTED_MODULE_4__);
+/* harmony import */ var _helpers_User__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./helpers/User */ "./resources/js/helpers/User.js");
+/* harmony import */ var _helpers_Notification__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./helpers/Notification */ "./resources/js/helpers/Notification.js");
+/* harmony import */ var _components_topbar_vue__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/topbar.vue */ "./resources/js/components/topbar.vue");
+/* harmony import */ var vue_responsive_video_background_player__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! vue-responsive-video-background-player */ "./node_modules/vue-responsive-video-background-player/dist/index.common.js");
+/* harmony import */ var vue_responsive_video_background_player__WEBPACK_IMPORTED_MODULE_8___default = /*#__PURE__*/__webpack_require__.n(vue_responsive_video_background_player__WEBPACK_IMPORTED_MODULE_8__);
+/* harmony import */ var _components_layout_vue__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/layout.vue */ "./resources/js/components/layout.vue");
+/* harmony import */ var _components_home_blog_vue__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ./components/home/blog.vue */ "./resources/js/components/home/blog.vue");
+/* harmony import */ var _components_home_aboutUs_vue__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ./components/home/aboutUs.vue */ "./resources/js/components/home/aboutUs.vue");
+/* harmony import */ var _components_home_counter_vue__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ./components/home/counter.vue */ "./resources/js/components/home/counter.vue");
+/* harmony import */ var _components_home_category_vue__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./components/home/category.vue */ "./resources/js/components/home/category.vue");
+/* harmony import */ var _components_home_map_vue__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./components/home/map.vue */ "./resources/js/components/home/map.vue");
+/* harmony import */ var _components_home_achievement_vue__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./components/home/achievement.vue */ "./resources/js/components/home/achievement.vue");
+/* harmony import */ var _components_home_partner_vue__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./components/home/partner.vue */ "./resources/js/components/home/partner.vue");
+/* harmony import */ var _components_home_tab_vue__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./components/home/tab.vue */ "./resources/js/components/home/tab.vue");
+/* harmony import */ var _components_footer_vue__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./components/footer.vue */ "./resources/js/components/footer.vue");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! sweetalert2 */ "./node_modules/sweetalert2/dist/sweetalert2.all.js");
+/* harmony import */ var sweetalert2__WEBPACK_IMPORTED_MODULE_19___default = /*#__PURE__*/__webpack_require__.n(sweetalert2__WEBPACK_IMPORTED_MODULE_19__);
+/* harmony import */ var laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! laravel-vue-pagination */ "./node_modules/laravel-vue-pagination/dist/laravel-vue-pagination.common.js");
+/* harmony import */ var laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_20___default = /*#__PURE__*/__webpack_require__.n(laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_20__);
+/* harmony import */ var _routes__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./routes */ "./resources/js/routes.js");
+__webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); //require("bootstrap-css-only/css/bootstrap.min.css");
+//require("mdbvue/lib/css/mdb.min.css");
+//require("@fortawesome/fontawesome-free/css/all.min.css");
 
 
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]); // We import JQuery
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]); // import VueIframe from 'vue-iframes'
+// Vue.use(VueIframe)
+
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(v_video_embed__WEBPACK_IMPORTED_MODULE_2___default.a);
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_youtube_embed__WEBPACK_IMPORTED_MODULE_3__["default"]);
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.use(vue_js_modal__WEBPACK_IMPORTED_MODULE_4___default.a); // We import JQuery
 
 var $ = __webpack_require__(/*! jquery */ "./node_modules/jquery/dist/jquery.js"); // We declare it globally
 
@@ -76537,43 +78076,45 @@ window.$ = $;
 Window.Event = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({}); //Import User Class
 
 
-window.User = _helpers_User__WEBPACK_IMPORTED_MODULE_2__["default"]; //Import Notification Class
+window.User = _helpers_User__WEBPACK_IMPORTED_MODULE_5__["default"]; //Import Notification Class
 
 
-window.Notification = _helpers_Notification__WEBPACK_IMPORTED_MODULE_3__["default"]; // import Topbar from './components/topbar.vue'
+window.Notification = _helpers_Notification__WEBPACK_IMPORTED_MODULE_6__["default"]; // import Topbar from './components/topbar.vue'
 // Vue.component('top-bar', Topbar)
 
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('top-bar', _components_topbar_vue__WEBPACK_IMPORTED_MODULE_4__["default"]);
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('top-bar', _components_topbar_vue__WEBPACK_IMPORTED_MODULE_7__["default"]);
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('video-background', vue_responsive_video_background_player__WEBPACK_IMPORTED_MODULE_5___default.a);
- //Vue.component('left-sidebar', LeftSideBar)
-
-
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('layout-area', _components_layout_vue__WEBPACK_IMPORTED_MODULE_7__["default"]); // For Home Page
-
-
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('blog-area', _components_home_blog_vue__WEBPACK_IMPORTED_MODULE_8__["default"]);
-
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('about-us', _components_home_aboutUs_vue__WEBPACK_IMPORTED_MODULE_9__["default"]);
-
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('counter-area', _components_home_counter_vue__WEBPACK_IMPORTED_MODULE_10__["default"]);
-
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('category-area', _components_home_category_vue__WEBPACK_IMPORTED_MODULE_11__["default"]);
-
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('map-area', _components_home_map_vue__WEBPACK_IMPORTED_MODULE_12__["default"]);
-
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('achievement-area', _components_home_achievement_vue__WEBPACK_IMPORTED_MODULE_13__["default"]);
-
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('partner-area', _components_home_partner_vue__WEBPACK_IMPORTED_MODULE_14__["default"]);
-
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('tab-area', _components_home_tab_vue__WEBPACK_IMPORTED_MODULE_15__["default"]);
-
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('footer-area', _components_footer_vue__WEBPACK_IMPORTED_MODULE_16__["default"]); //SweetAlert Start
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('video-background', vue_responsive_video_background_player__WEBPACK_IMPORTED_MODULE_8___default.a); //import LeftSideBar from './components/leftsidebar.vue'
+//Vue.component('left-sidebar', LeftSideBar)
+// import modal from './components/modal.vue'
+// Vue.component('modal-area', modal)
 
 
-window.Swal = sweetalert2__WEBPACK_IMPORTED_MODULE_17___default.a;
-var Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_17___default.a.mixin({
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('layout-area', _components_layout_vue__WEBPACK_IMPORTED_MODULE_9__["default"]); // For Home Page
+
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('blog-area', _components_home_blog_vue__WEBPACK_IMPORTED_MODULE_10__["default"]);
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('about-us', _components_home_aboutUs_vue__WEBPACK_IMPORTED_MODULE_11__["default"]);
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('counter-area', _components_home_counter_vue__WEBPACK_IMPORTED_MODULE_12__["default"]);
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('category-area', _components_home_category_vue__WEBPACK_IMPORTED_MODULE_13__["default"]);
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('map-area', _components_home_map_vue__WEBPACK_IMPORTED_MODULE_14__["default"]);
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('achievement-area', _components_home_achievement_vue__WEBPACK_IMPORTED_MODULE_15__["default"]);
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('partner-area', _components_home_partner_vue__WEBPACK_IMPORTED_MODULE_16__["default"]);
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('tab-area', _components_home_tab_vue__WEBPACK_IMPORTED_MODULE_17__["default"]);
+
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('footer-area', _components_footer_vue__WEBPACK_IMPORTED_MODULE_18__["default"]); //SweetAlert Start
+
+
+window.Swal = sweetalert2__WEBPACK_IMPORTED_MODULE_19___default.a;
+var Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_19___default.a.mixin({
   toast: true,
   position: 'top-end',
   showConfirmButton: false,
@@ -76587,13 +78128,13 @@ var Toast = sweetalert2__WEBPACK_IMPORTED_MODULE_17___default.a.mixin({
 window.Toast = Toast; //End SweetAlert
 
 
-vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('pagination', laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_18___default.a); //Vue.component('pagination', require('laravel-vue-pagination'));
+vue__WEBPACK_IMPORTED_MODULE_0___default.a.component('pagination', laravel_vue_pagination__WEBPACK_IMPORTED_MODULE_20___default.a); //Vue.component('pagination', require('laravel-vue-pagination'));
 //Vue.component('paginate', VuejsPaginate)
 
 
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_1__["default"]({
   mode: 'history',
-  routes: _routes__WEBPACK_IMPORTED_MODULE_19__["routes"]
+  routes: _routes__WEBPACK_IMPORTED_MODULE_21__["routes"]
 });
 var app = new vue__WEBPACK_IMPORTED_MODULE_0___default.a({
   el: '#app',
@@ -77401,17 +78942,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _category_vue_vue_type_template_id_48eb6e1a_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./category.vue?vue&type=template&id=48eb6e1a&scoped=true& */ "./resources/js/components/home/category.vue?vue&type=template&id=48eb6e1a&scoped=true&");
-/* harmony import */ var _category_vue_vue_type_style_index_0_id_48eb6e1a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./category.vue?vue&type=style&index=0&id=48eb6e1a&scoped=true&lang=css& */ "./resources/js/components/home/category.vue?vue&type=style&index=0&id=48eb6e1a&scoped=true&lang=css&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _category_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./category.vue?vue&type=script&lang=js& */ "./resources/js/components/home/category.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _category_vue_vue_type_style_index_0_id_48eb6e1a_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./category.vue?vue&type=style&index=0&id=48eb6e1a&scoped=true&lang=css& */ "./resources/js/components/home/category.vue?vue&type=style&index=0&id=48eb6e1a&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
-var script = {}
+
+
 
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  script,
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _category_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _category_vue_vue_type_template_id_48eb6e1a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
   _category_vue_vue_type_template_id_48eb6e1a_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
@@ -77425,6 +78968,20 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 if (false) { var api; }
 component.options.__file = "resources/js/components/home/category.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/home/category.vue?vue&type=script&lang=js&":
+/*!****************************************************************************!*\
+  !*** ./resources/js/components/home/category.vue?vue&type=script&lang=js& ***!
+  \****************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_category_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./category.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/home/category.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_category_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -77471,21 +79028,25 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _counter_vue_vue_type_template_id_76962297___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./counter.vue?vue&type=template&id=76962297& */ "./resources/js/components/home/counter.vue?vue&type=template&id=76962297&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _counter_vue_vue_type_template_id_76962297_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./counter.vue?vue&type=template&id=76962297&scoped=true& */ "./resources/js/components/home/counter.vue?vue&type=template&id=76962297&scoped=true&");
+/* harmony import */ var _counter_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./counter.vue?vue&type=script&lang=js& */ "./resources/js/components/home/counter.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _counter_vue_vue_type_style_index_0_id_76962297_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./counter.vue?vue&type=style&index=0&id=76962297&scoped=true&lang=css& */ "./resources/js/components/home/counter.vue?vue&type=style&index=0&id=76962297&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
-var script = {}
+
+
+
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_1__["default"])(
-  script,
-  _counter_vue_vue_type_template_id_76962297___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _counter_vue_vue_type_template_id_76962297___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _counter_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
+  _counter_vue_vue_type_template_id_76962297_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
+  _counter_vue_vue_type_template_id_76962297_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
   null,
-  null,
+  "76962297",
   null
   
 )
@@ -77497,19 +79058,49 @@ component.options.__file = "resources/js/components/home/counter.vue"
 
 /***/ }),
 
-/***/ "./resources/js/components/home/counter.vue?vue&type=template&id=76962297&":
-/*!*********************************************************************************!*\
-  !*** ./resources/js/components/home/counter.vue?vue&type=template&id=76962297& ***!
-  \*********************************************************************************/
+/***/ "./resources/js/components/home/counter.vue?vue&type=script&lang=js&":
+/*!***************************************************************************!*\
+  !*** ./resources/js/components/home/counter.vue?vue&type=script&lang=js& ***!
+  \***************************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_counter_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./counter.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/home/counter.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_counter_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
+
+/***/ }),
+
+/***/ "./resources/js/components/home/counter.vue?vue&type=style&index=0&id=76962297&scoped=true&lang=css&":
+/*!***********************************************************************************************************!*\
+  !*** ./resources/js/components/home/counter.vue?vue&type=style&index=0&id=76962297&scoped=true&lang=css& ***!
+  \***********************************************************************************************************/
+/*! no static exports found */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_counter_vue_vue_type_style_index_0_id_76962297_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/style-loader!../../../../node_modules/css-loader??ref--6-1!../../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../../node_modules/postcss-loader/src??ref--6-2!../../../../node_modules/vue-loader/lib??vue-loader-options!./counter.vue?vue&type=style&index=0&id=76962297&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/home/counter.vue?vue&type=style&index=0&id=76962297&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_counter_vue_vue_type_style_index_0_id_76962297_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_counter_vue_vue_type_style_index_0_id_76962297_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
+/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_counter_vue_vue_type_style_index_0_id_76962297_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_counter_vue_vue_type_style_index_0_id_76962297_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
+ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_counter_vue_vue_type_style_index_0_id_76962297_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
+
+/***/ }),
+
+/***/ "./resources/js/components/home/counter.vue?vue&type=template&id=76962297&scoped=true&":
+/*!*********************************************************************************************!*\
+  !*** ./resources/js/components/home/counter.vue?vue&type=template&id=76962297&scoped=true& ***!
+  \*********************************************************************************************/
 /*! exports provided: render, staticRenderFns */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_counter_vue_vue_type_template_id_76962297___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./counter.vue?vue&type=template&id=76962297& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/home/counter.vue?vue&type=template&id=76962297&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_counter_vue_vue_type_template_id_76962297___WEBPACK_IMPORTED_MODULE_0__["render"]; });
+/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_counter_vue_vue_type_template_id_76962297_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../../node_modules/vue-loader/lib??vue-loader-options!./counter.vue?vue&type=template&id=76962297&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/home/counter.vue?vue&type=template&id=76962297&scoped=true&");
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_counter_vue_vue_type_template_id_76962297_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_counter_vue_vue_type_template_id_76962297___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
+/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_counter_vue_vue_type_template_id_76962297_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -77525,17 +79116,19 @@ __webpack_require__.r(__webpack_exports__);
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _map_vue_vue_type_template_id_f3978912_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./map.vue?vue&type=template&id=f3978912&scoped=true& */ "./resources/js/components/home/map.vue?vue&type=template&id=f3978912&scoped=true&");
-/* harmony import */ var _map_vue_vue_type_style_index_0_id_f3978912_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./map.vue?vue&type=style&index=0&id=f3978912&scoped=true&lang=css& */ "./resources/js/components/home/map.vue?vue&type=style&index=0&id=f3978912&scoped=true&lang=css&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* harmony import */ var _map_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./map.vue?vue&type=script&lang=js& */ "./resources/js/components/home/map.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport *//* harmony import */ var _map_vue_vue_type_style_index_0_id_f3978912_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./map.vue?vue&type=style&index=0&id=f3978912&scoped=true&lang=css& */ "./resources/js/components/home/map.vue?vue&type=style&index=0&id=f3978912&scoped=true&lang=css&");
+/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
-var script = {}
+
+
 
 
 
 /* normalize component */
 
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  script,
+var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
+  _map_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
   _map_vue_vue_type_template_id_f3978912_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
   _map_vue_vue_type_template_id_f3978912_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
   false,
@@ -77549,6 +79142,20 @@ var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_
 if (false) { var api; }
 component.options.__file = "resources/js/components/home/map.vue"
 /* harmony default export */ __webpack_exports__["default"] = (component.exports);
+
+/***/ }),
+
+/***/ "./resources/js/components/home/map.vue?vue&type=script&lang=js&":
+/*!***********************************************************************!*\
+  !*** ./resources/js/components/home/map.vue?vue&type=script&lang=js& ***!
+  \***********************************************************************/
+/*! exports provided: default */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_map_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../../node_modules/babel-loader/lib??ref--4-0!../../../../node_modules/vue-loader/lib??vue-loader-options!./map.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/home/map.vue?vue&type=script&lang=js&");
+/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_map_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
 
 /***/ }),
 
@@ -77861,93 +79468,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_layout_vue_vue_type_template_id_180b2835___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_layout_vue_vue_type_template_id_180b2835___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/leftsidebar.vue":
-/*!*************************************************!*\
-  !*** ./resources/js/components/leftsidebar.vue ***!
-  \*************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _leftsidebar_vue_vue_type_template_id_d15bb40c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./leftsidebar.vue?vue&type=template&id=d15bb40c&scoped=true& */ "./resources/js/components/leftsidebar.vue?vue&type=template&id=d15bb40c&scoped=true&");
-/* harmony import */ var _leftsidebar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./leftsidebar.vue?vue&type=script&lang=js& */ "./resources/js/components/leftsidebar.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _leftsidebar_vue_vue_type_style_index_0_id_d15bb40c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./leftsidebar.vue?vue&type=style&index=0&id=d15bb40c&scoped=true&lang=css& */ "./resources/js/components/leftsidebar.vue?vue&type=style&index=0&id=d15bb40c&scoped=true&lang=css&");
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_3__["default"])(
-  _leftsidebar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _leftsidebar_vue_vue_type_template_id_d15bb40c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _leftsidebar_vue_vue_type_template_id_d15bb40c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  "d15bb40c",
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/leftsidebar.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/leftsidebar.vue?vue&type=script&lang=js&":
-/*!**************************************************************************!*\
-  !*** ./resources/js/components/leftsidebar.vue?vue&type=script&lang=js& ***!
-  \**************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_leftsidebar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./leftsidebar.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/leftsidebar.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_leftsidebar_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/leftsidebar.vue?vue&type=style&index=0&id=d15bb40c&scoped=true&lang=css&":
-/*!**********************************************************************************************************!*\
-  !*** ./resources/js/components/leftsidebar.vue?vue&type=style&index=0&id=d15bb40c&scoped=true&lang=css& ***!
-  \**********************************************************************************************************/
-/*! no static exports found */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_leftsidebar_vue_vue_type_style_index_0_id_d15bb40c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/style-loader!../../../node_modules/css-loader??ref--6-1!../../../node_modules/vue-loader/lib/loaders/stylePostLoader.js!../../../node_modules/postcss-loader/src??ref--6-2!../../../node_modules/vue-loader/lib??vue-loader-options!./leftsidebar.vue?vue&type=style&index=0&id=d15bb40c&scoped=true&lang=css& */ "./node_modules/style-loader/index.js!./node_modules/css-loader/index.js?!./node_modules/vue-loader/lib/loaders/stylePostLoader.js!./node_modules/postcss-loader/src/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/leftsidebar.vue?vue&type=style&index=0&id=d15bb40c&scoped=true&lang=css&");
-/* harmony import */ var _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_leftsidebar_vue_vue_type_style_index_0_id_d15bb40c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_leftsidebar_vue_vue_type_style_index_0_id_d15bb40c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__);
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_leftsidebar_vue_vue_type_style_index_0_id_d15bb40c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__) if(["default"].indexOf(__WEBPACK_IMPORT_KEY__) < 0) (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_leftsidebar_vue_vue_type_style_index_0_id_d15bb40c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0__[key]; }) }(__WEBPACK_IMPORT_KEY__));
- /* harmony default export */ __webpack_exports__["default"] = (_node_modules_style_loader_index_js_node_modules_css_loader_index_js_ref_6_1_node_modules_vue_loader_lib_loaders_stylePostLoader_js_node_modules_postcss_loader_src_index_js_ref_6_2_node_modules_vue_loader_lib_index_js_vue_loader_options_leftsidebar_vue_vue_type_style_index_0_id_d15bb40c_scoped_true_lang_css___WEBPACK_IMPORTED_MODULE_0___default.a); 
-
-/***/ }),
-
-/***/ "./resources/js/components/leftsidebar.vue?vue&type=template&id=d15bb40c&scoped=true&":
-/*!********************************************************************************************!*\
-  !*** ./resources/js/components/leftsidebar.vue?vue&type=template&id=d15bb40c&scoped=true& ***!
-  \********************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_leftsidebar_vue_vue_type_template_id_d15bb40c_scoped_true___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./leftsidebar.vue?vue&type=template&id=d15bb40c&scoped=true& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/leftsidebar.vue?vue&type=template&id=d15bb40c&scoped=true&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_leftsidebar_vue_vue_type_template_id_d15bb40c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_leftsidebar_vue_vue_type_template_id_d15bb40c_scoped_true___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 

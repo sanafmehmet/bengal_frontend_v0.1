@@ -65,7 +65,8 @@
                 <span aria-hidden="true">&times;</span>
               </button>      
               <div class="embed-responsive embed-responsive-16by9">
-                <iframe class="embed-responsive-item" src="" id="video" allowfullscreen  allowscriptaccess="always"  allow="autoplay"></iframe>
+                <video-embed src="https://www.youtube.com/watch?v=s4ObxcdXoFE"></video-embed>
+                <!-- <iframe class="embed-responsive-item" src="" id="video" allowfullscreen  allowscriptaccess="always"  allow="autoplay"></iframe> -->
               </div>
           </div>
         </div>

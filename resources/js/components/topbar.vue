@@ -375,7 +375,7 @@
               <div class="row">
               
                 <div class="col-sm-12 justify-content-center">
-                    <video-background 
+                  <video-background 
                     src="https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4"
                     style=" height: 100vh;"
                 >
@@ -384,10 +384,7 @@
                     <p>One of the leading and fastest growing industries in Bangladesh</p>
                   </div>
                 </video-background>
-                  <!-- <div class="bengal-title">
-                    <h1>Bengal Group<br> Of Industries</h1>
-                    <p>One of the leading and fastest growing industries in Bangladesh</p>
-                  </div> -->
+                 
                 </div>
               </div>
             </div>
@@ -489,6 +486,7 @@ export default {
         }
       },
       clickEnglish(){
+          this.$root.$emit('english', this.english)
           this.menuE = true
           this.menuA = false
           this.menuG = false
@@ -496,7 +494,7 @@ export default {
           //this.$emit()
       },
       clickGerman(){
-          //this.$root.$emit('german', this.german)
+          this.$root.$emit('german', this.german)
           this.menuE = false
           this.menuA = false
           this.menuG = true
@@ -510,7 +508,7 @@ export default {
           this.menuF = false
       },
       clickFrench(){
-          //this.$root.$emit('french', this.french)
+          this.$root.$emit('french', this.french)
           this.menuE = false
           this.menuA = false
           this.menuG = false

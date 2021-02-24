@@ -29,11 +29,13 @@ export default {
             this.lang = e
             
         })
-        
+       
     },
     data() {
         return {
             lang: ''
+            
+            
         }
     }
 }

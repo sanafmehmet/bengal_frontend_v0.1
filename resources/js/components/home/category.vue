@@ -7,19 +7,31 @@
                   <div class="col-lg-6 col-md-6 mb-md-80">
                       <div class="section-header left-heading pb-0">
                           <div class="section-heading">
-                              <h6 class="text-orng mb-xl-10 sub-heading"><span>Profit Share</span></h6>
-                              <h3 class="text-blue fw-700 title">Any kind business profit share<span class="text-orng">.</span></h3>
-                              <p class="desc">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua enim ad minim veniam.</p>
+                              <h6 class="text-orng mb-xl-10 sub-heading"><span>{{ profit.heading }}</span></h6>
+                              <h3 class="text-blue fw-700 title">{{ profit.title }}<span class="text-orng">.</span></h3>
+                              <p class="desc">{{ profit.desc }}</p>
                           </div>
                       </div>
-                      <ul class="custom profit-list">
-                          <li><i class="fas fa-check"></i><span class="font-weight:bold">Kind business &amp; shop profit share</span></li>
-                          <li><i class="fas fa-check"></i>Solid solution with great intregation</li>
+                      <ul class="custom profit-list" v-for="d in details" :key="d.id">
+                          <li><i class="fas fa-check"></i><span class="font-weight:bold">{{ d.desc_item }}</span></li>
                       </ul>
                       <a href="project-detail.html" class="theme-btn btn-orange">
-                          Case Study <i class="fa fa-plus"></i>
+                          {{ profit.case_study }} <i class="fa fa-plus"></i>
                       </a>
                   </div>
+                   <!-- <div class="col-lg-6 col-md-6 col-xs-12">
+                      <div class="profit-chart-box">
+                          <a href="index.html" class="chart-logo">
+                              <img src="images/bengal-cat-logo.png" class="image-fit" alt="">
+                          </a>
+                          <a href="#" class="profit-icon icon-ps-1" v-for="img in images" :key="img.id">
+                              <span class="icon">
+                                <img :src="'http://192.168.1.6:8002/' + img.image">
+                              </span>
+                              <span class="icon-text">dfdf</span>
+                          </a>
+                      </div>
+                  </div> -->
                   <div class="col-lg-6 col-md-6 col-xs-12">
                       <div class="profit-chart-box">
                           <a href="index.html" class="chart-logo">
@@ -27,51 +39,51 @@
                           </a>
                           <a href="#" class="profit-icon icon-ps-1">
                               <span class="icon">
-                                <img src="images/cat-logo.jpg">
+                                <img :src="'http://192.168.1.6:8002/' + image.image_1">
                               </span>
-                              <span class="icon-text">Finance</span>
+                              <span class="icon-text">{{image.title_1}}</span>
                           </a>
                           <a href="#" class="profit-icon icon-ps-2">
                               <span class="icon">
-                                  <img src="images/cat-logo.jpg">
+                                  <img :src="'http://192.168.1.6:8002/' + image.image_2">
                               </span>
-                              <span class="icon-text">Consultancy</span>
+                              <span class="icon-text">{{image.title_2}}</span>
                           </a>
                           <a href="#" class="profit-icon icon-ps-3">
                               <span class="icon">
-                                <img src="images/cat-logo.jpg">
+                                <img :src="'http://192.168.1.6:8002/' + image.image_3">
                               </span>
-                              <span class="icon-text">Tax</span>
+                              <span class="icon-text">{{image.title_3}}</span>
                           </a>
                           <a href="#" class="profit-icon icon-ps-4">
                               <span class="icon">
-                                <img src="images/cat-logo.jpg">
+                                <img :src="'http://192.168.1.6:8002/' + image.image_4">
                               </span>
-                              <span class="icon-text">Profit Share</span>
+                              <span class="icon-text">{{image.title_4}}</span>
                           </a>
                           <a href="#" class="profit-icon icon-ps-5">
                               <span class="icon">
-                                <img src="images/cat-logo.jpg">
+                                <img :src="'http://192.168.1.6:8002/' + image.image_5">
                               </span>
-                              <span class="icon-text">Banking</span>
+                              <span class="icon-text">{{image.title_5}}</span>
                           </a>
                           <a href="#" class="profit-icon icon-ps-6">
                               <span class="icon">
-                                <img src="images/cat-logo.jpg">
+                                <img :src="'http://192.168.1.6:8002/' + image.image_6">
                               </span>
-                              <span class="icon-text">Growth</span>
+                              <span class="icon-text">{{image.title_6}}</span>
                           </a>
                           <a href="#" class="profit-icon icon-ps-7">
                               <span class="icon">
-                                <img src="images/cat-logo.jpg">
+                                <img :src="'http://192.168.1.6:8002/' + image.image_7">
                               </span>
-                              <span class="icon-text">Policy</span>
+                              <span class="icon-text">{{image.title_7}}</span>
                           </a>
                           <a href="#" class="profit-icon icon-ps-8">
                               <span class="icon">
-                                <img src="images/cat-logo.jpg">
+                                <img :src="'http://192.168.1.6:8002/' + image.image_8">
                               </span>
-                              <span class="icon-text">Home Loan</span>
+                              <span class="icon-text">{{image.title_8}}</span>
                           </a>
                       </div>
                   </div>
@@ -81,6 +93,59 @@
 
     </div>
 </template>
+
+<script>
+export default {
+    props: ['lang'],
+    created() {
+        this.getData()
+
+        this.$root.$on('english', (e) => {
+            this.form.lang = e
+            axios.get('http://192.168.1.6:8002/api/getProfit', {params: this.form})
+                .then(({data}) => {
+                    this.profit = data.profit
+                    this.details = data.details
+                    this.image = data.image
+                })
+        })
+
+        this.$root.$on('arabic', (e) => {
+            this.form.lang = e
+            axios.get('http://192.168.1.6:8002/api/getProfit', {params: this.form})
+                .then(({data}) => {
+                    this.profit = data.profit
+                    this.details = data.details
+                    this.image = data.image
+                })
+        })
+    },
+    data() {
+        return {
+            profit: {},
+            details: [],
+            image: {},
+            form: {
+                lang: ''
+            }
+        }
+    },
+    methods: {
+        getData(){
+        this.form.lang = 'English'
+        axios.get('http://192.168.1.6:8002/api/getProfit', {params: this.form})
+          .then(({data}) => {
+            this.profit = data.profit
+            this.details = data.details
+            this.image = data.image
+            //console.log(this.profit)
+            //console.log(this.details)
+            //console.log(this.images)
+          })
+        }
+    }
+}
+</script>
 
 <style scoped>
     /** Business Catagory Area  Start **/

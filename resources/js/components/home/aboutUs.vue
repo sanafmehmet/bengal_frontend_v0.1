@@ -11,7 +11,7 @@
                                   <img src="/images/about-us.jpg" alt="" style="height:300px">
                               </button> -->
                               <div class="video-inner" style="background-image: url(images/about-us.jpg);">
-                                  <a id="vdo-btn" href="https://www.youtube.com/embed/Jfrjeg26Cwk" data-toggle="modal" data-target="#myModal" class="lightbox-image video-btn" data-caption="">
+                                  <a id="vdo-btn" @click.prevent="chrmClick" href="https://www.youtube.com/embed/TTyFV-qhQtQ" data-toggle="modal" data-target="#myModal" class="lightbox-image video-btn" data-caption="">
                                     <i class="fas fa-play"></i>
                                   </a>
                               </div>
@@ -29,7 +29,7 @@
                                   </div>
                                   
                                   <div class="btn-box">
-                                      <a href="about.html" class="theme-btn" data-toggle="modal" data-target="#exampleModalLong">View More<i class="fas fa-long-arrow-alt-right"></i></a>
+                                      <a href="about.html" class="theme-btn" data-toggle="modal" data-target="#exampleModalLong">{{ abouts.view_more}}<i class="fas fa-long-arrow-alt-right"></i></a>
                                   </div>
                               </div>
                           </div>
@@ -76,25 +76,28 @@
         </section>
         <!-- about-section end -->
 
-          <div class="modal fade" id="myModal" @change="chrmClick()" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
+        <div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog" role="document">
+              <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                    <!-- <video-embed :params="{autoplay: 1}" src="https://www.youtube.com/watch?v=s4ObxcdXoFE"></video-embed> -->
+                    <!-- <youtube video-id="lG0Ys-2d4MA" ref="youtube"></youtube> -->
+                    <!-- <youtube host="https://www.youtube.com/watch?v=s4ObxcdXoFE" player-width="1280" player-height="750" :player-vars="{autoplay: 1}"></youtube>  -->
+                     <!-- <video-embed ref="youtube" src="https://www.youtube.com/watch?v=s4ObxcdXoFE" :player-vars="{autoplay: 1}"></video-embed>   -->
+                    <!-- <div class="embed-responsive embed-responsive-16by9">
+        
+                      <iframe class="embed-responsive-item" src="" id="video" allowfullscreen  allowscriptaccess="always"  allow="autoplay"></iframe>
+                    </div> -->
+                    <div class="embed-responsive embed-responsive-16by9 z-depth-1-half">
 
-            
-            <div class="modal-body">
-
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-                </button>      
-                <div class="embed-responsive embed-responsive-16by9">
-                <iframe class="embed-responsive-item" src="" id="video" allowfullscreen  allowscriptaccess="always"  allow="autoplay"></iframe>
+                      <iframe class="embed-responsive-item" src="" id="video" allowfullscreen  allowscriptaccess="always"  allow="autoplay"></iframe>
+                    </div>
                 </div>
-                
-                
-            </div>
-
-            </div>
-        </div>
+              </div>
+          </div>
         </div> 
 </div>
 
@@ -104,9 +107,10 @@
 
 <script>
 export default {
+ 
   created() {
-    this.data.tab_name = 'english'
-    axios.get('http://192.168.1.6:8002/api/aboutus', {params: this.data})
+    this.data.tab_name = 'English'
+    axios.get('http://192.168.1.6:8002/api/getAboutus', {params: this.data})
         .then(({data}) => {
             this.abouts = data
             console.log(this.abouts)
@@ -114,7 +118,7 @@ export default {
 
     this.$root.$on('english', (e) => {
         this.data.tab_name = e
-        axios.get('http://192.168.1.6:8002/api/aboutus', {params: this.data})
+        axios.get('http://192.168.1.6:8002/api/getAboutus', {params: this.data})
             .then(({data}) => {
                 this.abouts = data
                 console.log(this.abouts)
@@ -123,7 +127,7 @@ export default {
 
     this.$root.$on('french', (e) => {
         this.data.tab_name = e
-        axios.get('http://192.168.1.6:8002/api/aboutus', {params: this.data})
+        axios.get('http://192.168.1.6:8002/api/getAboutus', {params: this.data})
             .then(({data}) => {
                 this.abouts = data
                 console.log(this.abouts)
@@ -132,54 +136,18 @@ export default {
 
     this.$root.$on('arabic', (e) => {
         this.data.tab_name = e
-        axios.get('http://192.168.1.6:8002/api/aboutus', {params: this.data})
+        axios.get('http://192.168.1.6:8002/api/getAboutus', {params: this.data})
             .then(({data}) => {
                 this.abouts = data
                 console.log(this.abouts)
             })
     })
 
-    //  $(document).ready(function() {
-    //   // Gets the video src from the data-src on each button
-    //   var $videoSrc;
-    //   $("#vdo-btn").click(function() {
-    //     $videoSrc = $(this).attr("href");
-    //     console.log("button clicked" + $videoSrc);
-    //   });
 
-    //   // when the modal is opened autoplay it
-    //   $("#myModal").on("shown.bs.modal", function(e) {
-    //     console.log("modal opened" + $videoSrc);
-    //     // set the video src to autoplay and not to show related video. Youtube related video is like a box of chocolates... you never know what you're gonna get
-    //     $("#video").attr(
-    //       "src",
-    //       $videoSrc + "?autoplay=1&showinfo=0&modestbranding=1&rel=0&mute=0"
-    //     );
-    //   });
-
-    //   // stop playing the youtube video when I close the modal
-    //   $("#myModal").on("hide.bs.modal", function(e) {
-    //     // a poor man's stop video
-    //     $("#video").attr("src", $videoSrc);
-    //   });
-
-    //   // document ready  
-    //   });
-
-  },
-  data() {
-    return {
-        abouts: [],
-        data: {
-            tab_name: ''
-        }
-    }
-  },
-  methods: {
-    chrmClick(){
-      $(document).ready(function() {
+    this.$on('chairman', (e) => {
+     $(document).ready(function() {
       // Gets the video src from the data-src on each button
-      var $videoSrc;
+      var $videoSrc = e;
       $("#vdo-btn").click(function() {
         $videoSrc = $(this).attr("href");
         console.log("button clicked" + $videoSrc);
@@ -203,6 +171,47 @@ export default {
 
       // document ready  
       });
+    })
+
+  },
+  data() {
+    return {
+        abouts: {},
+        url: 'https://www.youtube.com/embed/TTyFV-qhQtQ',
+        data: {
+            tab_name: ''
+        }
+    }
+  },
+  methods: {
+    chrmClick(){
+      this.$emit('chairman', this.url)
+      // $(document).ready(function() {
+      // // Gets the video src from the data-src on each button
+      // var $videoSrc;
+      // $("#vdo-btn").click(function() {
+      //   $videoSrc = $(this).attr("href");
+      //   console.log("button clicked" + $videoSrc);
+      // });
+
+      // // when the modal is opened autoplay it
+      // $("#myModal").on("shown.bs.modal", function(e) {
+      //   console.log("modal opened" + $videoSrc);
+      //   // set the video src to autoplay and not to show related video. Youtube related video is like a box of chocolates... you never know what you're gonna get
+      //   $("#video").attr(
+      //     "src",
+      //     $videoSrc + "?autoplay=1&showinfo=0&modestbranding=1&rel=0&mute=0"
+      //   );
+      // });
+
+      // // stop playing the youtube video when I close the modal
+      // $("#myModal").on("hide.bs.modal", function(e) {
+      //   // a poor man's stop video
+      //   $("#video").attr("src", $videoSrc);
+      // });
+
+      // // document ready  
+      // });
     }
   }
 }

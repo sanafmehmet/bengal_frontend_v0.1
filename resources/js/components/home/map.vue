@@ -12,9 +12,9 @@
                 <div class="col-md-12 export-area-map d-none d-sm-block">
                   <div class="title col-sm-12">
                     <h4 class="sub-title">
-                      Lorem Lorem
+                      {{expt.heading}}
                     </h4>
-                    <h2>Export Markets</h2>
+                    <h2>{{expt.title}}</h2>
                   </div>
                   <img src="img/mapphoto.jpg">
                     <div class="map-location canada">
@@ -2551,6 +2551,48 @@
 
     </div>
 </template>
+
+<script>
+export default {
+  created() {
+    this.getData()
+
+    this.$root.$on('english', (e) => {
+            this.form.lang = e
+            axios.get('http://192.168.1.6:8002/api/getExport', {params: this.form})
+                .then(({data}) => {
+                    this.expt = data
+                })
+        })
+
+        this.$root.$on('arabic', (e) => {
+            this.form.lang = e
+            axios.get('http://192.168.1.6:8002/api/getExport', {params: this.form})
+                .then(({data}) => {
+                    this.expt = data
+                })
+        })
+  },
+  data() {
+    return {
+      expt: {},
+      form: {
+          lang: ''
+      }
+    }
+  },
+  methods: {
+    getData(){
+        this.form.lang = 'English'
+        axios.get('http://192.168.1.6:8002/api/getExport', {params: this.form})
+          .then(({data}) => {
+            this.expt = data
+            console.log(this.export)
+          })
+      },
+  }
+}
+</script>
 
 <style scoped>
     /** map  Area  Start **/

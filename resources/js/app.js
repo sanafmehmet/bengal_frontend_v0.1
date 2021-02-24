@@ -1,11 +1,27 @@
 require('./bootstrap');
 
+//require("bootstrap-css-only/css/bootstrap.min.css");
+//require("mdbvue/lib/css/mdb.min.css");
+//require("@fortawesome/fontawesome-free/css/all.min.css");
+
+
+
 
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 Vue.use(VueRouter)
 
+// import VueIframe from 'vue-iframes'
+// Vue.use(VueIframe)
 
+import Embed from 'v-video-embed'
+Vue.use(Embed);
+
+import VueYouTubeEmbed from 'vue-youtube-embed'
+Vue.use(VueYouTubeEmbed)
+
+import vmodal from 'vue-js-modal'
+Vue.use(vmodal)
 
 // We import JQuery
 const $ = require('jquery');
@@ -31,8 +47,11 @@ Vue.component('top-bar', Topbar)
 import VideoBackground from 'vue-responsive-video-background-player'
 Vue.component('video-background', VideoBackground)
 
-import LeftSideBar from './components/leftsidebar.vue'
+//import LeftSideBar from './components/leftsidebar.vue'
 //Vue.component('left-sidebar', LeftSideBar)
+
+// import modal from './components/modal.vue'
+// Vue.component('modal-area', modal)
 
 import LayoutArea from './components/layout.vue'
 Vue.component('layout-area', LayoutArea)
