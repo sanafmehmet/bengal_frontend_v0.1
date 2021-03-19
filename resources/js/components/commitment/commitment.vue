@@ -6,33 +6,24 @@
             <div class="row">
               <div class="col-md-4 col-sm-12 col csrleft">
                 <div class="title_des">
-                  <h3>Help us Containu reach more children with safety</h3>
-                  <p>Every year generosity thousands children across Australia recover form the trauma of abuse neglect</p>
+                  <h3>{{ commit.title }}</h3>
+                  <p>{{ commit.desc }}</p>
                 </div>
               </div>
               <div class="col-md-8 col-sm-12 col p-0">
                 <div class="csrtop">
                   <div class="csrall-area d-flex flex-column flex-lg-row justify-content-lg-center panel">
-                    <div class="csr_area d-flex">
+                    <div v-for="d in commitDtls" :key="d.id" class="csr_area d-flex">
                       <div class="csr_icon">
-                        <i class="fas fa-book-open"></i>
+                        <i :class="d.icon"></i>
                       </div>
                       <div class="csr_description">
-                        <h3>Eduction</h3>
-                        <p>Every year generosity thousands children across Australia recover form the trauma of abuse neglect</p>
-                      </div>
-                    </div>
-                    <div class="csr_area d-flex">
-                      <div class="csr_icon">
-                        <i class="fas fa-book-open"></i>
-                      </div>
-                      <div class="csr_description">
-                        <h3>Eduction</h3>
-                        <p>Every year generosity thousands children across Australia recover form the trauma of abuse neglect</p>
+                        <h3>{{ d.title }}</h3>
+                        <p>{{ d.desc }}</p>
                       </div>
                     </div>
                   </div>
-                  <div class="csrall-area d-flex flex-column flex-lg-row justify-content-lg-center panel">
+                  <!-- <div class="csrall-area d-flex flex-column flex-lg-row justify-content-lg-center panel">
                     <div class="csr_area d-flex">
                       <div class="csr_icon">
                         <i class="fas fa-book-open"></i>
@@ -51,7 +42,7 @@
                         <p>Every year generosity thousands children across Australia recover form the trauma of abuse neglect</p>
                       </div>
                     </div>
-                  </div> 
+                  </div>  -->
                 </div>
               </div>
             </div>
@@ -65,31 +56,19 @@
               <div class="col-md-12">
                 <div class="site-title ">
                   <h4 class="sub-title">
-                    Lorem Lorem
+                    {{ commit.title_one }}
                   </h4>
-                  <h2>Our Partner</h2>
+                  <h2>{{ commit.desc_one }}</h2>
                 </div>
               </div>
             </div>
             <div class="row">
-              <div class="col-md-4">
+              <div v-for="img in images.data" :key="img.id" class="col-md-4">
                   <div class="csr-img">
-                    <img src="images/csrimg.jpg">
+                    <img :src="'http://192.168.1.6:8002/' + img.image">
                   </div>
               </div>
-              <div class="col-md-4">
-                <div class="csr-img">
-                  <img src="images/csrimg.jpg">
-                </div>
-              </div>
-              <div class="col-md-4">
-                <div class="csr-img">
-                  <img src="images/csrimg.jpg">
-                </div>
-              </div>
-
               <div class="preneext d-flex">
-                
                 <div class="right">
                   <i class="fas fa-angle-left"></i>
                 </div>
@@ -103,6 +82,71 @@
 
     </div>
 </template>
+
+<script>
+export default {
+  props: ['lang'],
+  created() {
+     axios.get('http://192.168.1.6:8002/api/getCommit', {params: this.data})
+          .then(({data}) => {
+              this.commit = data.commit
+              this.commitDtls = data.commit_dtls
+              this.images = data.images
+          })
+      //alert(this.data.lang)
+      this.$root.$on('english', (e) => {
+      this.data.lang = e
+      axios.get('http://192.168.1.6:8002/api/getCommit', {params: this.data})
+          .then(({data}) => {
+              this.commit = data.commit
+              this.commitDtls = data.commit_dtls
+              this.images = data.images
+          })
+      })
+
+      this.$root.$on('french', (e) => {
+      this.data.lang = e
+      axios.get('http://192.168.1.6:8002/api/getCommit', {params: this.data})
+          .then(({data}) => {
+              this.commit = data.commit
+              this.commitDtls = data.commit_dtls
+              this.images = data.images
+          })
+      })
+
+      this.$root.$on('arabic', (e) => {
+      this.data.lang = e
+      //alert(this.data.lang)
+      axios.get('http://192.168.1.6:8002/api/getCommit', {params: this.data})
+          .then(({data}) => {
+              this.commit = data.commit
+              this.commitDtls = data.commit_dtls
+              this.images = data.images
+          })
+      })
+
+      this.$root.$on('german', (e) => {
+      this.data.lang = e
+      axios.get('http://192.168.1.6:8002/api/getCommit', {params: this.data})
+          .then(({data}) => {
+              this.commit = data.commit
+              this.commitDtls = data.commit_dtls
+              this.images = data.images
+          })
+      })
+  },
+  data() {
+    return {
+      commit: {},
+      commitDtls: [],
+      images: [],
+      data: {
+        lang: ''
+      }
+    }
+  }
+}
+</script>
 
 <style scoped>
 /* Nomalise*/

@@ -10,7 +10,7 @@
                         <div class="footer-widget logo-widget">
                             <figure class="footer-logo"><a href="index.html"><img src="/images/footerlogo.png" alt=""></a></figure>
                             <div class="text">
-                                <p>Bengal Group is recognized as one of the leading and fastest growing industries in Bangladesh having a wide ranges of activities in the field of plastics, chemical & adhesives, paper & packaging, real estate, building materials, food, bank & financial institutions, and power & renewable energy.</p>
+                                <p>{{ content.desc }}</p>
                             </div>
                         </div>
                     </div>
@@ -20,12 +20,12 @@
                                 <li>
                                   <i class="fas fa-phone-alt"></i>
                                     <p>Call Us</p>
-                                    <h5><a href="tel:8602729738">860 -272 -9738</a></h5>
+                                    <h5><a href="tel:8602729738">{{content.callus}}</a></h5>
                                 </li>
                                 <li>
                                     <i class="fas fa-map-marker-alt"></i>
                                     <p>Address</p>
-                                    <h5>4249 Hart Street, Enfield</h5>
+                                    <h5>{{content.addrs}}</h5>
                                 </li>
                             </ul>
                             <ul class="social-links clearfix"> 
@@ -82,6 +82,73 @@
 
     </div>
 </template>
+
+<script>
+  export default {
+    components: {  },
+    created() {
+        this.getData()
+
+        this.$root.$on('english', (e) => {
+            this.form.lang = e
+            axios.get('http://192.168.1.6:8002/api/getFooter', {params: this.form})
+                .then(({data}) => {
+                    this.content = data.content
+                    this.images = data.images
+                })
+        })
+
+        this.$root.$on('arabic', (e) => {
+            this.form.lang = e
+            axios.get('http://192.168.1.6:8002/api/getFooter', {params: this.form})
+                .then(({data}) => {
+                    this.content = data.content
+                    this.images = data.images
+                })
+        })
+
+        this.$root.$on('french', (e) => {
+            this.form.lang = e
+            axios.get('http://192.168.1.6:8002/api/getFooter', {params: this.form})
+                .then(({data}) => {
+                    this.content = data.content
+                    this.images = data.images
+                })
+        })
+
+        this.$root.$on('german', (e) => {
+            this.form.lang = e
+            axios.get('http://192.168.1.6:8002/api/getFooter', {params: this.form})
+                .then(({data}) => {
+                   this.content = data.content
+                    this.images = data.images
+                })
+        })
+    },
+    data () {
+      return {
+        content: {},
+        images: [],
+        form: {
+            lang: ''
+        }
+      }
+    },
+    methods: {
+      getData(){
+        this.form.lang = 'English'
+        axios.get('http://192.168.1.6:8002/api/getFooter', {params: this.form})
+          .then(({data}) => {
+            this.content = data.content
+            this.images = data.images
+            //console.log(this.content)
+            //console.log(this.images)
+          })
+      }
+    }
+  }
+</script>
+
 
 <style scoped>
     /** main-footer **/

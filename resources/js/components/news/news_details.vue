@@ -7,102 +7,33 @@
                 <article class="single-post-content">
                   <div class="post-block-tags">
                     <ul>
-                      <li><a href="#">Business</a></li>
+                      <li><a style="background-color:#fde428; color:black" href="#">{{ news.category }}</a></li>
                     </ul>
                   </div>
-                  <h3 class="post-block-title">Lorem ipsum dolor sit amet, consecte
-                    cing elit, sed do eiusmod tempor.</h3>
+                  <h3 class="post-block-title">{{ news.title }}</h3>
                   <div class="post-block-meta">
                     <div class="d-flex">
-                      <div class="post-block-views">
-                        <i class="fal fa-eye"></i> 232 Views
-                      </div>
+                      
                       <div class="post-block-comments">
-                        <i class="fal fa-comments"></i> 35 Comments
-                      </div>
-                      <div class="post-block-comments">
-                        <i class="fal fa-calendar-alt"></i> 18th August 2020
+                        <i class="fal fa-calendar-alt"></i> {{ news.dt }}
                       </div>
                     </div>
                   </div>
                   <div class="post-content">
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                      dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                      ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                      fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                      deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                      accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et
-                      quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
-                      aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi
-                      nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit,
-                      sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem.
-                    </p>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                      dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                      ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                      fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                      deserunt.</p>
-                    <img src="assets/img/single-post-1.jpg" alt="" class="img-fluid">
-                    <h2>A cleansing hot shower or bath</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                      dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                      ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                      fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia. </p>
-                    <h2>Setting the mood with incense</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                      dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                      ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                      fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia.</p>
-                    <h2>Setting the mood with incense</h2>
-                    <ul class="styled-list">
-                      <li><i class="far fa-check"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do.</li>
-                      <li><i class="far fa-check"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do.</li>
-                      <li><i class="far fa-check"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do.</li>
-                      <li><i class="far fa-check"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do.</li>
-                      <li><i class="far fa-check"></i> Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do.</li>
-                    </ul>
-                    <blockquote class="custom-quote">
-                      <span class="fp-ba">by Hetmayar</span>
-                      <p>Viral dreamcatcher keytar typewriter, aest hetic offal umami. Aesthetic polaroid pug pitchfork
-                        post-ironic.</p>
-                    </blockquote>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                      dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                      ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                      fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                      deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem
-                      accusantium.</p>
-                    <div class="row">
-                      <div class="col-md-5">
-                        <img src="assets/img/single-post-2.jpg" alt="" class="img-fluid">
-                      </div>
-                      <div class="col-md-7 mt-xs-30">
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut
-                          labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris
-                          nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
-                          esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-                          culpa qui officia deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus
-                          error sit voluptatem accusantium doloremque laudantium.</p>
+                    <p>{{ news.desc }}</p>
+
+                    <div class="" v-for="n in newsDtls" :key="n.id">
+                      <h4>{{ n.title_one }}</h4>
+                      <div class="col-md-12 mt-xs-30">
+                        <p>{{ n.desc_one }}</p>
                       </div>
                     </div>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                      dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                      ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu
-                      fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia
-                      deserunt mollit anim id est laborum. Sed ut perspiciatis unde omnis iste natus error sit voluptatem.
-                    </p>
                   </div>
-                  
-                  
-                  
-                  
-                  
-                 
                 </article>
               </div>
               <div class="col-lg-4">
                 <div class="finpress-sidebar">
-                  <div class="widget-box">
+                  <!-- <div class="widget-box">
                     <h3 class="widget-title">About Me</h3>
                     <div class="author-photo">
                       <img src="assets/img/author-photo.jpg" alt="" class="img-fluid rounded-circle">
@@ -122,7 +53,7 @@
                         </ul>
                       </div>
                     </div>
-                  </div>
+                  </div> -->
                   <div class="widget-box">
                     <h3 class="widget-title">Search</h3>
                     <form action="#" class="search-form d-flex">
@@ -195,50 +126,7 @@
                       </div>
                     </div>
                   </div>
-                  <div class="widget-box">
-                    <h3 class="widget-title">Categories</h3>
-                    <div class="post-categories">
-                      <ul>
-                        <li><a href="#">Business</a><span class="categories-count">26</span></li>
-                        <li><a href="#">Consultant</a><span class="categories-count">26</span></li>
-                        <li><a href="#">Creative</a><span class="categories-count">26</span></li>
-                        <li><a href="#">UI/UX</a><span class="categories-count">26</span></li>
-                        <li><a href="#">Technology</a><span class="categories-count">26</span></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="widget-box">
-                    <h3 class="widget-title">Never Miss News</h3>
-                    <div class="social-widget">
-                      <ul>
-                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fab fa-behance"></i></a></li>
-                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="widget-box">
-                    <h3 class="widget-title">Popular Tags</h3>
-                    <div class="fp-tags-widget">
-                      <ul>
-                        <li><a href="#">Popular</a></li>
-                        <li><a href="#">desgin</a></li>
-                        <li><a href="#">ux</a></li>
-                        <li><a href="#">usability</a></li>
-                        <li><a href="#">develop</a></li>
-                        <li><a href="#">business</a></li>
-                        <li><a href="#">consult</a></li>
-                        <li><a href="#">tech</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="widget-box">
-                    <div class="ads-widget">
-                      <img src="img/sibar-ads.jpg" alt="" class="img-fluid">
-                    </div>
-                  </div>
+                 
                 </div>
               </div>
             </div>
@@ -247,6 +135,95 @@
         
     </div>
 </template>
+
+<script>
+export default {
+    props: ['lang'],
+    created() {
+      //alert(this.$route.params.id)
+      this.data.id = this.$route.params.id
+      axios.get('http://192.168.1.6:8002/api/getNewsDetails', {params: this.data})
+          .then(({data}) => {
+              this.news = data.news
+              this.newsDtls = data.newsDtls     
+              console.log(this.news)
+              console.log(this.newsDtls)
+          })
+
+      this.$root.$on('english', (e) => {
+      //alert(this.data.id)
+      this.data.id = this.$route.params.id
+      axios.get('http://192.168.1.6:8002/api/getNewsDetails', {params: this.data})
+          .then(({data}) => {
+              this.news = data.news
+              this.newsDtls = data.newsDtls
+          })
+      })
+
+      this.$root.$on('french', (e) => {
+      //this.data.id = this.$route.params.id
+      axios.get('http://192.168.1.6:8002/api/getNewsDetails', {params: this.data})
+          .then(({data}) => {
+              this.news = data.news
+              this.newsDtls = data.newsDtls
+          })
+      })
+
+      this.$root.$on('arabic', (e) => {
+      alert(this.data.id)
+      this.data.id = this.$route.params.id
+      axios.get('http://192.168.1.6:8002/api/getNewsDetails', {params: this.data})
+          .then(({data}) => {
+              this.news = data.news
+              this.newsDtls = data.newsDtls
+          })
+      })
+
+      this.$root.$on('german', (e) => {
+      this.data.id = this.$route.params.id
+      axios.get('http://192.168.1.6:8002/api/getNewsDetails', {params: this.data})
+          .then(({data}) => {
+              this.news = data.news
+              this.newsDtls = data.newsDtls
+          })
+      })
+    },
+    data() {
+        return {
+          page: 1,
+          news: {},
+          newsDtls: [],
+          data: {
+            lang: '',
+            id: this.$route.params.id
+          }
+        }
+    },
+    methods:{
+        news_dtls(){
+            //  this.videoarea = false
+            // this.heroArea = true
+            // this.changeMenu = 'bengalmenu'
+            // this.test = true
+            this.$router.push('/news_details')
+        },
+        nextAcvnt(){
+        this.page = this.page + 1
+          axios.get('http://192.168.1.6:8002/api/getNews?page=' + this.page, {params: this.data})
+            .then(({data}) => {
+              this.news = data
+            })
+        },
+        prevAcvnt(){
+            this.page = this.page - 1
+            axios.get('http://192.168.1.6:8002/api/getNews?page=' + this.page, {params: this.data})
+              .then(({data}) => {
+                this.news = data
+              })
+        }
+    }
+}
+</script>
 
 <style scoped>
    /** all businees Area  Start **/

@@ -28,7 +28,7 @@
               <div class="col-md-7 col-sm-6">
                 <div id="video_block_1">
                   <div class="video-inner" style="background-image: url(images/blog-3.jpg);">
-                      <a href="https://www.youtube.com/watch?v=nfP5N9Yc72A&amp;t=28s" class="lightbox-image video-btn" data-caption="">
+                      <a @click.prevent="blogVideo" href="https://www.youtube.com/embed/TTyFV-qhQtQ" data-toggle="modal" data-target="#myModal" class="lightbox-image video-btn" data-caption="">
                         <i class="fas fa-play"></i>
                       </a>
                   </div>
@@ -37,9 +37,76 @@
             </div>
           </div>
         </section> ‍
-        
+		<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-body">
+						<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>      
+						<div class="embed-responsive embed-responsive-16by9">
+							<iframe class="embed-responsive-item" src="" id="video" allowfullscreen  allowscriptaccess="always"  allow="autoplay"></iframe>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div> 
     </div>
 </template>
+
+<script>
+  export default {
+    components: {  },
+    created() {
+
+        this.$on('blog', (e) => {
+          $(document).ready(function() {
+            // Gets the video src from the data-src on each button
+            var $videoSrc = e;
+            $("#vdo-btn").click(function() {
+              $videoSrc = $(this).attr("href");
+              console.log("button clicked" + $videoSrc);
+            });
+
+            // when the modal is opened autoplay it
+            $("#myModal").on("shown.bs.modal", function(e) {
+              console.log("modal opened" + $videoSrc);
+              // set the video src to autoplay and not to show related video. Youtube related video is like a box of chocolates... you never know what you're gonna get
+              $("#video").attr(
+                "src",
+                $videoSrc + "?autoplay=1&showinfo=0&modestbranding=1&rel=0&mute=0"
+              );
+            });
+
+            // stop playing the youtube video when I close the modal
+            $("#myModal").on("hide.bs.modal", function(e) {
+              // a poor man's stop video
+              $("#video").attr("src", $videoSrc);
+            });
+
+            // document ready  
+            });
+        })
+
+       
+    },
+    data () {
+      return {
+        
+        url: 'https://www.youtube.com/embed/TTyFV-qhQtQ',
+        form: {
+            lang: ''
+        }
+      }
+    },
+    methods: {
+      blogVideo(){
+        this.$emit('blog', this.url)
+      }
+    }
+  }
+</script>
+
 
 <style scoped>
     /** Blog Area  Start **/

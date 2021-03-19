@@ -21,22 +21,22 @@
               </div>
               <div class="col-md-2">
                 <ul class="menu_area">
-                  <li><a href="#">What We Do</a>
+                  <li><a href @click.prevent="category">What We Do</a>
                     <ul class="sub-menu1">
-                      <li><a href="#" @click.prevent="food_processing">Food Processing</a>
+                      <li><a href @click.prevent="food_processing">Food Processing</a>
                         <ul class="sub-menu">
-                          <li><a href="#" @click.prevent="food_processing_one">Business1</a></li>
+                          <li><a href @click.prevent="food_processing_one">Business1</a></li>
                           <li><a href="#">Business2</a></li>
                           <li><a href="#">Business3</a></li>
                           <li><a href="#">Business4</a></li>
                         </ul>
                       </li>
-                      <li><a href="#">Plastic Rubber & Melamine</a></li>
-                      <li><a href="#">Textile and Apparels</a></li>
-                      <li><a href="#">Hospitality Service</a></li>
-                      <li><a href="#">Infrustructure & Development</a></li>
-                      <li><a href="#">Real Estate</a></li>
-                      <li><a href="#">Media & Entertainment</a></li>
+                      <li><a href @click.prevent="plastic">Plastic Rubber & Melamine</a></li>
+                      <li><a href @click.prevent="textile">Textile and Apparels</a></li>
+                      <li><a href @click.prevent="hospitality">Hospitality Service</a></li>
+                      <li><a href @click.prevent="infrustructure">Infrustructure & Development</a></li>
+                      <li><a href @click.prevent="realestate">Real Estate</a></li>
+                      <li><a href @click.prevent="media">Media & Entertainment</a></li>
                     </ul>
                   </li>
                   
@@ -44,10 +44,10 @@
               </div>
               <div class="col-md-2">
                 <ul class="menu_area">
-                  <li><a href="#">Our Achievement</a>
+                  <li><a href @click.prevent="achievement">Our Achievement</a>
                     <ul class="img-sub-menu1">
-                      <li><a href="#"><img src="images/achive-ment.jpg"></a></li>
-                      <li><a href="#"><img src="images/achive-ment.jpg"></a></li>
+                      <li><a href @click.prevent="achievement"><img src="images/achive-ment.jpg"></a></li>
+                      <li><a href @click.prevent="achievement"><img src="images/achive-ment.jpg"></a></li>
                     </ul>
                   </li>
                 </ul>
@@ -56,20 +56,20 @@
                 <ul class="menu_area">
                   <li><a href="#" @click.prevent="commitment">Our commitment</a>
                     <ul class="img-sub-menu2">
-                      <li><a href="#" @click.prevent="commitment"><img src="images/commetment.jpg"></a></li>
-                      <li><a href="#" @click.prevent="commitment"><img src="images/commetment.jpg"></a></li>
-                      <li><a href="#" @click.prevent="commitment"><img src="images/commetment.jpg"></a></li>
-                      <li><a href="#" @click.prevent="commitment"><img src="images/commetment.jpg"></a></li>
+                      <li><a href @click.prevent="commitment"><img src="images/commetment.jpg"></a></li>
+                      <li><a href @click.prevent="commitment"><img src="images/commetment.jpg"></a></li>
+                      <li><a href @click.prevent="commitment"><img src="images/commetment.jpg"></a></li>
+                      <li><a href @click.prevent="commitment"><img src="images/commetment.jpg"></a></li>
                     </ul>
                   </li>
                 </ul>
               </div>
               <div class="col-md-2">
                 <ul class="menu_area">
-                  <li><a href="#" @click.prevent="career">Career</a></li>
-                  <li><a href="#" @click.prevent="investor_relation">Investor Relation</a></li>
-                  <li><a href="#" @click.prevent="news">News and Events</a></li>
-                  <li><a href="#">Contact us</a></li>
+                  <li><a href @click.prevent="career">Career</a></li>
+                  <li><a href @click.prevent="investor_relation">Investor Relation</a></li>
+                  <li><a href @click.prevent="news">News and Events</a></li>
+                  <li><a href @click.prevent="contactus">Contact us</a></li>
                 </ul>
                 <div class="social-icon">
                   <ul class="d-flex">
@@ -99,20 +99,22 @@
               </div>
               <div class="col-md-2">
                 <ul class="menu_area">
-                  <li><a href="#">الذي نفعله</a>
+                  <li><a href @click.prevent="category">الذي نفعله</a>
                     <ul class="sub-menu1">
-                      <li><a href="#">Business Categories1</a>
+                      <li><a href="#" @click.prevent="food_processing">Food Processing</a>
                         <ul class="sub-menu">
-                          <li><a href="#">Business1</a></li>
+                          <li><a href="#" @click.prevent="food_processing_one">Business1</a></li>
                           <li><a href="#">Business2</a></li>
                           <li><a href="#">Business3</a></li>
                           <li><a href="#">Business4</a></li>
                         </ul>
                       </li>
-                      <li><a href="#">Business Categories2</a></li>
-                      <li><a href="#">Business Categories3</a></li>
-                      <li><a href="#">Business Categories4</a></li>
-                      <li><a href="#">Business Categories5</a></li>
+                      <li><a href @click.prevent="plastic">Plastic Rubber & Melamine</a></li>
+                      <li><a href @click.prevent="textile">Textile and Apparels</a></li>
+                      <li><a href @click.prevent="hospitality">Hospitality Service</a></li>
+                      <li><a href @click.prevent="infrustructure">Infrustructure & Development</a></li>
+                      <li><a href @click.prevent="realestate">Real Estate</a></li>
+                      <li><a href @click.prevent="media">Media & Entertainment</a></li>
                     </ul>
                   </li>
                   
@@ -120,10 +122,10 @@
               </div>
               <div class="col-md-2">
                 <ul class="menu_area">
-                  <li><a href="#">إنجاز</a>
+                  <li><a href @click.prevent="achievement">إنجاز</a>
                     <ul class="img-sub-menu1">
-                      <li><a href="#"><img src="images/achive-ment.jpg"></a></li>
-                      <li><a href="#"><img src="images/achive-ment.jpg"></a></li>
+                      <li><a href @click.prevent="achievement"><img src="images/achive-ment.jpg"></a></li>
+                      <li><a href @click.prevent="achievement"><img src="images/achive-ment.jpg"></a></li>
                     </ul>
                   </li>
                 </ul>
@@ -142,10 +144,10 @@
               </div>
               <div class="col-md-2">
                 <ul class="menu_area">
-                  <li><a href="#">مسار مهني مسار وظيفي</a></li>
-                  <li><a href="#">Investor Relation</a></li>
-                  <li><a href="#">News and Events</a></li>
-                  <li><a href="#">Contact us</a></li>
+                  <li><a href @click.prevent="career">مسار وظيفي</a></li>
+                  <li><a href @click.prevent="investor_relation">مسار وظيفي</a></li>
+                  <li><a @click.prevent="news" href>مسار وظيفي</a></li>
+                  <li><a href @click.prevent="contactus">مسار وظيفي</a></li>
                 </ul>
                 <div class="social-icon">
                   <ul class="d-flex">
@@ -402,8 +404,8 @@
                         <div class="slide-content row text-center">
                             <div class="col-12 mx-auto inner">
                                 <div class="breadcumb-title">
-                                  <h2>About Us</h2>
-                                  <p>A gigantic and productive business organization based in Bangladesh</p>
+                                  <h2>{{ title }}</h2>
+                                  <p>{{ desc }}</p>
                                 </div>
                                 <!-- Content -->
                             </div>
@@ -411,7 +413,7 @@
                         <nav class="breadcrumb-menu">
                           <ol class="breadcrumb-nav">
                               <li class="breadcrumb-item"><a href="#" @click.prevent="homeClicked">Home</a></li>
-                              <li class="breadcrumb-item"><a href="#">{{txt}}</a></li>
+                              <li class="breadcrumb-item"><a href="#">{{title}}</a></li>
                               
                           </ol>
                       </nav>
@@ -433,38 +435,85 @@ export default {
         }
     },
     created() {
-        // this.$on('test', (e) => {
-        //     alert('Hi, radif baba')
-        // })
-        //console.log(this.test)
+        this.$root.$on('food', (e) => {
+            this.food_processing()
+        })
+        this.$root.$on('plastic', (e) => {
+            this.plastic()
+        })
+        this.$root.$on('textile', (e) => {
+            this.textile()
+        })
+        this.$root.$on('hospitality', (e) => {
+            this.hospitality()
+        })
+        this.$root.$on('infrustructure', (e) => {
+            this.infrustructure()
+        })
+        this.$root.$on('realestate', (e) => {
+            this.realestate()
+        })
+        this.$root.$on('media', (e) => {
+            this.media()
+        })
 
-      //this.getMenu()
-
+        this.$root.$on('category', (id) => {
+            if(id == 1){
+              this.food_processing()
+            }else if(id == 2){
+              this.plastic()
+            }else if(id == 3){
+              this.textile()
+            }else if(id == 4){
+              this.hospitality()
+            }else if(id == 5){
+              this.infrustructure()
+            }else if(id == 6){
+              this.realestate()
+            }else if(id == 7){
+              this.media()
+            }
+        })
      
     },
     data(){
         return {
-           menus: [],
-           submenus: [],
-           test: true,
-           bengalmenu1: false,
-           videoarea: true,
-           heroArea: false,
-           changeMenu: 'bengalmenu d-none d-md-block',
-           english: 'English',
-           german: 'German',
-           french: 'French',
-           arabic: 'Arabic',
-           menuE: false,
-           menuG: false,
-           menuF: false,
-           menuA: false
+            url: 'http://192.168.1.6:8002/',
+            menus: [],
+            submenus: [],
+            test: true,
+            bengalmenu1: false,
+            videoarea: true,
+            heroArea: false,
+            changeMenu: 'bengalmenu d-none d-md-block',
+            english: 'English',
+            german: 'German',
+            french: 'French',
+            arabic: 'Arabic',
+            menuE: false,
+            menuG: false,
+            menuF: false,
+            menuA: false,
+            title: '',
+            desc: '',
+            valuee: {
+              lang: '', title: ''
+            }
+
 
         }
     },
     methods: {
+      getBredcrumbs(title){
+        this.valuee.title = title
+        axios.get(this.url + 'api/getBredcrumbs', {params: this.valuee})
+          .then(({data}) => {
+            this.title = data.title
+            this.desc = data.desc
+          })
+      },
       getMenu(){
-        axios.get('http://192.168.1.6:8002/api/getMenuFront')
+        axios.get(this.url + 'api/getMenuFront')
           .then(({data}) => {
             this.menus = data.menus
             this.submenus = data.submenus
@@ -524,8 +573,13 @@ export default {
         this.heroArea = true
         this.changeMenu = 'bengalmenu d-none d-md-block'
         this.test = true
+        //this.bredcrumbs = Object.em
+        this.title = ''
+        this.desc = ''
+        this.getBredcrumbs('About Us')
 
         if(this.menuE == true){
+          //this.getBredcrumbs('About Us')
           this.$root.$emit('english', this.english)
         }
         if(this.menuG == true){
@@ -541,11 +595,54 @@ export default {
         this.$router.push('/about-us')
        
       },
+      achievement(){
+        this.videoarea = false
+        this.heroArea = true
+        this.changeMenu = 'bengalmenu d-none d-md-block'
+        this.test = true
+
+        this.title = ''
+        this.desc = ''
+        this.getBredcrumbs('Achievement')
+
+        if(this.menuE == true){
+          this.$root.$emit('english', this.english)
+        }
+        if(this.menuG == true){
+          this.$root.$emit('german', this.german)
+        } 
+        if(this.menuF == true){
+          this.$root.$emit('french', this.french)
+        }
+        if(this.menuA == true){
+           this.$root.$emit('arabic', this.arabic)
+        }
+        
+        this.$router.push('/achievement')
+       
+      },
       career(){
         this.videoarea = false
         this.heroArea = true
         this.changeMenu = 'bengalmenu d-none d-md-block'
         this.test = true
+
+        this.title = ''
+        this.desc = ''
+        this.getBredcrumbs('Career')
+
+        if(this.menuE == true){
+          this.$root.$emit('english', this.english)
+        }
+        if(this.menuG == true){
+          this.$root.$emit('german', this.german)
+        } 
+        if(this.menuF == true){
+          this.$root.$emit('french', this.french)
+        }
+        if(this.menuA == true){
+           this.$root.$emit('arabic', this.arabic)
+        }
         this.$router.push('/career')
       },
       news(){
@@ -553,6 +650,23 @@ export default {
         this.heroArea = true
         this.changeMenu = 'bengalmenu d-none d-md-block'
         this.test = true
+
+        this.title = ''
+        this.desc = ''
+        this.getBredcrumbs('News and Events')
+        
+        if(this.menuE == true){
+          this.$root.$emit('english', this.english)
+        }
+        if(this.menuG == true){
+          this.$root.$emit('german', this.german)
+        } 
+        if(this.menuF == true){
+          this.$root.$emit('french', this.french)
+        }
+        if(this.menuA == true){
+           this.$root.$emit('arabic', this.arabic)
+        }
         this.$router.push('/news')
       },
       investor_relation(){
@@ -560,13 +674,71 @@ export default {
         this.heroArea = true
         this.changeMenu = 'bengalmenu d-none d-md-block'
         this.test = true
+
+        this.title = ''
+        this.desc = ''
+        this.getBredcrumbs('Investor Relation')
+
+        if(this.menuE == true){
+          this.$root.$emit('english', this.english)
+        }
+        if(this.menuG == true){
+          this.$root.$emit('german', this.german)
+        } 
+        if(this.menuF == true){
+          this.$root.$emit('french', this.french)
+        }
+        if(this.menuA == true){
+           this.$root.$emit('arabic', this.arabic)
+        }
         this.$router.push('/investor-relation')
+      },
+      category(){
+        this.videoarea = false
+        this.heroArea = true
+        this.changeMenu = 'bengalmenu d-none d-md-block'
+        this.test = true
+
+        this.title = ''
+        this.desc = ''
+        this.getBredcrumbs('Business Category')
+
+        if(this.menuE == true){
+          this.$root.$emit('english', this.english)
+        }
+        if(this.menuG == true){
+          this.$root.$emit('german', this.german)
+        } 
+        if(this.menuF == true){
+          this.$root.$emit('french', this.french)
+        }
+        if(this.menuA == true){
+           this.$root.$emit('arabic', this.arabic)
+        }
+        this.$router.push('/category')
       },
       food_processing(){
         this.videoarea = false
         this.heroArea = true
         this.changeMenu = 'bengalmenu d-none d-md-block'
         this.test = true
+
+        this.title = ''
+        this.desc = ''
+        this.getBredcrumbs('Food Processing')
+
+        if(this.menuE == true){
+          this.$root.$emit('english', this.english)
+        }
+        if(this.menuG == true){
+          this.$root.$emit('german', this.german)
+        } 
+        if(this.menuF == true){
+          this.$root.$emit('french', this.french)
+        }
+        if(this.menuA == true){
+           this.$root.$emit('arabic', this.arabic)
+        }
         this.$router.push('/food-processing')
       },
       food_processing_one(){
@@ -574,6 +746,18 @@ export default {
         this.heroArea = true
         this.changeMenu = 'bengalmenu d-none d-md-block'
         this.test = true
+        if(this.menuE == true){
+          this.$root.$emit('english', this.english)
+        }
+        if(this.menuG == true){
+          this.$root.$emit('german', this.german)
+        } 
+        if(this.menuF == true){
+          this.$root.$emit('french', this.french)
+        }
+        if(this.menuA == true){
+           this.$root.$emit('arabic', this.arabic)
+        }
         this.$router.push('/food-processing-one')
       },
       commitment(){
@@ -581,8 +765,194 @@ export default {
         this.heroArea = true
         this.changeMenu = 'bengalmenu d-none d-md-block'
         this.test = true
+
+        this.title = ''
+        this.desc = ''
+        this.getBredcrumbs('Commitment')
+
+        if(this.menuE == true){
+          this.$root.$emit('english', this.english)
+        }
+        if(this.menuG == true){
+          this.$root.$emit('german', this.german)
+        } 
+        if(this.menuF == true){
+          this.$root.$emit('french', this.french)
+        }
+        if(this.menuA == true){
+           this.$root.$emit('arabic', this.arabic)
+        }
         this.$router.push('/commitment')
-      }
+      },
+      plastic(){
+        this.videoarea = false
+        this.heroArea = true
+        this.changeMenu = 'bengalmenu d-none d-md-block'
+        this.test = true
+
+        this.title = ''
+        this.desc = ''
+        this.getBredcrumbs('Plastic & Melamine')
+
+        if(this.menuE == true){
+          this.$root.$emit('english', this.english)
+        }
+        if(this.menuG == true){
+          this.$root.$emit('german', this.german)
+        } 
+        if(this.menuF == true){
+          this.$root.$emit('french', this.french)
+        }
+        if(this.menuA == true){
+           this.$root.$emit('arabic', this.arabic)
+        }
+        this.$router.push('/plastic')
+      },
+      textile(){
+        this.videoarea = false
+        this.heroArea = true
+        this.changeMenu = 'bengalmenu d-none d-md-block'
+        this.test = true
+
+        this.title = ''
+        this.desc = ''
+        this.getBredcrumbs('Textile & Apparels')
+
+        if(this.menuE == true){
+          this.$root.$emit('english', this.english)
+        }
+        if(this.menuG == true){
+          this.$root.$emit('german', this.german)
+        } 
+        if(this.menuF == true){
+          this.$root.$emit('french', this.french)
+        }
+        if(this.menuA == true){
+           this.$root.$emit('arabic', this.arabic)
+        }
+        this.$router.push('/textile')
+      },
+      hospitality(){
+        this.videoarea = false
+        this.heroArea = true
+        this.changeMenu = 'bengalmenu d-none d-md-block'
+        this.test = true
+
+        this.title = ''
+        this.desc = ''
+        this.getBredcrumbs('Hospitality Service')
+
+        if(this.menuE == true){
+          this.$root.$emit('english', this.english)
+        }
+        if(this.menuG == true){
+          this.$root.$emit('german', this.german)
+        } 
+        if(this.menuF == true){
+          this.$root.$emit('french', this.french)
+        }
+        if(this.menuA == true){
+           this.$root.$emit('arabic', this.arabic)
+        }
+        this.$router.push('/hospitality')
+      },
+      infrustructure(){
+        this.videoarea = false
+        this.heroArea = true
+        this.changeMenu = 'bengalmenu d-none d-md-block'
+        this.test = true
+
+        this.title = ''
+        this.desc = ''
+        this.getBredcrumbs('Infrastructure & Development')
+
+        if(this.menuE == true){
+          this.$root.$emit('english', this.english)
+        }
+        if(this.menuG == true){
+          this.$root.$emit('german', this.german)
+        } 
+        if(this.menuF == true){
+          this.$root.$emit('french', this.french)
+        }
+        if(this.menuA == true){
+           this.$root.$emit('arabic', this.arabic)
+        }
+        this.$router.push('/infrustructure')
+      },
+      realestate(){
+        this.videoarea = false
+        this.heroArea = true
+        this.changeMenu = 'bengalmenu d-none d-md-block'
+        this.test = true
+
+        this.title = ''
+        this.desc = ''
+        this.getBredcrumbs('Real Estate')
+
+        if(this.menuE == true){
+          this.$root.$emit('english', this.english)
+        }
+        if(this.menuG == true){
+          this.$root.$emit('german', this.german)
+        } 
+        if(this.menuF == true){
+          this.$root.$emit('french', this.french)
+        }
+        if(this.menuA == true){
+           this.$root.$emit('arabic', this.arabic)
+        }
+        this.$router.push('/realestate')
+      },
+      media(){
+        this.videoarea = false
+        this.heroArea = true
+        this.changeMenu = 'bengalmenu d-none d-md-block'
+        this.test = true
+
+        this.title = ''
+        this.desc = ''
+        this.getBredcrumbs('Media & Entertainment')
+
+        if(this.menuE == true){
+          this.$root.$emit('english', this.english)
+        }
+        if(this.menuG == true){
+          this.$root.$emit('german', this.german)
+        } 
+        if(this.menuF == true){
+          this.$root.$emit('french', this.french)
+        }
+        if(this.menuA == true){
+           this.$root.$emit('arabic', this.arabic)
+        }
+        this.$router.push('/media')
+      },
+      contactus(){
+        this.videoarea = false
+        this.heroArea = true
+        this.changeMenu = 'bengalmenu d-none d-md-block'
+        this.test = true
+        this.title = ''
+        this.desc = ''
+        this.getBredcrumbs('Contact Us')
+
+        if(this.menuE == true){
+          this.$root.$emit('english', this.english)
+        }
+        if(this.menuG == true){
+          this.$root.$emit('german', this.german)
+        } 
+        if(this.menuF == true){
+          this.$root.$emit('french', this.french)
+        }
+        if(this.menuA == true){
+           this.$root.$emit('arabic', this.arabic)
+        }
+        
+        this.$router.push('/contact-us')
+       
+      },
     }
     
 

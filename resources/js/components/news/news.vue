@@ -4,105 +4,41 @@
           <div class="container">
             <div class="row">
               <div class="col-lg-8">
-                <article class="post-block-item">
+                <article class="post-block-item" v-for="n in news.data" :key="n.id">
                   <div class="post-thumbnail">
-                    <img src="images/news-1.jpg" alt="" class="img-fluid">
+                    <img :src="'http://192.168.1.6:8002/' + n.image" alt="" class="img-fluid">
                   </div>
                   <div class="post-block-content">
                     <div class="post-block-tags">
                       <ul>
-                        <li><a @click.prevent="news_dtls" href="#">Business</a></li>
+                        <li><a @click.prevent="news_dtls" href="#">{{ n.category }}</a></li>
                       </ul>
                     </div>
-                    <h3 class="post-block-title"><a href="single.html">Lorem ipsum dolor sit amet, consecte
-                        cing elit, sed do eiusmod tempor.</a></h3>
+                    <h3 class="post-block-title"><a href="single.html">{{ n.title }}.</a></h3>
                     <div class="post-block-meta">
                       <div class="d-flex">
-                        <div class="post-block-views">
-                          <i class="fal fa-eye"></i> 232 Views
-                        </div>
+                        
                         <div class="post-block-comments">
-                          <i class="fal fa-comments"></i> 35 Comments
-                        </div>
-                        <div class="post-block-comments">
-                          <i class="fal fa-calendar-alt"></i> 18th August 2020
+                          <i class="fal fa-calendar-alt"></i> {{ n.dt }}
                         </div>
                       </div>
                     </div>
                     <div class="post-block-excerpt">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                      dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                      ex ea commodo consequat. Duis aute irure dolor in
-                      reprehenderit in voluptate velit esse cillum dolore.
+                      {{ n.desc }}
                     </div>
                     <div class="post-block-footer">
                       <div class="d-flex w-100 justify-content-between">
-                        <div class="post-author">
-                          <div class="d-flex align-items-center">
-                            <div class="author-avater">
-                              <img src="assets/img/avater.jpg" alt="" class="img-fluid rounded-circle">
-                            </div>
-                            <div class="posted-by">
-                              by <a href="#">Hetmayar</a>
-                            </div>
-                          </div>
-                        </div>
+                        
                         <div class="post-read-more">
-                          <a href="single.html" class="">Read More</a>
+                          <router-link :to="{name: 'news_details', params:{id: n.id}}" href="#" class="">{{ n.rm }}</router-link>
                         </div>
                       </div>
                     </div>
                   </div>
                 </article>
                 
-                <article class="post-block-item">
-                  <div class="post-block-content">
-                    <div class="post-block-tags">
-                      <ul>
-                        <li><a href="#" @click.prevent="news_dtls">Business</a></li>
-                      </ul>
-                    </div>
-                    <h3 class="post-block-title"><a href="single.html">Lorem ipsum dolor sit amet, consecte
-                        cing elit, sed do eiusmod tempor.</a></h3>
-                    <div class="post-block-meta">
-                      <div class="d-flex">
-                        <div class="post-block-views">
-                          <i class="fal fa-eye"></i> 232 Views
-                        </div>
-                        <div class="post-block-comments">
-                          <i class="fal fa-comments"></i> 35 Comments
-                        </div>
-                        <div class="post-block-comments">
-                          <i class="fal fa-calendar-alt"></i> 18th August 2020
-                        </div>
-                      </div>
-                    </div>
-                    <div class="post-block-excerpt">
-                      Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et
-                      dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
-                      ex ea commodo consequat. Duis aute irure dolor in
-                      reprehenderit in voluptate velit esse cillum dolore.
-                    </div>
-                    <div class="post-block-footer">
-                      <div class="d-flex w-100 justify-content-between align-items-center">
-                        <div class="post-author">
-                          <div class="d-flex align-items-center">
-                            <div class="author-avater">
-                              <img src="images/avater.jpg" alt="" class="img-fluid rounded-circle">
-                            </div>
-                            <div class="posted-by">
-                              by <a href="#">Hetmayar</a>
-                            </div>
-                          </div>
-                        </div>
-                        <div class="post-read-more">
-                          <a href="single.html" class="">Read More</a>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </article>
-                <article class="post-block-item post-quote">
+          
+                <!-- <article class="post-block-item post-quote">
                   <div class="post-block-content">
                     <h3 class="post-block-title quote-title"><a href="single.html">Excepteur sint occaecat cupida
                         tat non proident, sunt in.</a></h3>
@@ -120,11 +56,11 @@
                       </div>
                     </div>
                   </div>
-                </article>
-                <nav aria-label="navigation">
+                </article> -->
+                <!-- <nav aria-label="navigation">
                   <ul class="pagination">
                     <li class="page-item">
-                      <a class="page-link" href="#" aria-label="Previous">
+                      <a class="page-link" @click.prevent="prevAcvnt" href="#" aria-label="Previous">
                         <i class="fal fa-chevron-double-left"></i>
                       </a>
                     </li>
@@ -132,12 +68,16 @@
                     <li class="page-item"><a class="page-link" href="#">2</a></li>
                     <li class="page-item"><a class="page-link" href="#">3</a></li>
                     <li class="page-item">
-                      <a class="page-link" href="#" aria-label="Next">
+                      <a class="page-link" href="#" @click.prevent="nextAcvnt" aria-label="Next">
                         <i class="fal fa-chevron-double-right"></i>
                       </a>
                     </li>
                   </ul>
-                </nav>
+                </nav> -->
+                	<div class="d-flex justify-content-start" style="margin-top:20px; ">
+			<button style="color:white; font-size:16px; margin-right:10px; padding-right: 10px; padding-left: 10px; background-color:#fde428; color:black" @click.prevent="prevAcvnt"  class="btn btn-sm btn-info">Prev</button>
+	  		<button style="color:white; font-size:16px; background-color:#fde428; color:black" @click.prevent="nextAcvnt" class="btn btn-sm btn-info">Next</button>
+		</div>
               </div>
               <div class="col-lg-4">
                 <div class="finpress-sidebar">
@@ -150,114 +90,23 @@
                     </form>
                   </div>
                   <div class="widget-box">
-                    <h3 class="widget-title">Popular Feeds</h3>
+                    <h3 class="widget-title">Popular News</h3>
                     <div class="recent-post-widget">
-                      <div class="recent-post-item">
+                      <div v-for="n in popular" :key="n.id" class="recent-post-item">
                         <div class="d-flex">
                           <div class="rp-thumb">
-                            <img src="images/recent-post-1.jpg" alt="" class="img-fluid rounded-circle">
+                            <img :src="'http://192.168.1.6:8002/' + n.image" alt="" class="img-fluid rounded-circle">
                           </div>
                           <div class="rp-details">
-                            <h2 class="post-title-sm"><a href="single.html">Lorem ipsum dolor sit
-                                cing elit, sed do.</a></h2>
-                            <div class="rp-date"><i class="fal fa-calendar-alt"></i> 24th July 2020</div>
+                            <h2 class="post-title-sm"><a href="single.html">{{ n.title }}.</a></h2>
+                            <div class="rp-date"><i class="fal fa-calendar-alt"></i> {{ n.dt }}</div>
                           </div>
                         </div>
                       </div>
-                      <div class="recent-post-item">
-                        <div class="d-flex">
-                          <div class="rp-thumb">
-                            <img src="images/recent-post-1.jpg" alt="" class="img-fluid rounded-circle">
-                          </div>
-                          <div class="rp-details">
-                            <h2 class="post-title-sm"><a href="single.html">Lorem ipsum dolor sit
-                                cing elit, sed do.</a></h2>
-                            <div class="rp-date"><i class="fal fa-calendar-alt"></i> 24th July 2020</div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="recent-post-item">
-                        <div class="d-flex">
-                          <div class="rp-thumb">
-                            <img src="images/recent-post-1.jpg" alt="" class="img-fluid rounded-circle">
-                          </div>
-                          <div class="rp-details">
-                            <h2 class="post-title-sm"><a href="single.html">Lorem ipsum dolor sit
-                                cing elit, sed do.</a></h2>
-                            <div class="rp-date"><i class="fal fa-calendar-alt"></i> 24th July 2020</div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="recent-post-item">
-                        <div class="d-flex">
-                          <div class="rp-thumb">
-                            <img src="images/recent-post-1.jpg" alt="" class="img-fluid rounded-circle">
-                          </div>
-                          <div class="rp-details">
-                            <h2 class="post-title-sm"><a href="single.html">Lorem ipsum dolor sit
-                                cing elit, sed do.</a></h2>
-                            <div class="rp-date"><i class="fal fa-calendar-alt"></i> 24th July 2020</div>
-                          </div>
-                        </div>
-                      </div>
-                      <div class="recent-post-item">
-                        <div class="d-flex">
-                          <div class="rp-thumb">
-                            <img src="images/recent-post-1.jpg" alt="" class="img-fluid rounded-circle">
-                          </div>
-                          <div class="rp-details">
-                            <h2 class="post-title-sm"><a href="single.html">Lorem ipsum dolor sit
-                                cing elit, sed do.</a></h2>
-                            <div class="rp-date"><i class="fal fa-calendar-alt"></i> 24th July 2020</div>
-                          </div>
-                        </div>
-                      </div>
+               
                     </div>
                   </div>
-                  <div class="widget-box">
-                    <h3 class="widget-title">Categories</h3>
-                    <div class="post-categories">
-                      <ul>
-                        <li><a href="#">Business</a><span class="categories-count">26</span></li>
-                        <li><a href="#">Consultant</a><span class="categories-count">26</span></li>
-                        <li><a href="#">Creative</a><span class="categories-count">26</span></li>
-                        <li><a href="#">UI/UX</a><span class="categories-count">26</span></li>
-                        <li><a href="#">Technology</a><span class="categories-count">26</span></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="widget-box">
-                    <h3 class="widget-title">Never Miss News</h3>
-                    <div class="social-widget">
-                      <ul>
-                        <li><a href="#"><i class="fab fa-facebook-f"></i></a></li>
-                        <li><a href="#"><i class="fab fa-twitter"></i></a></li>
-                        <li><a href="#"><i class="fab fa-behance"></i></a></li>
-                        <li><a href="#"><i class="fab fa-linkedin-in"></i></a></li>
-                        <li><a href="#"><i class="fab fa-youtube"></i></a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="widget-box">
-                    <h3 class="widget-title">Popular Tags</h3>
-                    <div class="fp-tags-widget">
-                      <ul>
-                        <li><a href="#">Popular</a></li>
-                        <li><a href="#">desgin</a></li>
-                        <li><a href="#">ux</a></li>
-                        <li><a href="#">usability</a></li>
-                        <li><a href="#">develop</a></li>
-                        <li><a href="#">business</a></li>
-                        <li><a href="#">consult</a></li>
-                        <li><a href="#">tech</a></li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="widget-box">
-                    <div class="ads-widget">
-                      <img src="assets/img/sibar-ads.jpg" alt="" class="img-fluid">
-                    </div>
-                  </div>
+          
                 </div>
               </div>
             </div>
@@ -269,12 +118,61 @@
 
 <script>
 export default {
+    props: ['lang'],
     created() {
+      // this.data.lang = 'English'
+      axios.get('http://192.168.1.6:8002/api/getNews', {params: this.data})
+          .then(({data}) => {
+              this.news = data.news
+              this.popular = data.popular
+              console.log(this.news)
+          })
+      //alert(this.data.lang)
+      this.$root.$on('english', (e) => {
+      this.data.lang = e
+      axios.get('http://192.168.1.6:8002/api/getNews', {params: this.data})
+          .then(({data}) => {
+              this.news = data.news
+              this.popular = data.popular
+          })
+      })
 
+      this.$root.$on('french', (e) => {
+      this.data.lang = e
+      axios.get('http://192.168.1.6:8002/api/getNews', {params: this.data})
+          .then(({data}) => {
+              this.news = data.news
+              this.popular = data.popular
+          })
+      })
+
+      this.$root.$on('arabic', (e) => {
+      this.data.lang = e
+      //alert(this.data.lang)
+      axios.get('http://192.168.1.6:8002/api/getNews', {params: this.data})
+          .then(({data}) => {
+              this.news = data.news
+              this.popular = data.popular
+          })
+      })
+
+      this.$root.$on('german', (e) => {
+      this.data.lang = e
+      axios.get('http://192.168.1.6:8002/api/getNews', {params: this.data})
+          .then(({data}) => {
+              this.news = data.news
+              this.popular = data.popular
+          })
+      })
     },
     data() {
         return {
-
+          page: 1,
+          news: [],
+          popular: [],
+          data: {
+            lang: this.lang
+          }
         }
     },
     methods:{
@@ -285,6 +183,20 @@ export default {
             // this.test = true
             this.$router.push('/news_details')
         },
+        nextAcvnt(){
+        this.page = this.page + 1
+          axios.get('http://192.168.1.6:8002/api/getNews?page=' + this.page, {params: this.data})
+            .then(({data}) => {
+              this.news = data
+            })
+        },
+        prevAcvnt(){
+            this.page = this.page - 1
+            axios.get('http://192.168.1.6:8002/api/getNews?page=' + this.page, {params: this.data})
+              .then(({data}) => {
+                this.news = data
+              })
+        }
     }
 }
 </script>

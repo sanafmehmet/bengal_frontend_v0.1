@@ -10,10 +10,28 @@
                 </div>
               </div>
               <div class="col-md-12">
+               
                 <div class="job-title-area d-flex align-items-center">
                   <div class="btl-area d-flex">
                     <div class="job-title-option">
-                      <select id="cars">
+                      <select id="cars" v-model="form.title" required>
+                        <option value="volvo">Job Title</option>
+                        <option value="Manager">Manager</option>
+                        <option value="Officer">Officer</option>
+                        <option value="Executive">Executive</option>
+                        <option value="Programmer">Programmer</option>
+                      </select>
+                    </div>
+                    <div class="job-label-option">
+                      <select id="cars" v-model="form.label" required>
+                        <option value="volvo">Job Label</option>
+                        <option value="Low">Low</option>
+                        <option value="Medium">Medium</option>
+                        <option value="High">High</option>
+                      </select>
+                    </div>
+                     <!-- <div class="job-title-option">
+                      <select id="cars" v-model="form.title">
                         <option value="volvo">Job Title</option>
                         <option value="saab">Saab</option>
                         <option value="opel">Opel</option>
@@ -27,11 +45,12 @@
                         <option value="opel">Opel</option>
                         <option value="audi">Audi</option>
                       </select>
-                    </div>
+                    </div> -->
                   </div>
                   <div class="submit">
-                    <a href="#">Submit</a>
+                    <a type="submit" href @click.prevent="searchResult">Submit</a>
                   </div>
+                  
                 </div>
               </div>
 
@@ -44,7 +63,7 @@
                 </div>
               </div>
               <div class="col-md-12">
-                <div class="job-title-area mb d-flex align-items-center">
+                <div v-for="j in jobs.data" :key="j.id" class="job-title-area mb d-flex align-items-center">
                   <div class="btl-area d-flex">
                     <div class="job-title-option d-flex">
                       <div class="sis-image">
@@ -52,14 +71,14 @@
                       </div>
                       <div class="jobdetails">
                         <h6>View Details</h6>
-                        <h3>Job titel</h3>
-                        <h5>Job Label</h5>
+                        <h3>{{ j.title }}</h3>
+                        <h5>{{ j.label }}</h5>
                         <div class="loca-icon d-flex">
                           <div class="icon-l">
                             <i class="fas fa-map-marker-alt"></i>
                           </div>
                           <div class="loction-name">
-                            <p>Dhaka</p>
+                            <p>{{ j.location }}</p>
                           </div>
                         </div>
                         
@@ -67,115 +86,16 @@
                     </div>
                   </div>
                   <div class="submit">
-                    <a href="#">Alpply Now</a>
-                  </div>
-                </div>
-                <div class="job-title-area mb d-flex align-items-center">
-                  <div class="btl-area d-flex">
-                    <div class="job-title-option d-flex">
-                      <div class="sis-image">
-                        <img src="images/sis_log.jpg" >
-                      </div>
-                      <div class="jobdetails">
-                        <h6>View Details</h6>
-                        <h3>Job titel</h3>
-                        <h5>Job Label</h5>
-                        <div class="loca-icon d-flex">
-                          <div class="icon-l">
-                            <i class="fas fa-map-marker-alt"></i>
-                          </div>
-                          <div class="loction-name">
-                            <p>Dhaka</p>
-                          </div>
-                        </div>
-                        
-                      </div>
-                    </div>
-                  </div>
-                  <div class="submit">
-                    <a href="#">Alpply Now</a>
-                  </div>
-                </div>
-                <div class="job-title-area mb d-flex align-items-center">
-                  <div class="btl-area d-flex">
-                    <div class="job-title-option d-flex">
-                      <div class="sis-image">
-                        <img src="images/sis_log.jpg" >
-                      </div>
-                      <div class="jobdetails">
-                        <h6>View Details</h6>
-                        <h3>Job titel</h3>
-                        <h5>Job Label</h5>
-                        <div class="loca-icon d-flex">
-                          <div class="icon-l">
-                            <i class="fas fa-map-marker-alt"></i>
-                          </div>
-                          <div class="loction-name">
-                            <p>Dhaka</p>
-                          </div>
-                        </div>
-                        
-                      </div>
-                    </div>
-                  </div>
-                  <div class="submit">
-                    <a href="#">Alpply Now</a>
-                  </div>
-                </div>
-                <div class="job-title-area mb d-flex align-items-center">
-                  <div class="btl-area d-flex">
-                    <div class="job-title-option d-flex">
-                      <div class="sis-image">
-                        <img src="images/sis_log.jpg" >
-                      </div>
-                      <div class="jobdetails">
-                        <h6>View Details</h6>
-                        <h3>Job titel</h3>
-                        <h5>Job Label</h5>
-                        <div class="loca-icon d-flex">
-                          <div class="icon-l">
-                            <i class="fas fa-map-marker-alt"></i>
-                          </div>
-                          <div class="loction-name">
-                            <p>Dhaka</p>
-                          </div>
-                        </div>
-                        
-                      </div>
-                    </div>
-                  </div>
-                  <div class="submit">
-                    <a href="#">Alpply Now</a>
-                  </div>
-                </div>
-                <div class="job-title-area  d-flex align-items-center">
-                  <div class="btl-area d-flex">
-                    <div class="job-title-option d-flex">
-                      <div class="sis-image">
-                        <img src="images/sis_log.jpg" >
-                      </div>
-                      <div class="jobdetails">
-                        <h6>View Details</h6>
-                        <h3>Job titel</h3>
-                        <h5>Job Label</h5>
-                        <div class="loca-icon d-flex">
-                          <div class="icon-l">
-                            <i class="fas fa-map-marker-alt"></i>
-                          </div>
-                          <div class="loction-name">
-                            <p>Dhaka</p>
-                          </div>
-                        </div>
-                        
-                      </div>
-                    </div>
-                  </div>
-                  <div class="submit">
-                    <a href="#">Alpply Now</a>
+                    <a :href="j.an">Alpply Now</a>
                   </div>
                 </div>
               </div>
-
+              <div class="col-md-12">
+                <div class="d-flex justify-content-end" style="margin-top:20px;">
+                  <button style="color:white; font-size:16px; margin-right:10px; padding-right: 10px; padding-left: 10px;" @click.prevent="prevAcvnt"  class="btn btn-sm btn-info">Prev</button>
+                  <button style="color:white; font-size:16px" @click.prevent="nextAcvnt" class="btn btn-sm btn-info">Next</button>
+                </div>
+              </div>
             </div>
 
 
@@ -183,6 +103,62 @@
       </section>  
     </div>
 </template>
+
+<script>
+export default {
+  props: ['lang'],
+  created() {
+    this.getJobsData()
+
+    this.$root.$on('arabic', (e) => {
+       this.getJobsData()
+    })
+  },
+  data(){
+    return {
+      url: 'http://192.168.1.6:8002/',
+      form: {
+        lang: this.lang,
+        title: '',
+        label: ''
+      },
+      page: 1,
+      jobs: []
+    }
+  },
+  methods: {
+    getJobsData(){
+      axios.get(this.url + 'api/getJobs', {params: this.form})
+        .then(({data}) => {
+            this.jobs = data
+            //console.log(this.jobs)
+        })
+    },
+    searchResult(){
+      axios.get(this.url + 'api/getJobs?page=' + this.page, {params: this.form})
+        .then(({data}) => {
+            this.jobs = data
+        })
+    },
+    nextAcvnt(){
+        this.page = this.page + 1
+        axios.get(this.url + 'api/getJobs?page=' + this.page, {params: this.form})
+          .then(({data}) => {
+            this.jobs = data
+            //console.log(this.achievements)
+          })
+      },
+	  prevAcvnt(){
+        this.page = this.page - 1
+        axios.get(this.url + 'api/getJobs?page=' + this.page, {params: this.form})
+          .then(({data}) => {
+            this.jobs = data
+            //console.log(this.achievements)
+          })
+      }
+  }
+}
+</script>
 
 <style scoped>
     /** all businees Area  Start **/

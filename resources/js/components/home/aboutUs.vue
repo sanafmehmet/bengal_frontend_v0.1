@@ -107,9 +107,8 @@
 
 <script>
 export default {
- 
+  props: ['lang'],
   created() {
-    this.data.tab_name = 'English'
     axios.get('http://192.168.1.6:8002/api/getAboutus', {params: this.data})
         .then(({data}) => {
             this.abouts = data
@@ -141,6 +140,7 @@ export default {
                 this.abouts = data
                 console.log(this.abouts)
             })
+        //alert(this.data.tab_name)
     })
 
 

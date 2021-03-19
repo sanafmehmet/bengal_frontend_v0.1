@@ -19,8 +19,8 @@
                   <img src="img/mapphoto.jpg">
                     <div class="map-location canada">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Canada</a>
-                          <div class="map-location-details" id="canada" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('canada')" href class="map-point">Canada</a>
+                          <div v-if="isExpand == true && selectedCountry == 'canada'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -29,13 +29,13 @@
                             </ul>
                           </div>
                         </div>
-                      <div class="map-colm-sec2">
-                        <a href="#" class="map-point">
+                      <div v-if="isExpand == false || selectedCountry != 'canada'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('canada')" href class="map-point">
                           <img src="img/plus.png" alt="">
                         </a>
                       </div>
-                      <div class="map-colm-sec2" style="display: none;">
-                        <a href="#" class="map-point">
+                      <div v-if="isExpand == true && selectedCountry == 'canada'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
                           <img src="img/minus.png" alt="">
                         </a>
                       </div>
@@ -43,8 +43,8 @@
                     </div>
                     <div class="map-location usa">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Usa</a>
-                          <div class="map-location-details" id="usa" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('usa')" href class="map-point">USA</a>
+                          <div v-if="isExpand == true && selectedCountry == 'usa'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -53,37 +53,13 @@
                             </ul>
                           </div>
                         </div>
-                      <div class="map-colm-sec2">
-                        <a href="#" class="map-point">
+                      <div v-if="isExpand == false || selectedCountry != 'usa'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('usa')" href class="map-point">
                           <img src="img/plus.png" alt="">
                         </a>
                       </div>
-                      <div class="map-colm-sec2" style="display: none;">
-                        <a href="#" class="map-point">
-                          <img src="img/minus.png" alt="">
-                        </a>
-                      </div>
-                      </div>
-                    </div>
-                    <div class="map-location maxico">
-                      <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Mexico</a>
-                          <div class="map-location-details" id="mexico" style="display: none;">
-                            <ul class="india-colm">
-                                <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
-                                <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
-                                <li><a href="/businesses/companies/av-group-nb">AV Nackawic Inc</a></li>
-                                
-                            </ul>
-                          </div>
-                        </div>
-                      <div class="map-colm-sec2">
-                        <a href="#" class="map-point">
-                          <img src="img/plus.png" alt="">
-                        </a>
-                      </div>
-                      <div class="map-colm-sec2" style="display: none;">
-                        <a href="#" class="map-point">
+                      <div v-if="isExpand == true && selectedCountry == 'usa'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
                           <img src="img/minus.png" alt="">
                         </a>
                       </div>
@@ -91,8 +67,8 @@
                     </div>
                     <div class="map-location nicaragua">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Nicaragua</a>
-                          <div class="map-location-details" id="nicaragua" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('nicaragua')" href class="map-point">Nicaragua</a>
+                          <div v-if="isExpand == true && selectedCountry == 'nicaragua'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -101,22 +77,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'nicaragua'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('nicaragua')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'nicaragua'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
                     <div class="map-location dominicanrepublic">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Dominican Republic</a>
-                          <div class="map-location-details" id="dominicanrepublic" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('dominicanrepublic')" href class="map-point">Dominic Republic</a>
+                          <div v-if="isExpand == true && selectedCountry == 'dominicanrepublic'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -125,22 +101,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'dominicanrepublic'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('dominicanrepublic')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'dominicanrepublic'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
                     <div class="map-location brazil">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Brazil</a>
-                          <div class="map-location-details" id="brazil" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('brazil')" href class="map-point">Brazil</a>
+                          <div v-if="isExpand == true && selectedCountry == 'brazil'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -149,22 +125,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'brazil'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('brazil')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'brazil'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
                     <div class="map-location ireland">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Ireland</a>
-                          <div class="map-location-details" id="ireland" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('ireland')" href class="map-point">Ireland</a>
+                          <div v-if="isExpand == true && selectedCountry == 'ireland'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -173,22 +149,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'ireland'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('ireland')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'ireland'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
                     <div class="map-location switzerland">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Switzerland</a>
-                          <div class="map-location-details" id="switzerland" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('switzerland')" href class="map-point">Switzerland</a>
+                          <div v-if="isExpand == true && selectedCountry == 'switzerland'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -197,23 +173,47 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
+                      <div v-if="isExpand == false || selectedCountry != 'switzerland'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('switzerland')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'switzerland'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
+                      </div>
+                    </div>
+                   <div class="map-location germany">
+                      <div class="map-colm">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('germany')" href class="map-point">Germany</a>
+                          <div v-if="isExpand == true && selectedCountry == 'germany'" class="map-location-details">
+                            <ul class="india-colm">
+                                <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
+                                <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
+                                <li><a href="/businesses/companies/av-group-nb">AV Nackawic Inc</a></li>
+                                
+                            </ul>
+                          </div>
                         </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'germany'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('germany')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'germany'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
                     
-                    <div class="map-location germany">
+                   <div class="map-location france">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Germany</a>
-                          <div class="map-location-details" id="germany" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('france')" href class="map-point">France</a>
+                          <div v-if="isExpand == true && selectedCountry == 'france'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -222,46 +222,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'france'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('france')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
                       </div>
-                    </div>
-                    <div class="map-location france">
-                      <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Faance</a>
-                          <div class="map-location-details" id="france" style="display: none;">
-                            <ul class="india-colm">
-                                <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
-                                <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
-                                <li><a href="/businesses/companies/av-group-nb">AV Nackawic Inc</a></li>
-                                
-                            </ul>
-                          </div>
-                        </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == true && selectedCountry == 'france'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
                     <div class="map-location spain">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Spain</a>
-                          <div class="map-location-details" id="switzerland" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('spain')" href class="map-point">Spain</a>
+                          <div v-if="isExpand == true && selectedCountry == 'spain'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -270,22 +246,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'spain'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('spain')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'spain'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
                     <div class="map-location portugal">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Portugal</a>
-                          <div class="map-location-details" id="switzerland" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('portugal')" href class="map-point">Portugal</a>
+                          <div v-if="isExpand == true && selectedCountry == 'portugal'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -294,22 +270,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'portugal'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('portugal')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'portugal'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
                     <div class="map-location sweden">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Sweden</a>
-                          <div class="map-location-details" id="sweden" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('sweden')" href class="map-point">Sweden</a>
+                          <div v-if="isExpand == true && selectedCountry == 'sweden'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -318,22 +294,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'sweden'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('sweden')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'sweden'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
                     <div class="map-location netherlands">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Netherlands</a>
-                          <div class="map-location-details" id="netherlands" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('netherlands')" href class="map-point">Netherlands</a>
+                          <div v-if="isExpand == true && selectedCountry == 'netherlands'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -342,22 +318,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'netherlands'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('netherlands')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'netherlands'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
-                    <div class="map-location uk">
+                    <div class="map-location uk" >
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">U.K</a>
-                          <div class="map-location-details" id="uk" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('uk')" href class="map-point">U.K</a>
+                          <div v-if="isExpand == true && selectedCountry == 'uk'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -366,22 +342,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'uk'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('uk')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'uk'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
                     <div class="map-location denmark">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Denmark</a>
-                          <div class="map-location-details" id="denmark" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('denmark')" href class="map-point">Denmark</a>
+                          <div v-if="isExpand == true && selectedCountry == 'denmark'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -390,22 +366,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'denmark'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('denmark')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'denmark'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
                     <div class="map-location belgium">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Belgium</a>
-                          <div class="map-location-details" id="belgium" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('belgium')" href class="map-point">Belgium</a>
+                          <div v-if="isExpand == true && selectedCountry == 'belgium'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -414,22 +390,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'belgium'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('belgium')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'belgium'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
-                    <div class="map-location slovakia ">
+                    <div class="map-location slovakia">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Slovakia</a>
-                          <div class="map-location-details" id="slovakia " style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('slovakia')" href class="map-point">Slovakia</a>
+                          <div v-if="isExpand == true && selectedCountry == 'slovakia'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -438,22 +414,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'slovakia'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('slovakia')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'slovakia'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
-                    <div class="map-location  poland">
+                    <div class="map-location poland">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point"> Poland</a>
-                          <div class="map-location-details" id=" poland" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('poland')" href class="map-point">Poland</a>
+                          <div v-if="isExpand == true && selectedCountry == 'poland'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -462,22 +438,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'poland'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('poland')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'poland'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
                     <div class="map-location czechrepublic">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Czech Republic </a>
-                          <div class="map-location-details" id="czechrepublic" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('czechrepublic')" href class="map-point">Czech Republic</a>
+                          <div v-if="isExpand == true && selectedCountry == 'czechrepublic'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -486,22 +462,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'czechrepublic'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('czechrepublic')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'czechrepublic'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
                     <div class="map-location hungary">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Hungary</a>
-                          <div class="map-location-details" id="hungary" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('hungary')" href class="map-point">Hungary</a>
+                          <div v-if="isExpand == true && selectedCountry == 'hungary'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -510,22 +486,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'hungary'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('hungary')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'hungary'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
                     <div class="map-location austria">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Austria</a>
-                          <div class="map-location-details" id="austria" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('austria')" href class="map-point">Austria</a>
+                          <div v-if="isExpand == true && selectedCountry == 'austria'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -534,22 +510,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'austria'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('austria')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'austria'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
                     <div class="map-location romania">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Romania</a>
-                          <div class="map-location-details" id="romania" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('romania')" href class="map-point">Romania</a>
+                          <div v-if="isExpand == true && selectedCountry == 'romania'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -558,22 +534,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'romania'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('romania')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'romania'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
                     <div class="map-location italy">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Italy</a>
-                          <div class="map-location-details" id="italy" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('italy')" href class="map-point">Italy</a>
+                          <div v-if="isExpand == true && selectedCountry == 'italy'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -582,22 +558,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'italy'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('italy')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'italy'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
-                    <div class="map-location  slovenia">
+                    <div class="map-location slovenia">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Slovenia</a>
-                          <div class="map-location-details" id=" slovenia" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('slovenia')" href class="map-point">Slovenia</a>
+                          <div v-if="isExpand == true && selectedCountry == 'slovenia'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -606,22 +582,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'slovenia'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('slovenia')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'slovenia'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
                     <div class="map-location bulgaria">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Bulgaria</a>
-                          <div class="map-location-details" id="bulgaria" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('bulgaria')" href class="map-point">Bulgaria</a>
+                          <div v-if="isExpand == true && selectedCountry == 'bulgaria'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -630,22 +606,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'bulgaria'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('bulgaria')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'bulgaria'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
                     <div class="map-location greece">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Greece</a>
-                          <div class="map-location-details" id="greece" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('greece')" href class="map-point">Greece</a>
+                          <div v-if="isExpand == true && selectedCountry == 'greece'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -654,22 +630,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'greece'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('greece')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'greece'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
                     <div class="map-location croatia">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Croatia</a>
-                          <div class="map-location-details" id="croatia" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('croatia')" href class="map-point">Croatia</a>
+                          <div v-if="isExpand == true && selectedCountry == 'croatia'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -678,22 +654,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'croatia'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('croatia')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'croatia'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
                     <div class="map-location cyprus">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Cyprus</a>
-                          <div class="map-location-details" id="cyprus" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('cyprus')" href class="map-point">Cyprus</a>
+                          <div v-if="isExpand == true && selectedCountry == 'cyprus'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -702,22 +678,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'cyprus'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('cyprus')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'cyprus'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
                     <div class="map-location saudi">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Saudi Arabia</a>
-                          <div class="map-location-details" id="saudi" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('saudi')" href class="map-point">Saudi Arabia</a>
+                          <div v-if="isExpand == true && selectedCountry == 'saudi'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -726,22 +702,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'saudi'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('saudi')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'saudi'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
                     <div class="map-location yemen">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Yemen</a>
-                          <div class="map-location-details" id="yemen" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('yemen')" href class="map-point">Yemen</a>
+                          <div v-if="isExpand == true && selectedCountry == 'yemen'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -750,22 +726,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'yemen'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('yemen')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'yemen'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
                     <div class="map-location somalia">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Somalia</a>
-                          <div class="map-location-details" id="somalia" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('somalia')" href class="map-point">Somalia</a>
+                          <div v-if="isExpand == true && selectedCountry == 'somalia'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -774,22 +750,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'somalia'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('somalia')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'somalia'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
                     <div class="map-location sudan">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Sudan</a>
-                          <div class="map-location-details" id="sudan" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('sudan')" href class="map-point">Sudan</a>
+                          <div v-if="isExpand == true && selectedCountry == 'sudan'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -798,22 +774,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'sudan'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('sudan')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'sudan'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
                     <div class="map-location iran">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Iran</a>
-                          <div class="map-location-details" id="iran" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('iran')" href class="map-point">Iran</a>
+                          <div v-if="isExpand == true && selectedCountry == 'iran'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -822,22 +798,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'iran'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('iran')" href class="map-pointiran">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'iran'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
                     <div class="map-location qatar">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Qatar</a>
-                          <div class="map-location-details" id="qatar" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('qatar')" href class="map-point">Qatar</a>
+                          <div v-if="isExpand == true && selectedCountry == 'qatar'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -846,23 +822,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'qatar'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('qatar')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'qatar'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
-
                     <div class="map-location bahrain">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Bahrain</a>
-                          <div class="map-location-details" id="bahrain" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('bahrain')" href class="map-point">Bahrain</a>
+                          <div v-if="isExpand == true && selectedCountry == 'bahrain'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -871,23 +846,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'bahrain'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('bahrain')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'bahrain'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
-
                     <div class="map-location kuwait">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Kuwait</a>
-                          <div class="map-location-details" id="kuwait" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('kuwait')" href class="map-point">Kuwait</a>
+                          <div v-if="isExpand == true && selectedCountry == 'kuwait'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -896,23 +870,23 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'kuwait'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('kuwait')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'kuwait'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
 
-                    <div class="map-location uae">
+                   <div class="map-location uae">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">UAE</a>
-                          <div class="map-location-details" id="uae" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('uae')" href class="map-point">U.A.E</a>
+                          <div v-if="isExpand == true && selectedCountry == 'uae'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -921,23 +895,23 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'uae'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('uae')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'uae'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
 
                     <div class="map-location napal">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Napal</a>
-                          <div class="map-location-details" id="napal" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('nepal')" href class="map-point">Nepal</a>
+                          <div v-if="isExpand == true && selectedCountry == 'nepal'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -946,23 +920,23 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'nepal'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('nepal')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'nepal'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
 
                     <div class="map-location india">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">India</a>
-                          <div class="map-location-details" id="india" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('india')" href class="map-point">India</a>
+                          <div v-if="isExpand == true && selectedCountry == 'india'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -971,23 +945,23 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'india'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('india')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'india'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
 
                     <div class="map-location maldives">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Maldives</a>
-                          <div class="map-location-details" id="maldives" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('maldives')" href class="map-point">Maldives</a>
+                          <div v-if="isExpand == true && selectedCountry == 'maldives'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -996,23 +970,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'maldives'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('maldives')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'maldives'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
-
-                    <div class="map-location myanmar">
+                   <div class="map-location myanmar">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Myanmar</a>
-                          <div class="map-location-details" id="myanmar" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('myanmar')" href class="map-point">Myanmar</a>
+                          <div v-if="isExpand == true && selectedCountry == 'myanmar'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -1021,23 +994,23 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'myanmar'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('myanmar')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'myanmar'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
 
                     <div class="map-location thailand">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Thailand</a>
-                          <div class="map-location-details" id="thailand" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('thailand')" href class="map-point">Thailand</a>
+                          <div v-if="isExpand == true && selectedCountry == 'thailand'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -1046,23 +1019,23 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'thailand'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('thailand')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'thailand'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
 
                     <div class="map-location malaysia">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Malaysia</a>
-                          <div class="map-location-details" id="iran" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('malaysia')" href class="map-point">Malaysia</a>
+                          <div v-if="isExpand == true && selectedCountry == 'malaysia'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -1071,23 +1044,23 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'malaysia'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('malaysia')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'malaysia'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
 
                     <div class="map-location singapore">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Singapore</a>
-                          <div class="map-location-details" id="singapore" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('singapore')" href class="map-point">Singapore</a>
+                          <div v-if="isExpand == true && selectedCountry == 'singapore'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -1096,22 +1069,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'singapore'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('singapore')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'singapore'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
                     <div class="map-location tasttimor">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">East Timor</a>
-                          <div class="map-location-details" id="tasttimor" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('tasttimor')" href class="map-point">East Timor</a>
+                          <div v-if="isExpand == true && selectedCountry == 'tasttimor'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -1120,22 +1093,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'tasttimor'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('tasttimor')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'tasttimor'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
-                    <div class="map-location australia ">
+                    <div class="map-location australia">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Australia</a>
-                          <div class="map-location-details" id="australia" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('australia')" href class="map-point">Australia</a>
+                          <div v-if="isExpand == true && selectedCountry == 'australia'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -1144,22 +1117,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'australia'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('australia')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'australia'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
                     <div class="map-location newZealand">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">NewZealand</a>
-                          <div class="map-location-details" id="newZealand" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('newZealand')" href class="map-point">New Zealand</a>
+                          <div v-if="isExpand == true && selectedCountry == 'newZealand'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -1168,22 +1141,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'newZealand'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('newZe land')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'newZealand'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
                     <div class="map-location southkorea">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">South Korea</a>
-                          <div class="map-location-details" id="southkorea" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('southkorea')" href class="map-point">South Korea</a>
+                          <div v-if="isExpand == true && selectedCountry == 'southkorea'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -1192,22 +1165,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'southkorea'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('southkorea')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'southkorea'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
                     <div class="map-location japan">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Japan</a>
-                          <div class="map-location-details" id="japan" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('japan')" href class="map-point">Japan</a>
+                          <div v-if="isExpand == true && selectedCountry == 'japan'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -1216,22 +1189,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'japan'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('japan')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'japan'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
                     <div class="map-location cambadia">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Cambodia</a>
-                          <div class="map-location-details" id="cambadia" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('cambadia')" href class="map-point">Cambodia</a>
+                          <div v-if="isExpand == true && selectedCountry == 'cambadia'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -1240,22 +1213,22 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'cambadia'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('cambadia')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'cambadia'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
                     <div class="map-location philippines">
                       <div class="map-colm">
-                        <div class="map-colm-sec1"><a href="javascript:void(0);" class="map-point">Philippines</a>
-                          <div class="map-location-details" id="philippines" style="display: none;">
+                        <div class="map-colm-sec1"><a @click.prevent="doSomething('philippines')" href class="map-point">Philippines</a>
+                          <div v-if="isExpand == true && selectedCountry == 'philippines'" class="map-location-details">
                             <ul class="india-colm">
                                 <li><a href="/businesses/companies/novelis-inc">Novelis</a></li>
                                 <li><a href="/businesses/companies/av-group-nb">AV Cell Inc</a></li>
@@ -1264,22 +1237,21 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
-                          <a href="#" class="map-point">
-                            <img src="img/plus.png" alt="">
-                          </a>
-                        </div>
-                        <div class="map-colm-sec2" style="display: none;">
-                          <a href="#" class="map-point">
-                            <img src="img/minus.png" alt="">
-                          </a>
-                        </div>
+                      <div v-if="isExpand == false || selectedCountry != 'philippines'" class="map-colm-sec2">
+                        <a @click.prevent="doSomething('philippines')" href class="map-point">
+                          <img src="img/plus.png" alt="">
+                        </a>
+                      </div>
+                      <div v-if="isExpand == true && selectedCountry == 'philippines'" class="map-colm-sec2">
+                        <a @click.prevent="resetThings" href class="map-point">
+                          <img src="img/minus.png" alt="">
+                        </a>
+                      </div>
                       </div>
                     </div>
-
-
-
                 </div>
+
+                <!-- Next Area for medium-->
                 <div class="col-md-12 export-area-map d-block d-sm-none">
                   <img src="img/mapphoto.jpg">
                     <div class="maplocation canada-m">
@@ -2529,7 +2501,7 @@
                             </ul>
                           </div>
                         </div>
-                        <div class="map-colm-sec2">
+                        <div class="map-colm-sec2" style="display: none;">
                           <a href="#" class="map-point">
                             <img src="img/plus.png" alt="">
                           </a>
@@ -2558,26 +2530,32 @@ export default {
     this.getData()
 
     this.$root.$on('english', (e) => {
-            this.form.lang = e
-            axios.get('http://192.168.1.6:8002/api/getExport', {params: this.form})
-                .then(({data}) => {
-                    this.expt = data
-                })
-        })
+        this.form.lang = e
+        axios.get('http://192.168.1.6:8002/api/getExport', {params: this.form})
+            .then(({data}) => {
+                this.expt = data
+            })
+    })
 
-        this.$root.$on('arabic', (e) => {
-            this.form.lang = e
-            axios.get('http://192.168.1.6:8002/api/getExport', {params: this.form})
-                .then(({data}) => {
-                    this.expt = data
-                })
-        })
+    this.$root.$on('arabic', (e) => {
+        this.form.lang = e
+        axios.get('http://192.168.1.6:8002/api/getExport', {params: this.form})
+            .then(({data}) => {
+                this.expt = data
+            })
+    })
+
+    
   },
   data() {
     return {
       expt: {},
+      isExpand: false,
+      selectedCountry: '',
+
       form: {
-          lang: ''
+          lang: '',
+          
       }
     }
   },
@@ -2587,9 +2565,16 @@ export default {
         axios.get('http://192.168.1.6:8002/api/getExport', {params: this.form})
           .then(({data}) => {
             this.expt = data
-            console.log(this.export)
           })
-      },
+    },
+    doSomething(country){
+      this.isExpand = true
+      this.selectedCountry = country
+    },
+    resetThings(){
+      this.isExpand = false
+      this.selectedCountry = ''
+    }
   }
 }
 </script>
@@ -2660,7 +2645,7 @@ export default {
 	top: 46%;
 	left: 20%;
 }
-.maxico {
+.mexico {
 	left: 12%;
 	top: 54%;
 }

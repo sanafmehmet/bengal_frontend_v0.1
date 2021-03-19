@@ -6,23 +6,23 @@
             <div class="col-md-12">
               <div class="site-title ">
                 <h4 class="sub-title">
-                  Lorem Lorem
+                  {{ partner.heading }}
                 </h4>
-                <h2>Our Partner</h2>
+                <h2>{{ partner.title }}</h2>
               </div>
             </div>
           </div>
         </div>
         <div class="container">
             <div class="row">
-              <div class="pr col-md-4 col-lg-4 col">
+              <div v-for="i in images" :key="i.id" class="pr col-md-4 col-lg-4 col">
                 <div class="bengal-partner">
                     <div class="img">
-                      <img src="images/partner-1.jpg">
+                      <img :src="'http://192.168.1.6:8002/' + i.image">
                     </div>
                 </div>
               </div>
-              <div class="pr col-md-4 col-lg-4 col">
+              <!-- <div class="pr col-md-4 col-lg-4 col">
                 <div class="bengal-partner">
                     <div class="img">
                       <img src="images/partner-2.jpg">
@@ -77,13 +77,68 @@
                       <img src="images/partner-1.jpg">
                     </div>
                 </div>
-              </div>
+              </div> -->
             </div>
         </div>
       </section>  
          
     </div>
 </template>
+
+<script>
+export default {
+  props: ['lang'],
+  created() {
+    axios.get('http://192.168.1.6:8002/api/getPartner', {params: this.data})
+        .then(({data}) => {
+            this.partner = data.partner
+            this.images = data.images
+            console.log(this.partner)
+            console.log(this.images)
+        })
+
+    this.$root.$on('english', (e) => {
+        this.data.lang = e
+        axios.get('http://192.168.1.6:8002/api/getPartner', {params: this.data})
+            .then(({data}) => {
+                this.partner = data.partner
+                this.images = data.images
+            })
+    })
+
+    this.$root.$on('french', (e) => {
+        this.data.lang = e
+        axios.get('http://192.168.1.6:8002/api/getPartner', {params: this.data})
+            .then(({data}) => {
+                this.partner = data.partner
+                this.images = data.images
+            })
+    })
+
+    this.$root.$on('arabic', (e) => {
+        this.data.lang = e
+        axios.get('http://192.168.1.6:8002/api/getPartner', {params: this.data})
+            .then(({data}) => {
+                this.partner = data.partner
+                this.images = data.images
+            })
+    })
+  },
+  data() {
+    
+    return {
+      partner: {},
+      images: [],
+      data: {
+        lang: this.lang
+      }
+    }
+  },
+  methods: {
+
+  }
+}
+</script>
 
 <style scoped>
     /** partner Area  Start **/

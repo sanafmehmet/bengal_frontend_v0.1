@@ -27,15 +27,17 @@ export default {
         })
         this.$root.$on('arabic', (e) => {
             this.lang = e
-            
         })
+
+        // this.$root.$on('food', (e) => {
+        //     this.item = e
+        // })
        
     },
     data() {
         return {
-            lang: ''
-            
-            
+            lang: '',
+            item: ''
         }
     }
 }

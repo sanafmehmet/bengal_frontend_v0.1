@@ -10,17 +10,15 @@
                         
                           <div class="site-title">
                             <h4 class="sub-title">
-                              Lorem Lorem
+                              {{oneData.heading}}
                             </h4>
-                            <h2>Who We Are</h2>
+                            <h2>{{oneData.title}}</h2>
                           </div>
                         
                     </div>
                     <div class="row">
                         <div class="col-12 p-0 pr-md-5 about-mision">
-                            <p>Bengal Group is one of the leading and fastest-growing corporate bodies in Bangladesh having a wide range of activities in the field of plastics, adhesives, metal, paper & packaging, real estate, agro, food, bank & financial institutions, and power & renewable energy.  We have a dedicated team of more than 10,000 people all over Bangladesh.</p>
-                            <p>The Group takes pride in developing the economy of Bangladesh through establishing diversified industries.</p>
-                            <p>We are one of the most reputed, well-organized, leading, and largest business entities in Bangladesh.</p>
+                            <p>{{oneData.desc}}</p>
                             
                         </div>
                     </div>
@@ -31,22 +29,22 @@
                             <li class="list-group-item d-flex justify-content-center align-items-center">
                                 <a href="#"><i class="fas fa-rocket"></i></a>
                                 <div class="list-group-content">
-                                    <h4>Mission</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    <h4>{{oneData.title_one}}</h4>
+                                    <p>{{oneData.desc_one}}.</p>
                                 </div>
                             </li>
                             <li class="list-group-item d-flex justify-content-center align-items-center">
                                 <a href="#"><i class="far fa-eye-slash"></i></a>
                                 <div class="list-group-content">
-                                    <h4>Vision</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    <h4>{{oneData.title_two}}</h4>
+                                    <p>{{oneData.desc_two}}.</p>
                                 </div>
                             </li>
                             <li class="list-group-item d-flex justify-content-center align-items-center">
                                 <a href="#"><i class="fas fa-gift"></i></a>
                                 <div class="list-group-content">
-                                    <h4>Values</h4>
-                                    <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+                                    <h4>{{oneData.title_three}}</h4>
+                                    <p>{{oneData.desc_three}}.</p>
                                 </div>
                             </li>
                         </ul>
@@ -300,35 +298,31 @@
     components: { countTo },
     props: ['lang'],
     created(){
+        this.getContentOne()
         this.getDocs()
-        //console.log(this.lang)
-        //alert(this.lang)
-        //console.log(self.userId)
-        // this.$root.$on('english', (e) => {
-        //     alert('Hi, true')
-        // })
-        //  this.$on('english', (e) => {
-        //     this.value = e
-        //     alert(this.value)
-        //     console.log(this.value)
-        // })
 
-        // this.$parent.$on('value', (e) => {
-        //     //this.value = e
-        //     alert('hi')
-        // })
+        this.$root.$on('english', (e) => {
+            this.form.lang = e
+            axios.get('http://192.168.1.6:8002/api/getAboutusOne', {params: this.form})
+                .then(({data}) => {
+                    this.oneData = data
+                })
+        })
 
-       
-
-        // Window.Event.$on('abc', function(user){
-        //     alert('hi, radif')
-        // }.bind(this));
+        this.$root.$on('arabic', (e) => {
+            this.form.lang = e
+            axios.get('http://192.168.1.6:8002/api/getAboutusOne', {params: this.form})
+                .then(({data}) => {
+                    this.oneData = data
+                })
+        })
     },
     data () {
       return {
         startVal: 0,
         endVal: 10000,
         docData: [],
+        oneData: {},
         page: 1,
         form: {
             lang: this.lang
@@ -336,35 +330,37 @@
       }
     },
     methods: {
+        getContentOne(){
+            axios.get("http://192.168.1.6:8002/api/getAboutusOne", {params: this.form})
+                .then(({data}) => {
+                    this.oneData = data
+                })
+        },
         getDocs(){
-        // if (typeof page === 'undefined') {
-        //     page = 1;
-        // }
-      
-        axios.post('http://192.168.1.6:8002/api/getDocuments?page=' + this.page, this.form)
-          .then(({data}) => {
-            this.docData = data
-            console.log(this.docData)
-          })
-      },
-      next(){
-          this.page = this.page + 1
-          axios.post('http://192.168.1.6:8002/api/getDocuments?page=' + this.page, this.form)
-          .then(({data}) => {
-            this.docData = ''
-            this.docData = data
-            console.log(this.docData)
-          })
-      },
-      prev(){
-          this.page = this.page - 1
-          axios.post('http://192.168.1.6:8002/api/getDocuments?page=' + this.page, this.form)
-          .then(({data}) => {
-            this.docData = ''
-            this.docData = data
-            console.log(this.docData)
-          })
-      }
+            axios.post('http://192.168.1.6:8002/api/getDocuments?page=' + this.page, this.form)
+                .then(({data}) => {
+                    this.docData = data
+                    //console.log(this.docData)
+                })
+        },
+        next(){
+            this.page = this.page + 1
+            axios.post('http://192.168.1.6:8002/api/getDocuments?page=' + this.page, this.form)
+            .then(({data}) => {
+                this.docData = ''
+                this.docData = data
+                //console.log(this.docData)
+            })
+        },
+        prev(){
+            this.page = this.page - 1
+            axios.post('http://192.168.1.6:8002/api/getDocuments?page=' + this.page, this.form)
+            .then(({data}) => {
+                this.docData = ''
+                this.docData = data
+                //console.log(this.docData)
+            })
+        }
     }
   }
 </script>
